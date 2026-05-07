@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Lederen Juwelen - Atelier Luz</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Eigen CSS bestand -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a href="index.html" class="logo-link" style="text-decoration: none;">
+            <div class="logo">
+                <h1>Atelier Luz</h1>
+                <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            
+            <div class="nav-item">
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    <a href="collectie.html" class="dropdown-trigger-link" style="text-decoration: none;">Collectie</a>
+                    <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="dropdown-menu">
+                    <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
+                    <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
+                    <a href="collectie-lederwerken.html">Lederwerken</a>
+                </div>
+            </div>
+            
+            <a href="het-atelier.html">Het Atelier</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+</header>
+
+<!-- PRODUCTEN SECTIE -->
+<section class="products-section" style="padding-top: 0;">
+    <div class="container">
+        <div class="title-wrapper">
+            <h2 class="section-title">Lederen Juwelen</h2>
+        </div>
+        
+        <div class="producten-grid" id="productenGrid">
+            <div class="loading"><i class="fas fa-spinner fa-spin"></i> Producten laden...</div>
+        </div>
+    </div>
+</section>
+
+<!-- MODAL (POP-UP) -->
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <div class="modal-body">
+            <div class="modal-gallery">
+                <div class="modal-main-image">
+                    <img id="modalMainImage" src="" alt="">
+                </div>
+                <div class="modal-thumbnails" id="modalThumbnails">
+                    <!-- Thumbnails komen hier -->
+                </div>
+            </div>
+            <div class="modal-details">
+                <h2 id="modalTitle"></h2>
+                <div class="modal-price" id="modalPrice"></div>
+                <div class="modal-description" id="modalDescription"></div>
+                <button class="modal-add-to-cart" id="modalAddToCart">
+                    <i class="fas fa-shopping-bag"></i> In winkelwagen
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <!-- Linker kant: Atelier Luz info -->
+            <div class="footer-info">
+                <h3>Atelier Luz</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Genk, België</p>
+                <p><i class="fas fa-envelope"></i> yolanda@atelierluz.be</p>
+                <p><i class="fas fa-phone-alt"></i> +32 (0)4XX XX XX XX</p>
+                <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/atelierluz" target="_blank" style="color: #d4c4ae;">@atelierluz</a></p>
+            </div>
+            
+            <!-- Rechter kant: Alleen Contact en Admin -->
+            <div class="footer-links">
+                <div>
+                    <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
+                    <p><a href="contact.html">Contact</a></p>
+                    <p><a href="admin.html" id="adminLink">Admin</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Atelier Luz – Ontworpen en met de hand gemaakt in België</p>
+        </div>
+    </div>
+</footer>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+    import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+    
+    const firebaseConfig = {
+        apiKey: "AIzaSyDig9gjA_N1Jp-m6ptnarZJZ8yJxFHyR1w",
+        authDomain: "atelierluz-73d72.firebaseapp.com",
+        projectId: "atelierluz-73d72",
+        storageBucket: "atelierluz-73d72.firebasestorage.app",
+        messagingSenderId: "18595217516",
+        appId: "1:18595217516:web:a1f1eb7ac47f242cfb5849",
+        measurementId: "G-S4C7ZCG16W"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    
+    let currentProduct = null;
+    let currentImageIndex = 0;
+
+    // Producten laden uit Firebase (gefilterd op categorie)
+    async function laadProducten() {
+        const grid = document.getElementById('productenGrid');
+        grid.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Producten laden...</div>';
+        
+        try {
+            const q = query(collection(db, "products"), where("category", "==", "lederen-juwelen"));
+            const querySnapshot = await getDocs(q);
+            
+            if (querySnapshot.empty) {
+                grid.innerHTML = '<div class="loading"><i class="fas fa-box-open"></i> Nog geen producten gevonden in deze categorie.</div>';
+                return;
+            }
+            
+            let producten = [];
+            querySnapshot.forEach((doc) => {
+                producten.push({ id: doc.id, ...doc.data() });
+            });
+            
+            renderProducten(producten);
+        } catch (error) {
+            console.error("Fout bij laden producten:", error);
+            grid.innerHTML = '<div class="loading"><i class="fas fa-exclamation-triangle"></i> Er is een fout opgetreden. Probeer het later opnieuw.</div>';
+        }
+    }
+
+    function renderProducten(producten) {
+        const grid = document.getElementById('productenGrid');
+        grid.innerHTML = '';
+        
+        producten.forEach(product => {
+            const afbeeldingen = product.images || [product.imageUrl];
+            const hoofdAfbeelding = afbeeldingen[0] || 'https://placehold.co/600x600/f5f0eb/8b7d6b?text=Atelier+Luz';
+            
+            const productCard = document.createElement('div');
+            productCard.className = 'product-item';
+            productCard.onclick = () => openModal(product, afbeeldingen);
+            
+            productCard.innerHTML = `
+                <div class="product-item-image">
+                    <img src="${hoofdAfbeelding}" alt="${product.name}" loading="lazy">
+                </div>
+                <div class="product-item-info">
+                    <h3>${product.name}</h3>
+                    <div class="product-item-price">€ ${product.price ? product.price.toFixed(2) : '0,00'}</div>
+                    <button class="product-item-btn" onclick="event.stopPropagation(); openModalFromScratch(${JSON.stringify(product).replace(/"/g, '&quot;')}, ${JSON.stringify(afbeeldingen).replace(/"/g, '&quot;')})">Bekijk details</button>
+                </div>
+            `;
+            
+            grid.appendChild(productCard);
+        });
+    }
+
+    window.openModalFromScratch = function(product, afbeeldingen) {
+        openModal(product, afbeeldingen);
+    };
+
+    function openModal(product, afbeeldingen) {
+        currentProduct = product;
+        const productAfbeeldingen = afbeeldingen || product.images || [product.imageUrl];
+        currentImageIndex = 0;
+        
+        document.getElementById('modalTitle').textContent = product.name;
+        document.getElementById('modalPrice').textContent = `€ ${product.price ? product.price.toFixed(2) : '0,00'}`;
+        document.getElementById('modalDescription').textContent = product.description || 'Geen beschrijving beschikbaar.';
+        document.getElementById('modalMainImage').src = productAfbeeldingen[0] || 'https://placehold.co/600x600/f5f0eb/8b7d6b?text=Atelier+Luz';
+        
+        const thumbnailsContainer = document.getElementById('modalThumbnails');
+        thumbnailsContainer.innerHTML = '';
+        
+        productAfbeeldingen.forEach((img, index) => {
+            if (img) {
+                const thumb = document.createElement('div');
+                thumb.className = 'modal-thumb';
+                if (index === 0) thumb.classList.add('active');
+                thumb.innerHTML = `<img src="${img}" alt="">`;
+                thumb.onclick = (e) => {
+                    e.stopPropagation();
+                    currentImageIndex = index;
+                    document.getElementById('modalMainImage').src = productAfbeeldingen[currentImageIndex];
+                    
+                    document.querySelectorAll('.modal-thumb').forEach((t, i) => {
+                        t.classList.toggle('active', i === currentImageIndex);
+                    });
+                };
+                thumbnailsContainer.appendChild(thumb);
+            }
+        });
+        
+        document.getElementById('productModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        document.getElementById('productModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function addToCart() {
+        if (currentProduct) {
+            alert(`🛍️ ${currentProduct.name} is toegevoegd aan je winkelwagen!\n\nPrijs: € ${currentProduct.price ? currentProduct.price.toFixed(2) : '0,00'}\n\nBetaalmodule wordt binnenkort toegevoegd.`);
+        }
+    }
+
+    document.querySelector('.modal-close').addEventListener('click', closeModal);
+    document.getElementById('modalAddToCart').addEventListener('click', addToCart);
+    
+    document.getElementById('productModal').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('productModal')) {
+            closeModal();
+        }
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.getElementById('productModal').classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    laadProducten();
+</script>
+
+</body>
+</html>

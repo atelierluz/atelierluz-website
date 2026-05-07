@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Het Atelier - Atelier Luz</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a href="index.html" class="logo-link" style="text-decoration: none;">
+            <div class="logo">
+                <h1>Atelier Luz</h1>
+                <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            
+            <div class="nav-item">
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    <a href="collectie.html" class="dropdown-trigger-link" style="text-decoration: none;">Collectie</a>
+                    <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="dropdown-menu">
+                    <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
+                    <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
+                    <a href="collectie-lederwerken.html">Lederwerken</a>
+                </div>
+            </div>
+            
+            <a href="het-atelier.html">Het Atelier</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+</header>
+
+<section class="products-section" style="padding-top: 0;">
+    <div class="container">
+        <div class="title-wrapper">
+            <h2 class="section-title">Het Atelier</h2>
+        </div>
+        
+        <!-- Blok 1: Foto links, tekst rechts -->
+        <div class="atelier-block">
+            <div class="atelier-image">
+                <img src="https://placehold.co/600x500/f5ede3/8b6946?text=Yolanda+in+atelier" alt="Yolanda in haar atelier">
+            </div>
+            <div class="atelier-text">
+                <h3>Mijn creatieve thuis</h3>
+                <p>Welkom in mijn atelier, de plek waar al mijn creaties tot leven komen. Wat ooit begon als een kleine hobbyruimte, is uitgegroeid tot een volwaardige werkplaats waar ik elke dag met plezier aan nieuwe ontwerpen werk.</p>
+                <p>Hier, omringd door leer, gereedschap en materialen, vind ik rust en inspiratie. De voormalige nagelstudio is nu omgetoverd tot een plek waar machines zoemen en ideeën werkelijkheid worden.</p>
+            </div>
+        </div>
+        
+        <!-- Blok 2: Foto rechts, tekst links -->
+        <div class="atelier-block reverse">
+            <div class="atelier-image">
+                <img src="https://placehold.co/600x500/d4c4ae/8b6946?text=Werkbank+met+leer" alt="Werkbank met lederwaren">
+            </div>
+            <div class="atelier-text">
+                <h3>Ambachtelijk vakmanschap</h3>
+                <p>Elk product dat mijn atelier verlaat, is met de hand gemaakt. Van het zorgvuldig selecteren van het leer tot het nauwkeurig stikken van de laatste steek - ik hecht veel waarde aan kwaliteit en duurzaamheid.</p>
+                <p>Na een opleiding marokijnbewerking van twee jaar en verschillende aanvullende cursussen, heb ik mijn technieken verfijnd en blijf ik mezelf elke dag verbeteren.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Carrousel met extra sfeerbeelden -->
+<section class="atelier-carrousel-section">
+    <div class="container">
+        <div class="title-wrapper">
+            <h2 class="section-title">Sfeerbeelden</h2>
+        </div>
+    </div>
+    
+    <div class="atelier-carrousel-container">
+        <button class="atelier-carrousel-btn atelier-prev" id="atelierPrevBtn">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="atelier-carrousel-btn atelier-next" id="atelierNextBtn">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        
+        <div class="atelier-carrousel-track" id="atelierCarrouselTrack">
+            <div class="atelier-carrousel-slide">
+                <img src="https://placehold.co/1000x450/e8ddd0/a68a64?text=Materialen+en+Gereedschap" alt="Materialen en gereedschap">
+            </div>
+            <div class="atelier-carrousel-slide">
+                <img src="https://placehold.co/1000x450/c8b5a6/5c3d2e?text=Werkbank+details" alt="Werkbank details">
+            </div>
+            <div class="atelier-carrousel-slide">
+                <img src="https://placehold.co/1000x450/b29a7a/3a322c?text=Ledersoorten" alt="Verschillende ledersoorten">
+            </div>
+            <div class="atelier-carrousel-slide">
+                <img src="https://placehold.co/1000x450/8b6946/f5ede3?text=Afgewerkte+producten" alt="Afgewerkte producten in atelier">
+            </div>
+        </div>
+    </div>
+    
+    <div class="atelier-dots" id="atelierDots"></div>
+</section>
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <!-- Linker kant: Atelier Luz info -->
+            <div class="footer-info">
+                <h3>Atelier Luz</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Genk, België</p>
+                <p><i class="fas fa-envelope"></i> yolanda@atelierluz.be</p>
+                <p><i class="fas fa-phone-alt"></i> +32 (0)4XX XX XX XX</p>
+                <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/atelierluz" target="_blank" style="color: #d4c4ae;">@atelierluz</a></p>
+            </div>
+            
+            <!-- Rechter kant: Alleen Contact en Admin -->
+            <div class="footer-links">
+                <div>
+                    <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
+                    <p><a href="contact.html">Contact</a></p>
+                    <p><a href="admin.html" id="adminLink">Admin</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Atelier Luz – Ontworpen en met de hand gemaakt in België</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Atelier carrousel
+    const track = document.getElementById('atelierCarrouselTrack');
+    const slides = document.querySelectorAll('.atelier-carrousel-slide');
+    const prevBtn = document.getElementById('atelierPrevBtn');
+    const nextBtn = document.getElementById('atelierNextBtn');
+    const dotsContainer = document.getElementById('atelierDots');
+    
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    
+    function createDots() {
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('atelier-dot');
+            if (i === currentIndex) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+    
+    function updateDots() {
+        const dots = document.querySelectorAll('.atelier-dot');
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+    
+    function goToSlide(index) {
+        if (index < 0) index = 0;
+        if (index >= totalSlides) index = totalSlides - 1;
+        currentIndex = index;
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        updateDots();
+    }
+    
+    function nextSlide() {
+        if (currentIndex < totalSlides - 1) {
+            currentIndex++;
+        } else {
+            currentIndex = 0;
+        }
+        goToSlide(currentIndex);
+    }
+    
+    function prevSlide() {
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = totalSlides - 1;
+        }
+        goToSlide(currentIndex);
+    }
+    
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    
+    let autoPlay = setInterval(nextSlide, 5000);
+    
+    const carouselContainer = document.querySelector('.atelier-carrousel-container');
+    carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlay));
+    carouselContainer.addEventListener('mouseleave', () => {
+        autoPlay = setInterval(nextSlide, 5000);
+    });
+    
+    createDots();
+    goToSlide(0);
+</script>
+
+</body>
+</html>
