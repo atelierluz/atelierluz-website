@@ -142,31 +142,34 @@
 </div>
 
 <footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <!-- Linker kant: Atelier Luz info -->
-            <div class="footer-info">
-                <h3>Atelier Luz</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Genk, België</p>
-                <p><i class="fas fa-envelope"></i> yolanda@atelierluz.be</p>
-                <p><i class="fas fa-phone-alt"></i> +32 (0)4XX XX XX XX</p>
-                <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/atelierluz" target="_blank" style="color: #d4c4ae;">@atelierluz</a></p>
-            </div>
-            
-            <!-- Rechter kant: Alleen Contact en Admin -->
-            <div class="footer-links">
-                <div>
-                    <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
-                    <p><a href="contact.html">Contact</a></p>
-                    <p><a href="admin.html" id="adminLink">Admin</a></p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Atelier Luz</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <a
+                            href="https://maps.google.com/?q=Stiemerbeekstraat+25+3600+Genk" target="_blank"
+                            style="color: #d4c4ae; text-decoration: none;">Stiemerbeekstraat 25, 3600 Genk</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@atelierluz.be"
+                            style="color: #d4c4ae; text-decoration: none;">info@atelierluz.be</a></p>
+                    <p><i class="fas fa-phone-alt"></i> <a href="tel:+32468209909"
+                            style="color: #d4c4ae; text-decoration: none;">+32 468 20 99 09</a></p>
+                    <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/_atelier_luz_/"
+                            target="_blank" style="color: #d4c4ae;">@_atelier_luz_</a></p>
+                </div>
+
+                <div class="footer-links">
+                    <div>
+                        <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
+                        <p><a href="contact.html">Contact</a></p>
+                        <p><a href="admin.html" id="adminLink">Admin</a></p>
+                    </div>
                 </div>
             </div>
+            <div class="footer-bottom">
+                <p>© 2026 Atelier Luz – Ontworpen en met de hand gemaakt</p>
+            </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2025 Atelier Luz – Ontworpen en met de hand gemaakt in België</p>
-        </div>
-    </div>
-</footer>
+    </footer>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
@@ -387,10 +390,16 @@
         const imageUrl = productImageUrl.value.trim();
         
         // Verzamel extra afbeeldingen
-        const extraImages = [];
-        document.querySelectorAll('.extra-image').forEach(input => {
-            if (input.value.trim()) extraImages.push(input.value.trim());
-        });
+        // Verzamel extra afbeeldingen
+const extraImages = [];
+document.querySelectorAll('.extra-image').forEach(input => {
+    if (input.value.trim()) extraImages.push(input.value.trim());
+});
+
+// Voeg hoofdafbeelding automatisch toe aan extra afbeeldingen als die er nog niet in zit
+if (imageUrl && !extraImages.includes(imageUrl)) {
+    extraImages.unshift(imageUrl);  // Zet de hoofdafbeelding vooraan
+}
         
         if (!name) {
             formError.textContent = 'Vul een productnaam in';

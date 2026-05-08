@@ -5,14 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Lederen Juwelen - Atelier Luz</title>
     
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Eigen CSS bestand -->
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js"></script>
     <script src="winkelwagen.js"></script>
 </head>
 <body>
@@ -42,6 +38,11 @@
             
             <a href="het-atelier.html">Het Atelier</a>
             <a href="contact.html">Contact</a>
+            <a href="winkelwagen.html" class="cart-link">
+    <i class="fas fa-shopping-bag"></i> 
+    Winkelwagen
+    <span class="cart-count" style="display: none;">0</span>
+</a>
         </div>
         <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
             <span></span>
@@ -51,70 +52,64 @@
     </div>
 </header>
 
-<!-- PRODUCTEN SECTIE -->
 <section class="products-section" style="padding-top: 0;">
     <div class="container">
         <div class="title-wrapper">
             <h2 class="section-title">Lederen Juwelen</h2>
         </div>
-        
         <div class="producten-grid" id="productenGrid">
             <div class="loading"><i class="fas fa-spinner fa-spin"></i> Producten laden...</div>
         </div>
     </div>
 </section>
 
-<!-- MODAL (POP-UP) -->
 <div id="productModal" class="modal">
     <div class="modal-content">
         <span class="modal-close">&times;</span>
         <div class="modal-body">
             <div class="modal-gallery">
-                <div class="modal-main-image">
-                    <img id="modalMainImage" src="" alt="">
-                </div>
-                <div class="modal-thumbnails" id="modalThumbnails">
-                    <!-- Thumbnails komen hier -->
-                </div>
+                <div class="modal-main-image"><img id="modalMainImage" src="" alt=""></div>
+                <div class="modal-thumbnails" id="modalThumbnails"></div>
             </div>
             <div class="modal-details">
                 <h2 id="modalTitle"></h2>
                 <div class="modal-price" id="modalPrice"></div>
                 <div class="modal-description" id="modalDescription"></div>
-                <button class="modal-add-to-cart" id="modalAddToCart">
-                    <i class="fas fa-shopping-bag"></i> In winkelwagen
-                </button>
+                <button class="modal-add-to-cart" id="modalAddToCart"><i class="fas fa-shopping-bag"></i> In winkelwagen</button>
             </div>
         </div>
     </div>
 </div>
 
 <footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <!-- Linker kant: Atelier Luz info -->
-            <div class="footer-info">
-                <h3>Atelier Luz</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Genk, België</p>
-                <p><i class="fas fa-envelope"></i> yolanda@atelierluz.be</p>
-                <p><i class="fas fa-phone-alt"></i> +32 (0)4XX XX XX XX</p>
-                <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/atelierluz" target="_blank" style="color: #d4c4ae;">@atelierluz</a></p>
-            </div>
-            
-            <!-- Rechter kant: Alleen Contact en Admin -->
-            <div class="footer-links">
-                <div>
-                    <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
-                    <p><a href="contact.html">Contact</a></p>
-                    <p><a href="admin.html" id="adminLink">Admin</a></p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Atelier Luz</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <a
+                            href="https://maps.google.com/?q=Stiemerbeekstraat+25+3600+Genk" target="_blank"
+                            style="color: #d4c4ae; text-decoration: none;">Stiemerbeekstraat 25, 3600 Genk</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@atelierluz.be"
+                            style="color: #d4c4ae; text-decoration: none;">info@atelierluz.be</a></p>
+                    <p><i class="fas fa-phone-alt"></i> <a href="tel:+32468209909"
+                            style="color: #d4c4ae; text-decoration: none;">+32 468 20 99 09</a></p>
+                    <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/_atelier_luz_/"
+                            target="_blank" style="color: #d4c4ae;">@_atelier_luz_</a></p>
+                </div>
+
+                <div class="footer-links">
+                    <div>
+                        <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
+                        <p><a href="contact.html">Contact</a></p>
+                        <p><a href="admin.html" id="adminLink">Admin</a></p>
+                    </div>
                 </div>
             </div>
+            <div class="footer-bottom">
+                <p>© 2026 Atelier Luz – Ontworpen en met de hand gemaakt</p>
+            </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2025 Atelier Luz – Ontworpen en met de hand gemaakt in België</p>
-        </div>
-    </div>
-</footer>
+    </footer>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
@@ -136,7 +131,6 @@
     let currentProduct = null;
     let currentImageIndex = 0;
 
-    // Producten laden uit Firebase (gefilterd op categorie)
     async function laadProducten() {
         const grid = document.getElementById('productenGrid');
         grid.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Producten laden...</div>';
@@ -158,7 +152,7 @@
             renderProducten(producten);
         } catch (error) {
             console.error("Fout bij laden producten:", error);
-            grid.innerHTML = '<div class="loading"><i class="fas fa-exclamation-triangle"></i> Er is een fout opgetreden. Probeer het later opnieuw.</div>';
+            grid.innerHTML = '<div class="loading"><i class="fas fa-exclamation-triangle"></i> Er is een fout opgetreden.</div>';
         }
     }
 
@@ -175,16 +169,13 @@
             productCard.onclick = () => openModal(product, afbeeldingen);
             
             productCard.innerHTML = `
-                <div class="product-item-image">
-                    <img src="${hoofdAfbeelding}" alt="${product.name}" loading="lazy">
-                </div>
+                <div class="product-item-image"><img src="${hoofdAfbeelding}" alt="${product.name}" loading="lazy"></div>
                 <div class="product-item-info">
                     <h3>${product.name}</h3>
                     <div class="product-item-price">€ ${product.price ? product.price.toFixed(2) : '0,00'}</div>
                     <button class="product-item-btn" onclick="event.stopPropagation(); openModalFromScratch(${JSON.stringify(product).replace(/"/g, '&quot;')}, ${JSON.stringify(afbeeldingen).replace(/"/g, '&quot;')})">Bekijk details</button>
                 </div>
             `;
-            
             grid.appendChild(productCard);
         });
     }
@@ -194,75 +185,100 @@
     };
 
     function openModal(product, afbeeldingen) {
-        currentProduct = product;
-        const productAfbeeldingen = afbeeldingen || product.images || [product.imageUrl];
-        currentImageIndex = 0;
-        
-        document.getElementById('modalTitle').textContent = product.name;
-        document.getElementById('modalPrice').textContent = `€ ${product.price ? product.price.toFixed(2) : '0,00'}`;
-        document.getElementById('modalDescription').textContent = product.description || 'Geen beschrijving beschikbaar.';
-        document.getElementById('modalMainImage').src = productAfbeeldingen[0] || 'https://placehold.co/600x600/f5f0eb/8b7d6b?text=Atelier+Luz';
-        
-        const thumbnailsContainer = document.getElementById('modalThumbnails');
-        thumbnailsContainer.innerHTML = '';
-        
-        productAfbeeldingen.forEach((img, index) => {
-            if (img) {
-                const thumb = document.createElement('div');
-                thumb.className = 'modal-thumb';
-                if (index === 0) thumb.classList.add('active');
-                thumb.innerHTML = `<img src="${img}" alt="">`;
-                thumb.onclick = (e) => {
-                    e.stopPropagation();
-                    currentImageIndex = index;
-                    document.getElementById('modalMainImage').src = productAfbeeldingen[currentImageIndex];
-                    
-                    document.querySelectorAll('.modal-thumb').forEach((t, i) => {
-                        t.classList.toggle('active', i === currentImageIndex);
-                    });
-                };
-                thumbnailsContainer.appendChild(thumb);
-            }
-        });
-        
-        document.getElementById('productModal').classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-        document.getElementById('productModal').classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-   function addToCartFromModal() {
-    if (currentProduct) {
-        if (typeof window.addToCart === 'function') {
-            window.addToCart({
-                id: currentProduct.id,
-                name: currentProduct.name,
-                price: currentProduct.price,
-                imageUrl: currentProduct.imageUrl || (currentProduct.images && currentProduct.images[0])
-            });
-            closeModal();
-        } else {
-            alert(`${currentProduct.name} toegevoegd aan winkelwagen!`);
-        }
-    }
-}
-
-    document.querySelector('.modal-close').addEventListener('click', closeModal);
-    document.getElementById('modalAddToCart').addEventListener('click', addToCart);
+    currentProduct = product;
+    const productAfbeeldingen = afbeeldingen || product.images || [product.imageUrl];
+    currentImageIndex = 0;
     
-    document.getElementById('productModal').addEventListener('click', (e) => {
-        if (e.target === document.getElementById('productModal')) {
-            closeModal();
+    document.getElementById('modalTitle').textContent = product.name;
+    document.getElementById('modalPrice').textContent = `€ ${product.price ? product.price.toFixed(2) : '0,00'}`;
+    document.getElementById('modalDescription').textContent = product.description || 'Geen beschrijving beschikbaar.';
+    
+    const modalImage = document.getElementById('modalMainImage');
+    modalImage.src = productAfbeeldingen[0] || 'https://placehold.co/600x600/f5f0eb/8b7d6b?text=Atelier+Luz';
+    
+    // === MEDIUM-ZOOM INITIALISATIE (alleen bij klikken) ===
+    if (window.zoomInstance) {
+        window.zoomInstance.detach();
+    }
+    window.zoomInstance = mediumZoom(modalImage, {
+        background: 'rgba(0, 0, 0, 0.9)',
+        margin: 24,
+        scrollOffset: 0,
+        container: document.body
+    });
+    // ====================================================
+    
+    const thumbnailsContainer = document.getElementById('modalThumbnails');
+    thumbnailsContainer.innerHTML = '';
+    
+    productAfbeeldingen.forEach((img, index) => {
+        if (img) {
+            const thumb = document.createElement('div');
+            thumb.className = 'modal-thumb';
+            if (index === 0) thumb.classList.add('active');
+            thumb.innerHTML = `<img src="${img}" alt="">`;
+            thumb.onclick = (e) => {
+                e.stopPropagation();
+                currentImageIndex = index;
+                const newModalImage = document.getElementById('modalMainImage');
+                newModalImage.src = productAfbeeldingen[currentImageIndex];
+                
+                // Update medium-zoom met de nieuwe afbeelding
+                if (window.zoomInstance) {
+                    window.zoomInstance.detach();
+                    window.zoomInstance = mediumZoom(newModalImage, {
+                        background: 'rgba(0, 0, 0, 0.9)',
+                        margin: 24,
+                        scrollOffset: 0
+                    });
+                }
+                
+                document.querySelectorAll('.modal-thumb').forEach((t, i) => {
+                    t.classList.toggle('active', i === currentImageIndex);
+                });
+            };
+            thumbnailsContainer.appendChild(thumb);
         }
     });
     
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && document.getElementById('productModal').classList.contains('active')) {
-            closeModal();
+    document.getElementById('productModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+    function closeModal() {
+    document.getElementById('productModal').classList.remove('active');
+    document.body.style.overflow = '';
+    
+    // Verwijder de zoom instance bij het sluiten
+    if (window.zoomInstance) {
+        window.zoomInstance.detach();
+        window.zoomInstance = null;
+    }
+}
+
+    function addToCartFromModal() {
+        if (currentProduct) {
+            if (typeof window.addToCart === 'function') {
+                window.addToCart({
+                    id: currentProduct.id,
+                    name: currentProduct.name,
+                    price: currentProduct.price,
+                    imageUrl: currentProduct.imageUrl || (currentProduct.images && currentProduct.images[0])
+                });
+                closeModal();
+            } else {
+                alert(`${currentProduct.name} toegevoegd aan winkelwagen!`);
+            }
         }
+    }
+
+    document.querySelector('.modal-close').addEventListener('click', closeModal);
+    document.getElementById('modalAddToCart').addEventListener('click', addToCartFromModal);
+    document.getElementById('productModal').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('productModal')) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.getElementById('productModal').classList.contains('active')) closeModal();
     });
 
     laadProducten();
