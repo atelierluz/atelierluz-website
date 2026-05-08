@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="winkelwagen.js"></script>
 </head>
 <body>
 
@@ -214,11 +215,21 @@
         document.body.style.overflow = '';
     }
 
-    function addToCart() {
-        if (currentProduct) {
-            alert(`🛍️ ${currentProduct.name} is toegevoegd aan je winkelwagen!\n\nPrijs: € ${currentProduct.price ? currentProduct.price.toFixed(2) : '0,00'}`);
+    function addToCartFromModal() {
+    if (currentProduct) {
+        if (typeof window.addToCart === 'function') {
+            window.addToCart({
+                id: currentProduct.id,
+                name: currentProduct.name,
+                price: currentProduct.price,
+                imageUrl: currentProduct.imageUrl || (currentProduct.images && currentProduct.images[0])
+            });
+            closeModal();
+        } else {
+            alert(`${currentProduct.name} toegevoegd aan winkelwagen!`);
         }
     }
+}
 
     document.querySelector('.modal-close').addEventListener('click', closeModal);
     document.getElementById('modalAddToCart').addEventListener('click', addToCart);
