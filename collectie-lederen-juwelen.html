@@ -42,6 +42,11 @@
             <a href="het-atelier.html">Het Atelier</a>
             <a href="contact.html">Contact</a>
         </div>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </div>
 </header>
 
@@ -252,5 +257,37 @@
     laadProducten();
 </script>
 
+<script>
+// Mobile navigation
+const hamburgerBtn = document.getElementById("hamburgerBtn");
+const navLinks = document.querySelector(".nav-links");
+const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
+
+hamburgerBtn.addEventListener("click", () => {
+    hamburgerBtn.classList.toggle("open");
+    navLinks.classList.toggle("open");
+});
+
+dropdownArrows.forEach(arrow => {
+    arrow.addEventListener("click", (e) => {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            e.stopPropagation();
+            const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
+            menu.classList.toggle("open");
+            arrow.style.transform = menu.classList.contains("open") ? "rotate(180deg)" : "";
+        }
+    });
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        if (window.innerWidth <= 768) {
+            hamburgerBtn.classList.remove("open");
+            navLinks.classList.remove("open");
+        }
+    });
+});
+</script>
 </body>
 </html>
