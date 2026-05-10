@@ -375,7 +375,8 @@ body {
 .about-image {
     flex: 1;
     min-height: 450px;
-    background-size: cover;
+    background-size: contain;  /* ← Gewijzigd: toont hele foto */
+    background-repeat: no-repeat;  /* ← Toevoegen: geen herhaling */
     background-position: center;
     margin: 48px 48px 48px 0;
     border-radius: 16px;
