@@ -18,44 +18,53 @@
 <body>
 
     <header class="site-header">
-        <div class="container header-inner">
-            <a href="index.html" class="logo-link" style="text-decoration: none;">
-                <div class="logo">
-                    <h1>Atelier Luz</h1>
-                    <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
-                </div>
-            </a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-
-                <div class="nav-item">
-                    <div style="display: flex; align-items: center; gap: 5px;">
-                        <a href="collectie.html" class="dropdown-trigger-link"
-                            style="text-decoration: none;">Collectie</a>
-                        <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
-                    </div>
-                    <div class="dropdown-menu">
-                        <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
-                        <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
-                        <a href="collectie-lederwerken.html">Lederwerken</a>
-                    </div>
-                </div>
-
-                <a href="het-atelier.html">Het Atelier</a>
-                <a href="contact.html">Contact</a>
-                <a href="winkelwagen.html" class="cart-link">
-                    <i class="fas fa-shopping-bag"></i>
-                    Winkelwagen
-                    <span class="cart-count" style="display: none;">0</span>
-                </a>
+       <div class="container header-inner">
+        <a href="index.html" class="logo-link" style="text-decoration: none;">
+            <div class="logo">
+                <h1>Atelier Luz</h1>
+                <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
             </div>
-            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            
+            <div class="nav-item">
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    <a href="collectie.html" class="dropdown-trigger-link" style="text-decoration: none;">Collectie</a>
+                    <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="dropdown-menu">
+                    <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
+                    <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
+                    <a href="collectie-lederwerken.html">Lederwerken</a>
+                </div>
+            </div>
+            
+            <a href="het-atelier.html">Het Atelier</a>
+            <!-- NIEUWE NAVIGATIELINK: Op Aanvraag -->
+            <a href="aanvraag.html" class="active-nav-link">Op Aanvraag</a>
+            <a href="contact.html">Contact</a>
+            <a href="winkelwagen.html" class="cart-link">
+                <i class="fas fa-shopping-bag"></i> 
+                Winkelwagen
+                <span class="cart-count" style="display: none;">0</span>
+            </a>
         </div>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
     </header>
+    <!-- Gratis verzending strook -->
+<div class="free-shipping-bar">
+    <div class="container">
+        <i class="fas fa-gift"></i>
+        <span>- Gratis verzending vanaf €100 -</span>
+        <i class="fas fa-truck"></i>
+    </div>
+</div>
 
     <section class="cart-section">
         <div class="container">

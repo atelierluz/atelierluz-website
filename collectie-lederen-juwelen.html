@@ -1,87 +1,103 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Lederen Juwelen - Atelier Luz</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js"></script>
     <script src="winkelwagen.js"></script>
 </head>
+
 <body>
 
-<header class="site-header">
-    <div class="container header-inner">
-        <a href="index.html" class="logo-link" style="text-decoration: none;">
-            <div class="logo">
-                <h1>Atelier Luz</h1>
-                <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
-            </div>
-        </a>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            
-            <div class="nav-item">
-                <div style="display: flex; align-items: center; gap: 5px;">
-                    <a href="collectie.html" class="dropdown-trigger-link" style="text-decoration: none;">Collectie</a>
-                    <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo-link" style="text-decoration: none;">
+                <div class="logo">
+                    <h1>Atelier Luz</h1>
+                    <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
                 </div>
-                <div class="dropdown-menu">
-                    <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
-                    <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
-                    <a href="collectie-lederwerken.html">Lederwerken</a>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+
+                <div class="nav-item">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <a href="collectie.html" class="dropdown-trigger-link"
+                            style="text-decoration: none;">Collectie</a>
+                        <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
+                        <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
+                        <a href="collectie-lederwerken.html">Lederwerken</a>
+                    </div>
+                </div>
+
+                <a href="het-atelier.html">Het Atelier</a>
+                <a href="aanvraag.html">Op Aanvraag</a>
+                <a href="contact.html">Contact</a>
+                <a href="winkelwagen.html" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    Winkelwagen
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+            </div>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Gratis verzending strook -->
+    <div class="free-shipping-bar">
+        <div class="container">
+            <i class="fas fa-gift"></i>
+            <span>- Gratis verzending vanaf €100 -</span>
+            <i class="fas fa-truck"></i>
+        </div>
+    </div>
+
+    <section class="products-section" style="padding-top: 0;">
+        <div class="container">
+            <div class="title-wrapper">
+                <h2 class="section-title">Lederen Juwelen</h2>
+            </div>
+            <div class="producten-grid" id="productenGrid">
+                <div class="loading"><i class="fas fa-spinner fa-spin"></i> Producten laden...</div>
+            </div>
+        </div>
+    </section>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-body">
+                <div class="modal-gallery">
+                    <div class="modal-main-image"><img id="modalMainImage" src="" alt=""></div>
+                    <div class="modal-thumbnails" id="modalThumbnails"></div>
+                </div>
+                <div class="modal-details">
+                    <h2 id="modalTitle"></h2>
+                    <div class="modal-price" id="modalPrice"></div>
+                    <div class="modal-description" id="modalDescription"></div>
+                    <button class="modal-add-to-cart" id="modalAddToCart"><i class="fas fa-shopping-bag"></i> In
+                        winkelwagen</button>
                 </div>
             </div>
-            
-            <a href="het-atelier.html">Het Atelier</a>
-            <a href="contact.html">Contact</a>
-            <a href="winkelwagen.html" class="cart-link">
-    <i class="fas fa-shopping-bag"></i> 
-    Winkelwagen
-    <span class="cart-count" style="display: none;">0</span>
-</a>
-        </div>
-        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </div>
-</header>
-
-<section class="products-section" style="padding-top: 0;">
-    <div class="container">
-        <div class="title-wrapper">
-            <h2 class="section-title">Lederen Juwelen</h2>
-        </div>
-        <div class="producten-grid" id="productenGrid">
-            <div class="loading"><i class="fas fa-spinner fa-spin"></i> Producten laden...</div>
         </div>
     </div>
-</section>
 
-<div id="productModal" class="modal">
-    <div class="modal-content">
-        <span class="modal-close">&times;</span>
-        <div class="modal-body">
-            <div class="modal-gallery">
-                <div class="modal-main-image"><img id="modalMainImage" src="" alt=""></div>
-                <div class="modal-thumbnails" id="modalThumbnails"></div>
-            </div>
-            <div class="modal-details">
-                <h2 id="modalTitle"></h2>
-                <div class="modal-price" id="modalPrice"></div>
-                <div class="modal-description" id="modalDescription"></div>
-                <button class="modal-add-to-cart" id="modalAddToCart"><i class="fas fa-shopping-bag"></i> In winkelwagen</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<footer class="site-footer">
+    <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
@@ -96,7 +112,6 @@
                     <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/_atelier_luz_/"
                             target="_blank" style="color: #d4c4ae;">@_atelier_luz_</a></p>
                 </div>
-
                 <div class="footer-links">
                     <div>
                         <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
@@ -111,210 +126,343 @@
         </div>
     </footer>
 
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-    import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-    
-    const firebaseConfig = {
-        apiKey: "AIzaSyDig9gjA_N1Jp-m6ptnarZJZ8yJxFHyR1w",
-        authDomain: "atelierluz-73d72.firebaseapp.com",
-        projectId: "atelierluz-73d72",
-        storageBucket: "atelierluz-73d72.firebasestorage.app",
-        messagingSenderId: "18595217516",
-        appId: "1:18595217516:web:a1f1eb7ac47f242cfb5849",
-        measurementId: "G-S4C7ZCG16W"
-    };
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    
-    let currentProduct = null;
-    let currentImageIndex = 0;
+        const firebaseConfig = {
+            apiKey: "AIzaSyDig9gjA_N1Jp-m6ptnarZJZ8yJxFHyR1w",
+            authDomain: "atelierluz-73d72.firebaseapp.com",
+            projectId: "atelierluz-73d72",
+            storageBucket: "atelierluz-73d72.firebasestorage.app",
+            messagingSenderId: "18595217516",
+            appId: "1:18595217516:web:a1f1eb7ac47f242cfb5849",
+            measurementId: "G-S4C7ZCG16W"
+        };
 
-    async function laadProducten() {
-        const grid = document.getElementById('productenGrid');
-        grid.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Producten laden...</div>';
-        
-        try {
-            const q = query(collection(db, "products"), where("category", "==", "lederen-juwelen"));
-            const querySnapshot = await getDocs(q);
-            
-            if (querySnapshot.empty) {
-                grid.innerHTML = '<div class="loading"><i class="fas fa-box-open"></i> Nog geen producten gevonden in deze categorie.</div>';
-                return;
-            }
-            
-            let producten = [];
-            querySnapshot.forEach((doc) => {
-                producten.push({ id: doc.id, ...doc.data() });
-            });
-            
-            renderProducten(producten);
-        } catch (error) {
-            console.error("Fout bij laden producten:", error);
-            grid.innerHTML = '<div class="loading"><i class="fas fa-exclamation-triangle"></i> Er is een fout opgetreden.</div>';
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let currentProduct = null;
+        let currentImageIndex = 0;
+        let geselecteerdeKleur = null;
+
+        // Helper functie voor HTML escaping
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
-    }
 
-    function renderProducten(producten) {
-        const grid = document.getElementById('productenGrid');
-        grid.innerHTML = '';
-        
-        producten.forEach(product => {
-            const afbeeldingen = product.images || [product.imageUrl];
-            const hoofdAfbeelding = afbeeldingen[0] || 'https://placehold.co/600x600/f5f0eb/8b7d6b?text=Atelier+Luz';
-            
-            const productCard = document.createElement('div');
-            productCard.className = 'product-item';
-            productCard.onclick = () => openModal(product, afbeeldingen);
-            
-            productCard.innerHTML = `
-                <div class="product-item-image"><img src="${hoofdAfbeelding}" alt="${product.name}" loading="lazy"></div>
+        // Helper functie voor tijdelijke berichten
+        function showTemporaryMessage(message, duration) {
+            let msgDiv = document.getElementById('tempColorMessage');
+            if (!msgDiv) {
+                msgDiv = document.createElement('div');
+                msgDiv.id = 'tempColorMessage';
+                msgDiv.style.cssText = 'position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--deep-brown); color: white; padding: 10px 20px; border-radius: 40px; font-size: 0.85rem; z-index: 10000; opacity: 0; transition: opacity 0.3s; pointer-events: none; white-space: nowrap;';
+                document.body.appendChild(msgDiv);
+            }
+            msgDiv.textContent = message;
+            msgDiv.style.opacity = '1';
+            setTimeout(() => {
+                msgDiv.style.opacity = '0';
+            }, duration);
+        }
+
+        async function laadProducten() {
+            const grid = document.getElementById('productenGrid');
+            grid.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Producten laden...</div>';
+
+            try {
+                const q = query(collection(db, "products"), where("category", "==", "lederen-juwelen"));
+                const querySnapshot = await getDocs(q);
+
+                if (querySnapshot.empty) {
+                    grid.innerHTML = '<div class="loading"><i class="fas fa-box-open"></i> Nog geen producten gevonden in deze categorie.</div>';
+                    return;
+                }
+
+                let producten = [];
+                querySnapshot.forEach((doc) => {
+                    producten.push({ id: doc.id, ...doc.data() });
+                });
+
+                renderProducten(producten);
+            } catch (error) {
+                console.error("Fout bij laden producten:", error);
+                grid.innerHTML = '<div class="loading"><i class="fas fa-exclamation-triangle"></i> Er is een fout opgetreden.</div>';
+            }
+        }
+
+        function renderProducten(producten) {
+            const grid = document.getElementById('productenGrid');
+            grid.innerHTML = '';
+
+            producten.forEach(product => {
+                const afbeeldingen = product.images || [product.imageUrl];
+                const hoofdAfbeelding = afbeeldingen[0] || 'https://placehold.co/600x600/f5f0eb/8b7d6b?text=Atelier+Luz';
+
+                const productCard = document.createElement('div');
+                productCard.className = 'product-item';
+                productCard.onclick = () => openModal(product, afbeeldingen);
+
+                const hasColorsIcon = (product.colors && product.colors.length > 0)
+                    ? '<span class="product-color-badge">Meerdere kleuren</span>'
+                    : '';
+
+                productCard.innerHTML = `
+                <div class="product-item-image" style="position: relative;">
+                    <img src="${hoofdAfbeelding}" alt="${escapeHtml(product.name)}" loading="lazy">
+                    ${hasColorsIcon}
+                </div>
                 <div class="product-item-info">
-                    <h3>${product.name}</h3>
+                    <h3>${escapeHtml(product.name)}</h3>
                     <div class="product-item-price">€ ${product.price ? product.price.toFixed(2) : '0,00'}</div>
                     <button class="product-item-btn" onclick="event.stopPropagation(); openModalFromScratch(${JSON.stringify(product).replace(/"/g, '&quot;')}, ${JSON.stringify(afbeeldingen).replace(/"/g, '&quot;')})">Bekijk details</button>
                 </div>
             `;
-            grid.appendChild(productCard);
-        });
-    }
-
-    window.openModalFromScratch = function(product, afbeeldingen) {
-        openModal(product, afbeeldingen);
-    };
-
-    function openModal(product, afbeeldingen) {
-    currentProduct = product;
-    const productAfbeeldingen = afbeeldingen || product.images || [product.imageUrl];
-    currentImageIndex = 0;
-    
-    document.getElementById('modalTitle').textContent = product.name;
-    document.getElementById('modalPrice').textContent = `€ ${product.price ? product.price.toFixed(2) : '0,00'}`;
-    document.getElementById('modalDescription').textContent = product.description || 'Geen beschrijving beschikbaar.';
-    
-    const modalImage = document.getElementById('modalMainImage');
-    modalImage.src = productAfbeeldingen[0] || 'https://placehold.co/600x600/f5f0eb/8b7d6b?text=Atelier+Luz';
-    
-    // === MEDIUM-ZOOM INITIALISATIE (alleen bij klikken) ===
-    if (window.zoomInstance) {
-        window.zoomInstance.detach();
-    }
-    window.zoomInstance = mediumZoom(modalImage, {
-        background: 'rgba(0, 0, 0, 0.9)',
-        margin: 24,
-        scrollOffset: 0,
-        container: document.body
-    });
-    // ====================================================
-    
-    const thumbnailsContainer = document.getElementById('modalThumbnails');
-    thumbnailsContainer.innerHTML = '';
-    
-    productAfbeeldingen.forEach((img, index) => {
-        if (img) {
-            const thumb = document.createElement('div');
-            thumb.className = 'modal-thumb';
-            if (index === 0) thumb.classList.add('active');
-            thumb.innerHTML = `<img src="${img}" alt="">`;
-            thumb.onclick = (e) => {
-                e.stopPropagation();
-                currentImageIndex = index;
-                const newModalImage = document.getElementById('modalMainImage');
-                newModalImage.src = productAfbeeldingen[currentImageIndex];
-                
-                // Update medium-zoom met de nieuwe afbeelding
-                if (window.zoomInstance) {
-                    window.zoomInstance.detach();
-                    window.zoomInstance = mediumZoom(newModalImage, {
-                        background: 'rgba(0, 0, 0, 0.9)',
-                        margin: 24,
-                        scrollOffset: 0
-                    });
-                }
-                
-                document.querySelectorAll('.modal-thumb').forEach((t, i) => {
-                    t.classList.toggle('active', i === currentImageIndex);
-                });
-            };
-            thumbnailsContainer.appendChild(thumb);
+                grid.appendChild(productCard);
+            });
         }
-    });
-    
-    document.getElementById('productModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
 
-    function closeModal() {
-    document.getElementById('productModal').classList.remove('active');
-    document.body.style.overflow = '';
-    
-    // Verwijder de zoom instance bij het sluiten
-    if (window.zoomInstance) {
-        window.zoomInstance.detach();
-        window.zoomInstance = null;
-    }
-}
+        window.openModalFromScratch = function (product, afbeeldingen) {
+            openModal(product, afbeeldingen);
+        };
 
-    function addToCartFromModal() {
-        if (currentProduct) {
-            if (typeof window.addToCart === 'function') {
-                window.addToCart({
-                    id: currentProduct.id,
-                    name: currentProduct.name,
-                    price: currentProduct.price,
-                    imageUrl: currentProduct.imageUrl || (currentProduct.images && currentProduct.images[0])
+        function openModal(product, afbeeldingen) {
+            currentProduct = product;
+            const productAfbeeldingen = afbeeldingen || product.images || [product.imageUrl];
+            currentImageIndex = 0;
+            geselecteerdeKleur = null;
+
+            document.getElementById('modalTitle').textContent = product.name;
+            document.getElementById('modalPrice').textContent = `€ ${product.price ? product.price.toFixed(2) : '0,00'}`;
+            document.getElementById('modalDescription').textContent = product.description || 'Geen beschrijving beschikbaar.';
+
+            const modalImage = document.getElementById('modalMainImage');
+            modalImage.src = productAfbeeldingen[0] || 'https://placehold.co/600x600/f5f0eb/8b7d6b?text=Atelier+Luz';
+
+            if (window.zoomInstance) {
+                window.zoomInstance.detach();
+            }
+            if (typeof mediumZoom !== 'undefined') {
+                window.zoomInstance = mediumZoom(modalImage, {
+                    background: 'rgba(0, 0, 0, 0.9)',
+                    margin: 24,
+                    scrollOffset: 0,
+                    container: document.body
                 });
-                closeModal();
-            } else {
-                alert(`${currentProduct.name} toegevoegd aan winkelwagen!`);
+            }
+
+            const thumbnailsContainer = document.getElementById('modalThumbnails');
+            thumbnailsContainer.innerHTML = '';
+
+            productAfbeeldingen.forEach((img, index) => {
+                if (img) {
+                    const thumb = document.createElement('div');
+                    thumb.className = 'modal-thumb';
+                    if (index === 0) thumb.classList.add('active');
+                    thumb.innerHTML = `<img src="${img}" alt="">`;
+                    thumb.onclick = (e) => {
+                        e.stopPropagation();
+                        currentImageIndex = index;
+                        const newModalImage = document.getElementById('modalMainImage');
+                        newModalImage.src = productAfbeeldingen[currentImageIndex];
+
+                        if (window.zoomInstance && typeof mediumZoom !== 'undefined') {
+                            window.zoomInstance.detach();
+                            window.zoomInstance = mediumZoom(newModalImage, {
+                                background: 'rgba(0, 0, 0, 0.9)',
+                                margin: 24,
+                                scrollOffset: 0
+                            });
+                        }
+
+                        document.querySelectorAll('.modal-thumb').forEach((t, i) => {
+                            t.classList.toggle('active', i === currentImageIndex);
+                        });
+                    };
+                    thumbnailsContainer.appendChild(thumb);
+                }
+            });
+
+            // Kleuren sectie
+            const existingColorsSection = document.getElementById('modalColorsSection');
+            if (existingColorsSection) {
+                existingColorsSection.remove();
+            }
+
+            if (product.colors && product.colors.length > 0) {
+                const modalDetails = document.querySelector('.modal-details');
+                const addToCartButton = document.getElementById('modalAddToCart');
+
+                const colorsDiv = document.createElement('div');
+                colorsDiv.id = 'modalColorsSection';
+                colorsDiv.className = 'modal-colors-section';
+
+                const title = document.createElement('h4');
+                title.innerHTML = '<i class="fas fa-palette"></i> Beschikbare kleuren <span style="font-size: 0.8rem; font-weight: normal;">(selecteer een kleur)</span>';
+                colorsDiv.appendChild(title);
+
+                const grid = document.createElement('div');
+                grid.className = 'modal-colors-grid';
+
+                product.colors.forEach(color => {
+                    const colorItem = document.createElement('div');
+                    colorItem.className = 'modal-color-item';
+                    colorItem.title = color.name;
+                    colorItem.style.cursor = 'pointer';
+
+                    const swatch = document.createElement('div');
+                    swatch.className = 'modal-color-swatch';
+                    swatch.style.backgroundImage = `url('${color.imageUrl}')`;
+
+                    const nameSpan = document.createElement('span');
+                    nameSpan.className = 'modal-color-name';
+                    nameSpan.textContent = color.name;
+
+                    colorItem.appendChild(swatch);
+                    colorItem.appendChild(nameSpan);
+
+                    colorItem.addEventListener('click', (e) => {
+                        e.stopPropagation();
+
+                        document.querySelectorAll('.modal-color-item').forEach(item => {
+                            item.style.border = 'none';
+                            item.style.boxShadow = 'none';
+                            item.style.padding = '0';
+                            const check = item.querySelector('.fa-check-circle');
+                            if (check) check.remove();
+                        });
+
+                        geselecteerdeKleur = color;
+                        colorItem.style.border = '2px solid #8b6946';
+                        colorItem.style.borderRadius = '12px';
+                        colorItem.style.padding = '5px';
+
+                        const checkmark = document.createElement('i');
+                        checkmark.className = 'fas fa-check-circle';
+                        checkmark.style.cssText = 'color: #8b6946; font-size: 0.8rem; margin-top: 2px;';
+                        colorItem.appendChild(checkmark);
+
+                        const modalImageElement = document.getElementById('modalMainImage');
+                        modalImageElement.src = color.imageUrl;
+
+                        if (window.zoomInstance && typeof mediumZoom !== 'undefined') {
+                            window.zoomInstance.detach();
+                            window.zoomInstance = mediumZoom(modalImageElement, {
+                                background: 'rgba(0, 0, 0, 0.9)',
+                                margin: 24,
+                                scrollOffset: 0
+                            });
+                        }
+
+                        showTemporaryMessage(`${color.name} geselecteerd`, 1200);
+                    });
+
+                    grid.appendChild(colorItem);
+                });
+
+                colorsDiv.appendChild(grid);
+
+                const note = document.createElement('p');
+                note.className = 'modal-colors-note';
+                note.innerHTML = '<i class="fas fa-info-circle"></i> Selecteer een kleur voordat je het product toevoegt aan de winkelwagen.';
+                colorsDiv.appendChild(note);
+
+                modalDetails.insertBefore(colorsDiv, addToCartButton);
+            }
+
+            document.getElementById('productModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('active');
+            document.body.style.overflow = '';
+
+            if (window.zoomInstance) {
+                window.zoomInstance.detach();
+                window.zoomInstance = null;
             }
         }
-    }
 
-    document.querySelector('.modal-close').addEventListener('click', closeModal);
-    document.getElementById('modalAddToCart').addEventListener('click', addToCartFromModal);
-    document.getElementById('productModal').addEventListener('click', (e) => {
-        if (e.target === document.getElementById('productModal')) closeModal();
-    });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && document.getElementById('productModal').classList.contains('active')) closeModal();
-    });
+        function addToCartFromModal() {
+            if (currentProduct) {
+                if (currentProduct.colors && currentProduct.colors.length > 0 && !geselecteerdeKleur) {
+                    showTemporaryMessage('Selecteer eerst een kleur!', 2000);
+                    return;
+                }
 
-    laadProducten();
-</script>
-
-<script>
-// Mobile navigation
-const hamburgerBtn = document.getElementById("hamburgerBtn");
-const navLinks = document.querySelector(".nav-links");
-const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
-
-hamburgerBtn.addEventListener("click", () => {
-    hamburgerBtn.classList.toggle("open");
-    navLinks.classList.toggle("open");
-});
-
-dropdownArrows.forEach(arrow => {
-    arrow.addEventListener("click", (e) => {
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            e.stopPropagation();
-            const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
-            menu.classList.toggle("open");
-            arrow.style.transform = menu.classList.contains("open") ? "rotate(180deg)" : "";
+                if (typeof window.addToCart === 'function') {
+                    const productWithColor = {
+                        id: currentProduct.id,
+                        name: currentProduct.name,
+                        price: currentProduct.price,
+                        imageUrl: currentProduct.imageUrl || (currentProduct.images && currentProduct.images[0]),
+                        selectedColor: geselecteerdeKleur ? {
+                            name: geselecteerdeKleur.name,
+                            imageUrl: geselecteerdeKleur.imageUrl
+                        } : null
+                    };
+                    window.addToCart(productWithColor);
+                    closeModal();
+                } else {
+                    alert(`${currentProduct.name} toegevoegd aan winkelwagen!`);
+                }
+            }
         }
-    });
-});
 
-navLinks.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-        if (window.innerWidth <= 768) {
-            hamburgerBtn.classList.remove("open");
-            navLinks.classList.remove("open");
+        document.querySelector('.modal-close').addEventListener('click', closeModal);
+        document.getElementById('modalAddToCart').addEventListener('click', addToCartFromModal);
+        document.getElementById('productModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('productModal')) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && document.getElementById('productModal').classList.contains('active')) closeModal();
+        });
+
+        laadProducten();
+    </script>
+
+    <script>
+        // Mobile navigation
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const navLinks = document.querySelector(".nav-links");
+        const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
+
+        if (hamburgerBtn) {
+            hamburgerBtn.addEventListener("click", () => {
+                hamburgerBtn.classList.toggle("open");
+                navLinks.classList.toggle("open");
+            });
         }
-    });
-});
-</script>
+
+        dropdownArrows.forEach(arrow => {
+            arrow.addEventListener("click", (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
+                    if (menu) menu.classList.toggle("open");
+                    arrow.style.transform = menu?.classList.contains("open") ? "rotate(180deg)" : "";
+                }
+            });
+        });
+
+        if (navLinks) {
+            navLinks.querySelectorAll("a").forEach(link => {
+                link.addEventListener("click", () => {
+                    if (window.innerWidth <= 768) {
+                        hamburgerBtn?.classList.remove("open");
+                        navLinks.classList.remove("open");
+                    }
+                });
+            });
+        }
+    </script>
 </body>
+
 </html>

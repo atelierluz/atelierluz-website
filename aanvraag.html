@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Op Aanvraag - Atelier Luz</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js"></script>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo-link" style="text-decoration: none;">
+                <div class="logo">
+                    <h1>Atelier Luz</h1>
+                    <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+
+                <div class="nav-item">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <a href="collectie.html" class="dropdown-trigger-link"
+                            style="text-decoration: none;">Collectie</a>
+                        <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
+                        <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
+                        <a href="collectie-lederwerken.html">Lederwerken</a>
+                    </div>
+                </div>
+
+                <a href="het-atelier.html">Het Atelier</a>
+                <a href="aanvraag.html" class="active-nav-link">Op Aanvraag</a>
+                <a href="contact.html">Contact</a>
+                <a href="winkelwagen.html" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    Winkelwagen
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+            </div>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Gratis verzending strook -->
+    <div class="free-shipping-bar">
+        <div class="container">
+            <i class="fas fa-gift"></i>
+            <span>- Gratis verzending vanaf €100 -</span>
+            <i class="fas fa-truck"></i>
+        </div>
+    </div>
+
+    <!-- HOOFDSECTIE: AANVRAAG PAGINA -->
+    <section class="products-section" style="padding-top: 0;">
+        <div class="container">
+            <div class="title-wrapper">
+                <h2 class="section-title">Op Aanvraag</h2>
+            </div>
+
+            <!-- Flexblock met tekst links & afbeelding rechts -->
+            <div class="aanvraag-block">
+                <div class="aanvraag-text">
+                    <h3>Een ontwerp dat volledig bij jou past</h3>
+                    <p>Bij Atelier Luz geloven we dat accessoires meer zijn dan alleen gebruiksvoorwerpen — het is een
+                        verlengstuk van jouw persoonlijkheid. Daarom bieden we de mogelijkheid om veel van onze lederen
+                        producten <strong>op maat en op aanvraag</strong> te laten maken. Kies niet alleen uit bestaande
+                        modellen, maar ook uit een uitgebreid palet van kleuren, afwerkingen en leersoorten.</p>
+                    <p>Of je nu een handtas wenst in een specifieke tint die perfect matcht met je garderobe, of een
+                        paar oorbellen zoekt in een zachte pastelkleur: ik denk graag met je mee. Ook voor lederwerken
+                        zoals riemen, hoesjes of unieke accessoires ben ik flexibel.</p>
+                    <p>Zelfs het leer zelf kan variëren: van glad en gepolijst tot een natuurlijke, korrelige structuur.
+                        Combineer kleuren, voeg een persoonlijke initiale of een subtiele embossing toe.</p>
+
+                    <!-- KLEUREN OVERZICHT MET KLIK VOOR PREVIEW -->
+                    <div class="kleuren-overzicht">
+                        <h4>Mogelijke kleuren (selectie)</h4>
+                        <p class="kleuren-instructie">Klik op een kleur voor een grotere preview</p>
+                        <div class="kleuren-grid" id="kleurenGridAanvraag">
+                            <div class="loading"><i class="fas fa-spinner fa-spin"></i> Kleuren laden...</div>
+                        </div>
+                    </div>
+
+                    <!-- PREVIEW MODAL VOOR GROTE WEERGAVE -->
+                    <div id="kleurPreviewModal" class="kleur-preview-modal">
+                        <div class="kleur-preview-content">
+                            <span class="kleur-preview-close">&times;</span>
+                            <img id="kleurPreviewImage" src="" alt="">
+                            <p id="kleurPreviewName"></p>
+                        </div>
+                    </div>
+
+                    <!-- KNOP DIE LEIDT NAAR CONTACT.HTML -->
+                    <div class="aanvraag-btn-wrapper">
+                        <a href="contact.html" class="aanvraag-btn">
+                            <i class="fas fa-pen-ruler"></i> Vraag nu aan
+                        </a>
+                    </div>
+                </div>
+
+                <div class="aanvraag-image">
+                    <img src="https://placehold.co/700x700/e8ddd0/8b6946?text=Personalisatie+Voorbeeld"
+                        alt="Personalisatie voorbeeld">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Atelier Luz</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <a
+                            href="https://maps.google.com/?q=Stiemerbeekstraat+25+3600+Genk" target="_blank"
+                            style="color: #d4c4ae; text-decoration: none;">Stiemerbeekstraat 25, 3600 Genk</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@atelierluz.be"
+                            style="color: #d4c4ae; text-decoration: none;">info@atelierluz.be</a></p>
+                    <p><i class="fas fa-phone-alt"></i> <a href="tel:+32468209909"
+                            style="color: #d4c4ae; text-decoration: none;">+32 468 20 99 09</a></p>
+                    <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/_atelier_luz_/"
+                            target="_blank" style="color: #d4c4ae;">@_atelier_luz_</a></p>
+                </div>
+                <div class="footer-links">
+                    <div>
+                        <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
+                        <p><a href="contact.html">Contact</a></p>
+                        <p><a href="admin.html" id="adminLink">Admin</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Atelier Luz – Ontworpen en met de hand gemaakt</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Kleuren bibliotheek - lokaal gedefinieerd (zelfde als in admin)
+        const KLEUREN_BIBLIOTHEEK = [
+            { id: 'cognac', name: 'Warm Cognac', imageUrl: 'https://placehold.co/200x200/C17B4A/white?text=Cognac' },
+            { id: 'diep-bruin', name: 'Diep Bruin', imageUrl: 'https://placehold.co/200x200/5C3D2E/white?text=Bruin' },
+            { id: 'zwart', name: 'Zwart (Ebony)', imageUrl: 'https://placehold.co/200x200/2C2420/white?text=Zwart' },
+            { id: 'camel', name: 'Natuur (Camel)', imageUrl: 'https://placehold.co/200x200/D8B08C/white?text=Camel' },
+            { id: 'kastanje', name: 'Kastanjebruin', imageUrl: 'https://placehold.co/200x200/9E6F4D/white?text=Kastanje' },
+            { id: 'zand', name: 'Zandkleur', imageUrl: 'https://placehold.co/200x200/D1BFAe/white?text=Zand' },
+            { id: 'koper', name: 'Koper', imageUrl: 'https://placehold.co/200x200/B87333/white?text=Koper' },
+            { id: 'noten', name: 'Notenhout', imageUrl: 'https://placehold.co/200x200/C5A07A/white?text=Noten' }
+        ];
+
+        // Laad de kleuren in de grid
+        function laadKleuren() {
+            const grid = document.getElementById('kleurenGridAanvraag');
+            if (!grid) return;
+
+            grid.innerHTML = '';
+
+            KLEUREN_BIBLIOTHEEK.forEach(kleur => {
+                const kleurItem = document.createElement('div');
+                kleurItem.className = 'kleur-item preview-clickable';
+                kleurItem.setAttribute('data-color-name', kleur.name);
+                kleurItem.setAttribute('data-color-image', kleur.imageUrl);
+
+                const kleurBol = document.createElement('div');
+                kleurBol.className = 'kleur-bol';
+                kleurBol.style.backgroundImage = `url('${kleur.imageUrl}')`;
+                kleurBol.style.backgroundSize = 'cover';
+                kleurBol.style.backgroundPosition = 'center';
+
+                const kleurNaam = document.createElement('span');
+                kleurNaam.className = 'kleur-naam';
+                kleurNaam.textContent = kleur.name;
+
+                kleurItem.appendChild(kleurBol);
+                kleurItem.appendChild(kleurNaam);
+
+                // Klik event voor preview modal
+                kleurItem.addEventListener('click', () => {
+                    openKleurPreview(kleur.imageUrl, kleur.name);
+                });
+
+                grid.appendChild(kleurItem);
+            });
+        }
+
+        // Preview modal openen
+        function openKleurPreview(imageUrl, colorName) {
+            const modal = document.getElementById('kleurPreviewModal');
+            const modalImage = document.getElementById('kleurPreviewImage');
+            const modalName = document.getElementById('kleurPreviewName');
+
+            modalImage.src = imageUrl;
+            modalName.textContent = colorName;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Preview modal sluiten
+        function closeKleurPreview() {
+            const modal = document.getElementById('kleurPreviewModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Event listeners voor modal
+        document.addEventListener('DOMContentLoaded', () => {
+            laadKleuren();
+
+            const modal = document.getElementById('kleurPreviewModal');
+            const closeBtn = document.querySelector('.kleur-preview-close');
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeKleurPreview);
+            }
+
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeKleurPreview();
+                    }
+                });
+            }
+
+            // ESC toets om te sluiten
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+                    closeKleurPreview();
+                }
+            });
+        });
+
+        // Mobile navigation
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const navLinks = document.querySelector(".nav-links");
+        const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
+
+        if (hamburgerBtn) {
+            hamburgerBtn.addEventListener("click", () => {
+                hamburgerBtn.classList.toggle("open");
+                navLinks.classList.toggle("open");
+            });
+        }
+
+        dropdownArrows.forEach(arrow => {
+            arrow.addEventListener("click", (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
+                    if (menu) menu.classList.toggle("open");
+                    arrow.style.transform = menu?.classList.contains("open") ? "rotate(180deg)" : "";
+                }
+            });
+        });
+
+        // Winkelwagen count updaten
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('atelierLuzCart') || '[]');
+            const total = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            document.querySelectorAll('.cart-count').forEach(badge => {
+                badge.textContent = total;
+                badge.style.display = total > 0 ? 'flex' : 'none';
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+        window.addEventListener('storage', updateCartCount);
+    </script>
+</body>
+
+</html>

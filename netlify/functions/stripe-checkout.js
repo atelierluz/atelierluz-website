@@ -1,9 +1,7 @@
 // netlify/functions/stripe-checkout.js
-
-const Stripe = require('stripe');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 exports.handler = async (event, context) => {
-    // Alleen POST requests toestaan
     if (event.httpMethod !== 'POST') {
         return {
             statusCode: 405,
@@ -12,54 +10,82 @@ exports.handler = async (event, context) => {
     }
 
     try {
-        const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-        const { cart } = JSON.parse(event.body);
+        const { cart, verzendMethode, verzendkosten, subtotaal, totaal } = JSON.parse(event.body);
 
         if (!cart || cart.length === 0) {
             return {
                 statusCode: 400,
-                body: JSON.stringify({ error: 'Winkelwagen is leeg' })
+                body: JSON.stringify({ error: 'Cart is empty' })
             };
         }
 
         // Bouw de line items voor Stripe
-        const lineItems = cart.map(item => ({
-            price_data: {
-                currency: 'eur',
-                product_data: {
-                    name: item.name,
-                    images: item.imageUrl ? [item.imageUrl] : [],
-                },
-                unit_amount: Math.round(item.price * 100),
-            },
-            quantity: item.quantity || 1,
-        }));
+        const lineItems = [];
 
-        // Verzendkosten toevoegen (€6,95)
-        lineItems.push({
-            price_data: {
-                currency: 'eur',
-                product_data: {
-                    name: 'Verzending (België/Nederland)',
+        // Producten toevoegen
+        cart.forEach(item => {
+            let productName = item.name;
+            if (item.selectedColor && item.selectedColor.name) {
+                productName = `${item.name} - ${item.selectedColor.name}`;
+            }
+
+            lineItems.push({
+                price_data: {
+                    currency: 'eur',
+                    product_data: {
+                        name: productName,
+                        images: item.imageUrl ? [item.imageUrl] : [],
+                        metadata: {
+                            product_id: item.id,
+                            selected_color: item.selectedColor ? item.selectedColor.name : '',
+                            color_image: item.selectedColor ? item.selectedColor.imageUrl : ''
+                        }
+                    },
+                    unit_amount: Math.round(item.price * 100),
                 },
-                unit_amount: 695,
-            },
-            quantity: 1,
+                quantity: item.quantity,
+            });
         });
 
-        // Maak Stripe Checkout sessie
+        // Verzendkosten toevoegen (alleen als er verzendkosten zijn en verzenden is gekozen)
+        if (verzendMethode === 'verzenden' && verzendkosten > 0) {
+            lineItems.push({
+                price_data: {
+                    currency: 'eur',
+                    product_data: {
+                        name: 'Verzending (BE/NL)',
+                    },
+                    unit_amount: Math.round(verzendkosten * 100),
+                },
+                quantity: 1,
+            });
+        }
+
+        // Metadata voor de bestelling
+        const metadata = {
+            cart_items: JSON.stringify(cart.map(item => ({
+                id: item.id,
+                name: item.name,
+                color: item.selectedColor ? item.selectedColor.name : '',
+                quantity: item.quantity,
+                price: item.price
+            }))),
+            verzendMethode: verzendMethode,
+            subtotaal: subtotaal.toFixed(2),
+            totaal: totaal.toFixed(2)
+        };
+
+        // Maak de Stripe checkout session
         const session = await stripe.checkout.sessions.create({
-            mode: 'payment',
-            success_url: `${event.headers.origin}/betalen-succes.html`,
-            cancel_url: `${event.headers.origin}/winkelwagen.html`,
+            payment_method_types: ['card', 'bancontact', 'ideal'],
             line_items: lineItems,
-            shipping_address_collection: {
-                allowed_countries: ['NL', 'BE'],
-            },
-            payment_method_types: ['card', 'ideal', 'bancontact'],
-            phone_number_collection: {
-                enabled: true,
-            },
+            mode: 'payment',
+            success_url: `${process.env.URL || 'https://atelierluz.netlify.app'}/betalen-succes.html`,
+            cancel_url: `${process.env.URL || 'https://atelierluz.netlify.app'}/winkelwagen.html`,
+            metadata: metadata,
+            shipping_address_collection: verzendMethode === 'verzenden' ? {
+                allowed_countries: ['BE', 'NL']
+            } : undefined,
         });
 
         return {
@@ -68,7 +94,7 @@ exports.handler = async (event, context) => {
         };
 
     } catch (error) {
-        console.error('Stripe error:', error);
+        console.error('Stripe checkout error:', error);
         return {
             statusCode: 500,
             body: JSON.stringify({ error: error.message })

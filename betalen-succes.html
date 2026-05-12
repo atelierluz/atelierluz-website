@@ -1,58 +1,81 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Betaling gelukt - Atelier Luz</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header class="site-header">
-    <div class="container header-inner">
-        <a href="index.html" class="logo-link">
-            <div class="logo">
-                <h1>Atelier Luz</h1>
-                <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
-            </div>
-        </a>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <div class="nav-item">
-                <div style="display: flex; align-items: center; gap: 5px;">
-                    <a href="collectie.html">Collectie</a>
-                    <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo-link" style="text-decoration: none;">
+                <div class="logo">
+                    <h1>Atelier Luz</h1>
+                    <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
                 </div>
-                <div class="dropdown-menu">
-                    <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
-                    <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
-                    <a href="collectie-lederwerken.html">Lederwerken</a>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+
+                <div class="nav-item">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <a href="collectie.html" class="dropdown-trigger-link"
+                            style="text-decoration: none;">Collectie</a>
+                        <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
+                        <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
+                        <a href="collectie-lederwerken.html">Lederwerken</a>
+                    </div>
                 </div>
+
+                <a href="het-atelier.html">Het Atelier</a>
+                <!-- NIEUWE NAVIGATIELINK: Op Aanvraag -->
+                <a href="aanvraag.html" class="active-nav-link">Op Aanvraag</a>
+                <a href="contact.html">Contact</a>
+                <a href="winkelwagen.html" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    Winkelwagen
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
             </div>
-            <a href="het-atelier.html">Het Atelier</a>
-            <a href="contact.html">Contact</a>
-            <a href="winkelwagen.html" class="cart-link">
-    <i class="fas fa-shopping-bag"></i> 
-    Winkelwagen
-    <span class="cart-count" style="display: none;">0</span>
-</a>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-        <button class="hamburger-btn" id="hamburgerBtn">
-            <span></span><span></span><span></span>
-        </button>
+    </header>
+
+    <!-- Gratis verzending strook -->
+    <div class="free-shipping-bar">
+        <div class="container">
+            <i class="fas fa-gift"></i>
+            <span>- Gratis verzending vanaf €100 -</span>
+            <i class="fas fa-truck"></i>
+        </div>
     </div>
-</header>
 
-<div class="container" style="text-align: center; padding: 100px 20px;">
-    <i class="fas fa-check-circle" style="font-size: 80px; color: #16a34a;"></i>
-    <h1 style="font-family: 'Playfair Display', serif; margin-top: 20px;">Bedankt voor je bestelling!</h1>
-    <p style="margin-top: 10px; color: #5c3d2e;">Je ontvangt een bevestiging per e-mail zodra je bestelling is verwerkt.</p>
-    <a href="collectie.html" class="btn-primary" style="display: inline-block; margin-top: 30px; background: #5c3d2e; color: white; padding: 12px 30px; border-radius: 40px; text-decoration: none;">Verder winkelen</a>
-</div>
+    <div class="container" style="text-align: center; padding: 100px 20px;">
+        <i class="fas fa-check-circle" style="font-size: 80px; color: #16a34a;"></i>
+        <h1 style="font-family: 'Playfair Display', serif; margin-top: 20px;">Bedankt voor je bestelling!</h1>
+        <p style="margin-top: 10px; color: #5c3d2e;">Je ontvangt een bevestiging per e-mail zodra je bestelling is
+            verwerkt.</p>
+        <a href="collectie.html" class="btn-primary"
+            style="display: inline-block; margin-top: 30px; background: #5c3d2e; color: white; padding: 12px 30px; border-radius: 40px; text-decoration: none;">Verder
+            winkelen</a>
+    </div>
 
-<footer class="site-footer">
+    <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
@@ -82,52 +105,55 @@
         </div>
     </footer>
 
-<script>
-// Leeg de winkelwagen na succesvolle betaling
-localStorage.removeItem('atelierLuzCart');
+    <script>
+        // Leeg de winkelwagen na succesvolle betaling
+        localStorage.removeItem('atelierLuzCart');
 
-// Mobile navigation (zelfde als andere pagina's)
-const hamburgerBtn = document.getElementById("hamburgerBtn");
-const navLinks = document.querySelector(".nav-links");
+        // Mobile navigation (zelfde als andere pagina's)
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const navLinks = document.querySelector(".nav-links");
 
-hamburgerBtn?.addEventListener("click", () => {
-    hamburgerBtn.classList.toggle("open");
-    navLinks.classList.toggle("open");
-});
+        hamburgerBtn?.addEventListener("click", () => {
+            hamburgerBtn.classList.toggle("open");
+            navLinks.classList.toggle("open");
+        });
 
-document.querySelectorAll(".dropdown-arrow").forEach(arrow => {
-    arrow.addEventListener("click", (e) => {
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            e.stopPropagation();
-            const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
-            menu.classList.toggle("open");
+        document.querySelectorAll(".dropdown-arrow").forEach(arrow => {
+            arrow.addEventListener("click", (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
+                    menu.classList.toggle("open");
+                }
+            });
+        });
+    </script>
+
+    <style>
+        .btn-primary:hover {
+            background: #8b6946;
         }
-    });
-});
-</script>
 
-<style>
-.btn-primary:hover {
-    background: #8b6946;
-}
-.cart-icon-link {
-    position: relative;
-}
-.cart-count {
-    position: absolute;
-    top: -8px;
-    right: -12px;
-    background: #8b6946;
-    color: white;
-    font-size: 0.7rem;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-</style>
+        .cart-icon-link {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: #8b6946;
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </body>
+
 </html>

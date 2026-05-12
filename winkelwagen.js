@@ -5,15 +5,26 @@ let stripe = null;
 
 // Winkelwagen data
 let cart = [];
+let verzendMethode = 'verzenden'; // 'verzenden' of 'afhalen'
+
+// Verzendkosten instellingen
+const VERZENDKOSTEN = 6.95;
+const GRATIS_VERZENDING_VANAF = 100;
 
 function loadCart() {
     const saved = localStorage.getItem('atelierLuzCart');
     if (saved) {
         cart = JSON.parse(saved);
     }
+
+    const savedVerzendMethode = localStorage.getItem('atelierLuzVerzendMethode');
+    if (savedVerzendMethode) {
+        verzendMethode = savedVerzendMethode;
+    }
+
     updateCartCount();
     renderCartPage();
-    
+
     if (typeof Stripe !== 'undefined') {
         stripe = Stripe(STRIPE_PUBLIC_KEY);
     }
@@ -23,42 +34,47 @@ function saveCart() {
     localStorage.setItem('atelierLuzCart', JSON.stringify(cart));
 }
 
-// Deze functie wordt gebruikt door productpagina's
+function saveVerzendMethode() {
+    localStorage.setItem('atelierLuzVerzendMethode', verzendMethode);
+}
+
 function addToCart(product) {
-    const existing = cart.find(item => item.id === product.id);
-    
-    if (existing) {
-        existing.quantity = (existing.quantity || 1) + 1;
+    const existingIndex = cart.findIndex(item => item.id === product.id &&
+        JSON.stringify(item.selectedColor) === JSON.stringify(product.selectedColor));
+
+    if (existingIndex !== -1) {
+        cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
     } else {
         cart.push({
             id: product.id,
             name: product.name,
             price: product.price,
             imageUrl: product.imageUrl,
+            selectedColor: product.selectedColor || null,
             quantity: 1
         });
     }
-    
+
     saveCart();
     updateCartCount();
-    showNotification(`${product.name} toegevoegd!`);
+    const colorMsg = product.selectedColor ? ` (${product.selectedColor.name})` : '';
+    showNotification(`${product.name}${colorMsg} toegevoegd!`);
     renderCartPage();
 }
 
-function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
+function removeFromCart(index) {
+    cart.splice(index, 1);
     saveCart();
     updateCartCount();
     renderCartPage();
 }
 
-function updateQuantity(productId, newQty) {
-    const item = cart.find(item => item.id === productId);
-    if (item) {
+function updateQuantity(index, newQty) {
+    if (cart[index]) {
         if (newQty <= 0) {
-            removeFromCart(productId);
+            removeFromCart(index);
         } else {
-            item.quantity = newQty;
+            cart[index].quantity = newQty;
             saveCart();
             renderCartPage();
         }
@@ -85,56 +101,36 @@ function showNotification(msg) {
     setTimeout(() => notif.classList.remove('show'), 2000);
 }
 
-function getTotal() {
+function getSubtotaal() {
     return cart.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
 }
 
-async function startCheckout() {
-    if (cart.length === 0) {
-        showNotification('Winkelwagen is leeg');
-        return;
+function getVerzendkosten() {
+    if (verzendMethode === 'afhalen') {
+        return 0;
     }
-    
-    const btn = document.getElementById('checkoutBtn');
-    if (!btn) return;
-    
-    const originalText = btn.innerHTML;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Bezig...';
-    btn.disabled = true;
-    
-    try {
-        const response = await fetch('/.netlify/functions/stripe-checkout', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                cart: cart.map(item => ({
-                    id: item.id,
-                    name: item.name,
-                    price: item.price,
-                    imageUrl: item.imageUrl,
-                    quantity: item.quantity || 1
-                }))
-            })
-        });
-        
-        const data = await response.json();
-        
-        if (!response.ok) throw new Error(data.error);
-        
-        const result = await stripe.redirectToCheckout({ sessionId: data.sessionId });
-        if (result.error) throw new Error(result.error.message);
-        
-    } catch (error) {
-        showNotification(error.message);
-        btn.innerHTML = originalText;
-        btn.disabled = false;
+
+    const subtotaal = getSubtotaal();
+    if (subtotaal >= GRATIS_VERZENDING_VANAF) {
+        return 0;
     }
+    return VERZENDKOSTEN;
+}
+
+function getTotaal() {
+    return getSubtotaal() + getVerzendkosten();
+}
+
+function setVerzendMethode(methode) {
+    verzendMethode = methode;
+    saveVerzendMethode();
+    renderCartPage();
 }
 
 function renderCartPage() {
     const container = document.getElementById('cartContainer');
     if (!container) return;
-    
+
     if (cart.length === 0) {
         container.innerHTML = `
             <div class="empty-cart">
@@ -146,44 +142,144 @@ function renderCartPage() {
         `;
         return;
     }
-    
+
     let html = '<div class="cart-items">';
-    
-    cart.forEach(item => {
+
+    cart.forEach((item, index) => {
+        const colorInfo = item.selectedColor ? `<div style="font-size: 0.8rem; color: #b29a7a; margin-top: 4px;"><i class="fas fa-palette"></i> Kleur: ${escapeHtml(item.selectedColor.name)}</div>` : '';
+
         html += `
             <div class="cart-item">
-                <img src="${item.imageUrl || 'https://placehold.co/100x100/f5ede3/8b6946?text=Geen+foto'}" alt="${item.name}">
+                <img src="${item.imageUrl || 'https://placehold.co/100x100/f5ede3/8b6946?text=Geen+foto'}" alt="${escapeHtml(item.name)}">
                 <div class="cart-item-details">
                     <h4>${escapeHtml(item.name)}</h4>
                     <div>€ ${item.price.toFixed(2)}</div>
+                    ${colorInfo}
                     <div class="cart-item-quantity">
-                        <button onclick="updateQuantity('${item.id}', ${(item.quantity || 1) - 1})">-</button>
+                        <button onclick="updateQuantity(${index}, ${(item.quantity || 1) - 1})">-</button>
                         <span>${item.quantity || 1}</span>
-                        <button onclick="updateQuantity('${item.id}', ${(item.quantity || 1) + 1})">+</button>
-                        <button onclick="removeFromCart('${item.id}')">Verwijder</button>
+                        <button onclick="updateQuantity(${index}, ${(item.quantity || 1) + 1})">+</button>
+                        <button onclick="removeFromCart(${index})">Verwijder</button>
                     </div>
                 </div>
                 <div class="cart-item-subtotal">€ ${((item.price * (item.quantity || 1))).toFixed(2)}</div>
             </div>
         `;
     });
-    
-    const subtotal = getTotal();
-    const shipping = 6.95;
-    const total = subtotal + shipping;
-    
-    html += '</div><div class="cart-summary">';
-    html += `<div><span>Subtotaal:</span><span>€ ${subtotal.toFixed(2)}</span></div>`;
-    html += `<div><span>Verzending (BE/NL):</span><span>€ ${shipping.toFixed(2)}</span></div>`;
-    html += `<div class="total"><span>Totaal:</span><span>€ ${total.toFixed(2)}</span></div>`;
+
+    const subtotaal = getSubtotaal();
+    const verzendkosten = getVerzendkosten();
+    const totaal = getTotaal();
+    const isGratisVerzending = verzendMethode === 'verzenden' && subtotaal >= GRATIS_VERZENDING_VANAF;
+
+    html += '</div>';
+
+    // Verzendopties sectie
+    html += `
+        <div class="shipping-options">
+            <h4><i class="fas fa-truck"></i> Levermethode</h4>
+            <div class="shipping-option ${verzendMethode === 'verzenden' ? 'selected' : ''}" onclick="setVerzendMethode('verzenden')">
+                <input type="radio" name="shipping" id="shipping_verzenden" ${verzendMethode === 'verzenden' ? 'checked' : ''}>
+                <label for="shipping_verzenden">Verzenden (PostNL / Bpost)</label>
+                <span class="shipping-price">
+                    ${isGratisVerzending ? '€ 0,00 (gratis)' : verzendkosten > 0 ? '€ ' + verzendkosten.toFixed(2) : '€ 0,00'}
+                </span>
+            </div>
+            <div class="shipping-option ${verzendMethode === 'afhalen' ? 'selected' : ''}" onclick="setVerzendMethode('afhalen')">
+                <input type="radio" name="shipping" id="shipping_afhalen" ${verzendMethode === 'afhalen' ? 'checked' : ''}>
+                <label for="shipping_afhalen">Afhalen in atelier (Stiemerbeekstraat 25, Genk)</label>
+                <span class="shipping-price">€ 0,00</span>
+            </div>
+    `;
+
+    if (verzendMethode === 'verzenden' && subtotaal < GRATIS_VERZENDING_VANAF) {
+        const verschil = GRATIS_VERZENDING_VANAF - subtotaal;
+        html += `
+            <div class="free-shipping-threshold">
+                <i class="fas fa-gift"></i> Nog € ${verschil.toFixed(2)} besteden voor gratis verzending!
+            </div>
+        `;
+    }
+
+    if (isGratisVerzending) {
+        html += `
+            <div class="free-shipping-info">
+                <i class="fas fa-check-circle"></i> Gefeliciteerd! Je hebt gratis verzending verdiend.
+            </div>
+        `;
+    }
+
+    html += '</div>';
+
+    // Samenvatting
+    html += '<div class="cart-summary">';
+    html += `<div><span>Subtotaal:</span><span>€ ${subtotaal.toFixed(2)}</span></div>`;
+
+    if (verzendMethode === 'verzenden' && verzendkosten > 0) {
+        html += `<div><span>Verzending:</span><span>€ ${verzendkosten.toFixed(2)}</span></div>`;
+    } else if (verzendMethode === 'verzenden' && isGratisVerzending) {
+        html += `<div><span>Verzending:</span><span><span style="color: #16a34a;">Gratis</span> <span style="text-decoration: line-through; color: #b29a7a;">€ ${VERZENDKOSTEN.toFixed(2)}</span></span></div>`;
+    } else if (verzendMethode === 'afhalen') {
+        html += `<div><span>Afhalen:</span><span><span style="color: #16a34a;">Gratis</span></span></div>`;
+    }
+
+    html += `<div class="total"><span>Totaal:</span><span>€ ${totaal.toFixed(2)}</span></div>`;
     html += `<button id="checkoutBtn" class="checkout-btn"><i class="fas fa-credit-card"></i> Afrekenen met Stripe</button>`;
     html += '</div>';
-    
+
     container.innerHTML = html;
     document.getElementById('checkoutBtn')?.addEventListener('click', startCheckout);
 }
 
+async function startCheckout() {
+    if (cart.length === 0) {
+        showNotification('Winkelwagen is leeg');
+        return;
+    }
+
+    const btn = document.getElementById('checkoutBtn');
+    if (!btn) return;
+
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Bezig...';
+    btn.disabled = true;
+
+    try {
+        const response = await fetch('/.netlify/functions/stripe-checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                cart: cart.map(item => ({
+                    id: item.id,
+                    name: item.name + (item.selectedColor ? ` (${item.selectedColor.name})` : ''),
+                    price: item.price,
+                    imageUrl: item.imageUrl,
+                    quantity: item.quantity || 1,
+                    selectedColor: item.selectedColor
+                })),
+                verzendMethode: verzendMethode,
+                verzendkosten: getVerzendkosten(),
+                subtotaal: getSubtotaal(),
+                totaal: getTotaal()
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) throw new Error(data.error);
+
+        const result = await stripe.redirectToCheckout({ sessionId: data.sessionId });
+        if (result.error) throw new Error(result.error.message);
+
+    } catch (error) {
+        showNotification(error.message);
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    }
+}
+
 function escapeHtml(text) {
+    if (!text) return '';
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
@@ -193,6 +289,7 @@ function escapeHtml(text) {
 window.addToCart = addToCart;
 window.removeFromCart = removeFromCart;
 window.updateQuantity = updateQuantity;
+window.setVerzendMethode = setVerzendMethode;
 
 // Start bij laden
 document.addEventListener('DOMContentLoaded', loadCart);

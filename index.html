@@ -1,141 +1,167 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Atelier Luz - Handgemaakte tassen & sieraden</title>
-    
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     <!-- Eigen CSS bestand -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header class="site-header">
-    <div class="container header-inner">
-        <a href="index.html" class="logo-link" style="text-decoration: none;">
-            <div class="logo">
-                <h1>Atelier Luz</h1>
-                <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
-            </div>
-        </a>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            
-            <div class="nav-item">
-                <div style="display: flex; align-items: center; gap: 5px;">
-                    <a href="collectie.html" class="dropdown-trigger-link" style="text-decoration: none;">Collectie</a>
-                    <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo-link" style="text-decoration: none;">
+                <div class="logo">
+                    <h1>Atelier Luz</h1>
+                    <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
                 </div>
-                <div class="dropdown-menu">
-                    <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
-                    <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
-                    <a href="collectie-lederwerken.html">Lederwerken</a>
-                </div>
-            </div>
-            
-            <a href="het-atelier.html">Het Atelier</a>
-            <a href="contact.html">Contact</a>
-            <a href="winkelwagen.html" class="cart-link">
-    <i class="fas fa-shopping-bag"></i> 
-    Winkelwagen
-    <span class="cart-count" style="display: none;">0</span>
-</a>
-        </div>
-        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </div>
-</header>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
 
-<!-- CARROUSSEL SECTIE -->
-<section class="carousel-section">
-    <div class="container">
-        <div class="title-wrapper">
-            <h2 class="section-title">Onze creaties</h2>
-        </div>
-    </div>
-    
-    <div class="carousel-container">
-        <button class="carousel-btn prev-btn" id="prevBtn">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="carousel-btn next-btn" id="nextBtn">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-        
-        <div class="carousel-track" id="carouselTrack">
-            <!-- Slide 1 -->
-            <div class="carousel-slide">
-                <img src="https://placehold.co/1200x500/e8ddd0/a68a64?text=Leren+Tassen+Collectie" alt="Leren tassen collectie">
-                <div class="carousel-caption">
-                    <h3>Handgemaakte Leren Tassen</h3>
-                    <p>Vakmanschap met passie gemaakt</p>
+                <div class="nav-item">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <a href="collectie.html" class="dropdown-trigger-link"
+                            style="text-decoration: none;">Collectie</a>
+                        <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
+                        <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
+                        <a href="collectie-lederwerken.html">Lederwerken</a>
+                    </div>
                 </div>
-            </div>
-            <!-- Slide 2 -->
-            <div class="carousel-slide">
-                <img src="https://placehold.co/1200x500/d4c4ae/8b6946?text=Unieke+Sieraden" alt="Unieke sieraden">
-                <div class="carousel-caption">
-                    <h3>Unieke Sieraden</h3>
-                    <p>Elk stuk vertelt een eigen verhaal</p>
-                </div>
-            </div>
-            <!-- Slide 3 -->
-            <div class="carousel-slide">
-                <img src="https://placehold.co/1200x500/c8b5a6/5c3d2e?text=Atelier+Luz" alt="Atelier Luz workshop">
-                <div class="carousel-caption">
-                    <h3>Eigen Atelier</h3>
-                    <p>Waar creaties tot leven komen</p>
-                </div>
-            </div>
-            <!-- Slide 4 -->
-            <div class="carousel-slide">
-                <img src="https://placehold.co/1200x500/b29a7a/3a322c?text=Duurzame+Materialen" alt="Duurzame materialen">
-                <div class="carousel-caption">
-                    <h3>Duurzame Materialen</h3>
-                    <p>Met respect voor mens en natuur</p>
-                </div>
-            </div>
-            <!-- Slide 5 -->
-            <div class="carousel-slide">
-                <img src="https://placehold.co/1200x500/8b6946/f5ede3?text=Op+Bestelling" alt="Op bestelling gemaakt">
-                <div class="carousel-caption">
-                    <h3>Op Bestelling Gemaakt</h3>
-                    <p>Een tas die helemaal bij jou past</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="carousel-dots" id="carouselDots"></div>
-</section>
 
-<!-- OVER ATELIER LUZ SECTIE -->
-<section class="about-section">
-    <div class="container">
-        <div class="about-wrapper">
-            <div class="about-text">
-                <span class="subtitle">WELKOM BIJ</span>
-                <h2>Atelier Luz</h2>
-                <p>Hoi, ik ben Yolanda Smeets, ontwerper en maker achter Atelier Luz. Met mijn handen bezig zijn en zelf tassen en juwelen ontwerpen en maken in mijn atelier is iets dat mij elke keer opnieuw blij en enthousiast maakt.</p>
-                <p>Wat ooit begon als een creatieve uitlaatklep tijdens een moeilijke periode, is uitgegroeid tot mijn passie en levenswerk. Elke tas en elk sieraad dat mijn atelier verlaat, is met liefde en aandacht voor detail gemaakt.</p>
-                <p>Mijn atelier is uitgegroeid tot mijn toevluchtsoord van inspiratie en expressie, waar kleuren en vormen samensmelten tot kleine kunstwerken.</p>
-                <p class="signature">— Yolanda Smeets</p>
+                <a href="het-atelier.html">Het Atelier</a>
+                <!-- NIEUWE NAVIGATIELINK: Op Aanvraag -->
+                <a href="aanvraag.html" class="active-nav-link">Op Aanvraag</a>
+                <a href="contact.html">Contact</a>
+                <a href="winkelwagen.html" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    Winkelwagen
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
             </div>
-            <div class="about-image" style="background-image: url('https://primary.jwwb.nl/public/y/d/p/temp-ujpjpvrbduucndxbwnyp/img_9759-high.jpg?enable-io=true&crop=0.6672%3A1&width=347')"></div>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+    </header>
+    <!-- Gratis verzending strook -->
+    <div class="free-shipping-bar">
+        <div class="container">
+            <i class="fas fa-gift"></i>
+            <span>- Gratis verzending vanaf €100 -</span>
+            <i class="fas fa-truck"></i>
         </div>
     </div>
-</section>
 
-<footer class="site-footer">
+    <!-- CARROUSSEL SECTIE -->
+    <section class="carousel-section">
+        <div class="container">
+            <div class="title-wrapper">
+                <h2 class="section-title">Onze creaties</h2>
+            </div>
+        </div>
+
+        <div class="carousel-container">
+            <button class="carousel-btn prev-btn" id="prevBtn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="carousel-btn next-btn" id="nextBtn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Slide 1 -->
+                <div class="carousel-slide">
+                    <img src="https://placehold.co/1200x500/e8ddd0/a68a64?text=Leren+Tassen+Collectie"
+                        alt="Leren tassen collectie">
+                    <div class="carousel-caption">
+                        <h3>Handgemaakte Leren Tassen</h3>
+                        <p>Vakmanschap met passie gemaakt</p>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="carousel-slide">
+                    <img src="https://placehold.co/1200x500/d4c4ae/8b6946?text=Unieke+Sieraden" alt="Unieke sieraden">
+                    <div class="carousel-caption">
+                        <h3>Unieke Sieraden</h3>
+                        <p>Elk stuk vertelt een eigen verhaal</p>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="carousel-slide">
+                    <img src="https://placehold.co/1200x500/c8b5a6/5c3d2e?text=Atelier+Luz" alt="Atelier Luz workshop">
+                    <div class="carousel-caption">
+                        <h3>Eigen Atelier</h3>
+                        <p>Waar creaties tot leven komen</p>
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="carousel-slide">
+                    <img src="https://placehold.co/1200x500/b29a7a/3a322c?text=Duurzame+Materialen"
+                        alt="Duurzame materialen">
+                    <div class="carousel-caption">
+                        <h3>Duurzame Materialen</h3>
+                        <p>Met respect voor mens en natuur</p>
+                    </div>
+                </div>
+                <!-- Slide 5 -->
+                <div class="carousel-slide">
+                    <img src="https://placehold.co/1200x500/8b6946/f5ede3?text=Op+Bestelling"
+                        alt="Op bestelling gemaakt">
+                    <div class="carousel-caption">
+                        <h3>Op Bestelling Gemaakt</h3>
+                        <p>Een tas die helemaal bij jou past</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-dots" id="carouselDots"></div>
+    </section>
+
+    <!-- OVER ATELIER LUZ SECTIE -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-text">
+                    <span class="subtitle">WELKOM BIJ</span>
+                    <h2>Atelier Luz</h2>
+                    <p>Hoi, ik ben Yolanda Smeets, ontwerper en maker achter Atelier Luz. Met mijn handen bezig zijn en
+                        zelf tassen en juwelen ontwerpen en maken in mijn atelier is iets dat mij elke keer opnieuw blij
+                        en enthousiast maakt.</p>
+                    <p>Wat ooit begon als een creatieve uitlaatklep tijdens een moeilijke periode, is uitgegroeid tot
+                        mijn passie en levenswerk. Elke tas en elk sieraad dat mijn atelier verlaat, is met liefde en
+                        aandacht voor detail gemaakt.</p>
+                    <p>Mijn atelier is uitgegroeid tot mijn toevluchtsoord van inspiratie en expressie, waar kleuren en
+                        vormen samensmelten tot kleine kunstwerken.</p>
+                    <p class="signature">— Yolanda Smeets</p>
+                </div>
+                <div class="about-image"
+                    style="background-image: url('https://primary.jwwb.nl/public/y/d/p/temp-ujpjpvrbduucndxbwnyp/img_9759-high.jpg?enable-io=true&crop=0.6672%3A1&width=347')">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
@@ -165,106 +191,107 @@
         </div>
     </footer>
 
-<!-- Carrousel JavaScript -->
-<script>
-    const track = document.getElementById('carouselTrack');
-    const slides = document.querySelectorAll('.carousel-slide');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const dotsContainer = document.getElementById('carouselDots');
-    
-    let currentIndex = 0;
-    const totalSlides = slides.length;
-    
-    function createDots() {
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            if (i === currentIndex) dot.classList.add('active');
-            dot.addEventListener('click', () => goToSlide(i));
-            dotsContainer.appendChild(dot);
+    <!-- Carrousel JavaScript -->
+    <script>
+        const track = document.getElementById('carouselTrack');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsContainer = document.getElementById('carouselDots');
+
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+
+        function createDots() {
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === currentIndex) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
         }
-    }
-    
-    function updateDots() {
-        const dots = document.querySelectorAll('.dot');
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIndex);
+
+        function updateDots() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function goToSlide(index) {
+            if (index < 0) index = 0;
+            if (index >= totalSlides) index = totalSlides - 1;
+            currentIndex = index;
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            updateDots();
+        }
+
+        function nextSlide() {
+            if (currentIndex < totalSlides - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;
+            }
+            goToSlide(currentIndex);
+        }
+
+        function prevSlide() {
+            if (currentIndex > 0) {
+                currentIndex--;
+            } else {
+                currentIndex = totalSlides - 1;
+            }
+            goToSlide(currentIndex);
+        }
+
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        let autoPlay = setInterval(nextSlide, 5000);
+
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlay));
+        carouselContainer.addEventListener('mouseleave', () => {
+            autoPlay = setInterval(nextSlide, 5000);
         });
-    }
-    
-    function goToSlide(index) {
-        if (index < 0) index = 0;
-        if (index >= totalSlides) index = totalSlides - 1;
-        currentIndex = index;
-        track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        updateDots();
-    }
-    
-    function nextSlide() {
-        if (currentIndex < totalSlides - 1) {
-            currentIndex++;
-        } else {
-            currentIndex = 0;
-        }
-        goToSlide(currentIndex);
-    }
-    
-    function prevSlide() {
-        if (currentIndex > 0) {
-            currentIndex--;
-        } else {
-            currentIndex = totalSlides - 1;
-        }
-        goToSlide(currentIndex);
-    }
-    
-    nextBtn.addEventListener('click', nextSlide);
-    prevBtn.addEventListener('click', prevSlide);
-    
-    let autoPlay = setInterval(nextSlide, 5000);
-    
-    const carouselContainer = document.querySelector('.carousel-container');
-    carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlay));
-    carouselContainer.addEventListener('mouseleave', () => {
-        autoPlay = setInterval(nextSlide, 5000);
-    });
-    
-    createDots();
-    goToSlide(0);
-</script>
 
-<script>
-// Mobile navigation
-const hamburgerBtn = document.getElementById("hamburgerBtn");
-const navLinks = document.querySelector(".nav-links");
-const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
+        createDots();
+        goToSlide(0);
+    </script>
 
-hamburgerBtn.addEventListener("click", () => {
-    hamburgerBtn.classList.toggle("open");
-    navLinks.classList.toggle("open");
-});
+    <script>
+        // Mobile navigation
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const navLinks = document.querySelector(".nav-links");
+        const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
 
-dropdownArrows.forEach(arrow => {
-    arrow.addEventListener("click", (e) => {
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            e.stopPropagation();
-            const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
-            menu.classList.toggle("open");
-            arrow.style.transform = menu.classList.contains("open") ? "rotate(180deg)" : "";
-        }
-    });
-});
+        hamburgerBtn.addEventListener("click", () => {
+            hamburgerBtn.classList.toggle("open");
+            navLinks.classList.toggle("open");
+        });
 
-navLinks.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-        if (window.innerWidth <= 768) {
-            hamburgerBtn.classList.remove("open");
-            navLinks.classList.remove("open");
-        }
-    });
-});
-</script>
+        dropdownArrows.forEach(arrow => {
+            arrow.addEventListener("click", (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
+                    menu.classList.toggle("open");
+                    arrow.style.transform = menu.classList.contains("open") ? "rotate(180deg)" : "";
+                }
+            });
+        });
+
+        navLinks.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                if (window.innerWidth <= 768) {
+                    hamburgerBtn.classList.remove("open");
+                    navLinks.classList.remove("open");
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>

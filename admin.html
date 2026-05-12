@@ -1,147 +1,174 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Admin - Atelier Luz</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header class="site-header">
-    <div class="container header-inner">
-        <a href="index.html" class="logo-link" style="text-decoration: none;">
-            <div class="logo">
-                <h1>Atelier Luz</h1>
-                <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
-            </div>
-        </a>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            
-            <div class="nav-item">
-                <div style="display: flex; align-items: center; gap: 5px;">
-                    <a href="collectie.html" class="dropdown-trigger-link" style="text-decoration: none;">Collectie</a>
-                    <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo-link" style="text-decoration: none;">
+                <div class="logo">
+                    <h1>Atelier Luz</h1>
+                    <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
                 </div>
-                <div class="dropdown-menu">
-                    <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
-                    <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
-                    <a href="collectie-lederwerken.html">Lederwerken</a>
-                </div>
-            </div>
-            
-            <a href="het-atelier.html">Het Atelier</a>
-            <a href="contact.html">Contact</a>
-        </div>
-        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </div>
-</header>
-
-<!-- INLOG SCHERM -->
-<div id="loginSection" class="login-container">
-    <div class="container" style="display: flex; justify-content: center;">
-        <div class="login-card">
-            <h2>Welkom terug</h2>
-            <p>Log in om producten te beheren</p>
-            <input type="email" id="loginEmail" class="login-input" placeholder="E-mailadres">
-            <input type="password" id="loginPassword" class="login-input" placeholder="Wachtwoord">
-            <div id="loginError" class="admin-error" style="display: none;"></div>
-            <button id="loginBtn" class="login-btn">Inloggen</button>
-        </div>
-    </div>
-</div>
-
-<!-- ADMIN DASHBOARD (verborgen tot inlog) -->
-<div id="adminSection" style="display: none;">
-    <section class="products-section" style="padding-top: 20px;">
-        <div class="container">
-            <div class="admin-header-actions">
-                <h2 class="section-title" style="margin: 0;">Producten beheer</h2>
-                <div style="display: flex; gap: 15px;">
-                    <button id="logoutBtn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Uitloggen</button>
-                </div>
-            </div>
-            
-            <!-- Filters -->
-            <div class="admin-filters">
-                <button class="filter-btn active" data-filter="all">Alle producten</button>
-                <button class="filter-btn" data-filter="lederen-juwelen">Lederen Juwelen</button>
-                <button class="filter-btn" data-filter="lederen-handtassen">Lederen Handtassen</button>
-                <button class="filter-btn" data-filter="lederwerken">Lederwerken</button>
-            </div>
-            
-            <!-- Product toevoegen knop -->
-            <div style="margin-bottom: 20px;">
-                <button id="showAddFormBtn" class="add-product-btn"><i class="fas fa-plus"></i> Product toevoegen</button>
-            </div>
-            
-            <!-- Producten grid -->
-            <div id="adminProductGrid" class="admin-product-grid">
-                <div class="loading"><i class="fas fa-spinner fa-spin"></i> Producten laden...</div>
-            </div>
-            
-            <!-- Product formulier (toevoegen/bewerken) -->
-            <div id="productForm" class="admin-form" style="display: none;">
-                <h3 id="formTitle">Product toevoegen</h3>
-                <div id="formError" class="admin-error" style="display: none;"></div>
-                <div id="formSuccess" class="admin-success" style="display: none;"></div>
-                
-                <input type="hidden" id="productId">
-                
-                <div class="form-group">
-                    <label>Productnaam *</label>
-                    <input type="text" id="productName" placeholder="Bijv. Leren handtas cognac">
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Prijs (€) *</label>
-                        <input type="number" id="productPrice" step="0.01" placeholder="99.95">
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <div class="nav-item">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <a href="collectie.html" class="dropdown-trigger-link"
+                            style="text-decoration: none;">Collectie</a>
+                        <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
                     </div>
-                    <div class="form-group">
-                        <label>Categorie *</label>
-                        <select id="productCategory">
-                            <option value="lederen-juwelen">Lederen Juwelen</option>
-                            <option value="lederen-handtassen">Lederen Handtassen</option>
-                            <option value="lederwerken">Lederwerken</option>
-                        </select>
+                    <div class="dropdown-menu">
+                        <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
+                        <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
+                        <a href="collectie-lederwerken.html">Lederwerken</a>
                     </div>
                 </div>
-                
-                <div class="form-group">
-                    <label>Beschrijving</label>
-                    <textarea id="productDescription" rows="4" placeholder="Uitgebreide beschrijving van het product..."></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label>Hoofdafbeelding URL</label>
-                    <input type="text" id="productImageUrl" placeholder="https://...">
-                </div>
-                
-                <div class="form-group">
-                    <label>Extra afbeeldingen (URL's)</label>
-                    <div id="extraImagesContainer"></div>
-                    <button type="button" id="addImageBtn" class="add-image-btn"><i class="fas fa-plus"></i> Nog een afbeelding toevoegen</button>
-                </div>
-                
-                <div class="form-actions">
-                    <button id="saveProductBtn" class="save-btn">Opslaan</button>
-                    <button id="cancelFormBtn" class="cancel-btn">Annuleren</button>
-                </div>
+                <a href="het-atelier.html">Het Atelier</a>
+                <a href="aanvraag.html">Op Aanvraag</a>
+                <a href="contact.html">Contact</a>
+                <a href="winkelwagen.html" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    Winkelwagen
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+            </div>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- INLOG SCHERM -->
+    <div id="loginSection" class="login-container">
+        <div class="container" style="display: flex; justify-content: center;">
+            <div class="login-card">
+                <h2>Welkom terug</h2>
+                <p>Log in om producten te beheren</p>
+                <input type="email" id="loginEmail" class="login-input" placeholder="E-mailadres">
+                <input type="password" id="loginPassword" class="login-input" placeholder="Wachtwoord">
+                <div id="loginError" class="admin-error" style="display: none;"></div>
+                <button id="loginBtn" class="login-btn">Inloggen</button>
             </div>
         </div>
-    </section>
-</div>
+    </div>
 
-<footer class="site-footer">
+    <!-- ADMIN DASHBOARD -->
+    <div id="adminSection" style="display: none;">
+        <section class="products-section" style="padding-top: 20px;">
+            <div class="container">
+                <div class="admin-header-actions">
+                    <h2 class="section-title" style="margin: 0;">Producten beheer</h2>
+                    <div style="display: flex; gap: 15px;">
+                        <button id="logoutBtn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Uitloggen</button>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="admin-filters">
+                    <button class="filter-btn active" data-filter="all">Alle producten</button>
+                    <button class="filter-btn" data-filter="lederen-juwelen">Lederen Juwelen</button>
+                    <button class="filter-btn" data-filter="lederen-handtassen">Lederen Handtassen</button>
+                    <button class="filter-btn" data-filter="lederwerken">Lederwerken</button>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <button id="showAddFormBtn" class="add-product-btn"><i class="fas fa-plus"></i> Product
+                        toevoegen</button>
+                </div>
+
+                <div id="adminProductGrid" class="admin-product-grid">
+                    <div class="loading"><i class="fas fa-spinner fa-spin"></i> Producten laden...</div>
+                </div>
+
+                <!-- Product formulier met kleuropties -->
+                <div id="productForm" class="admin-form" style="display: none;">
+                    <h3 id="formTitle">Product toevoegen</h3>
+                    <div id="formError" class="admin-error" style="display: none;"></div>
+                    <div id="formSuccess" class="admin-success" style="display: none;"></div>
+
+                    <input type="hidden" id="productId">
+
+                    <div class="form-group">
+                        <label>Productnaam *</label>
+                        <input type="text" id="productName" placeholder="Bijv. Leren handtas cognac">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Prijs (€) *</label>
+                            <input type="number" id="productPrice" step="0.01" placeholder="99.95">
+                        </div>
+                        <div class="form-group">
+                            <label>Categorie *</label>
+                            <select id="productCategory">
+                                <option value="lederen-juwelen">Lederen Juwelen</option>
+                                <option value="lederen-handtassen">Lederen Handtassen</option>
+                                <option value="lederwerken">Lederwerken</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Beschrijving</label>
+                        <textarea id="productDescription" rows="4"
+                            placeholder="Uitgebreide beschrijving van het product..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hoofdafbeelding URL</label>
+                        <input type="text" id="productImageUrl" placeholder="https://...">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Extra afbeeldingen (URL's)</label>
+                        <div id="extraImagesContainer"></div>
+                        <button type="button" id="addImageBtn" class="add-image-btn"><i class="fas fa-plus"></i> Nog een
+                            afbeelding toevoegen</button>
+                    </div>
+
+                    <!-- KLEUREN OPTIES SECTIE -->
+                    <div class="form-group"
+                        style="border-top: 2px solid var(--sand); padding-top: 20px; margin-top: 20px;">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" id="enableColorsCheckbox" style="width: 20px; height: 20px;">
+                            <span style="font-weight: 600;">Dit product is beschikbaar in meerdere kleuren (op
+                                aanvraag)</span>
+                        </label>
+                        <p style="font-size: 0.8rem; color: var(--taupe); margin-top: 5px;">Vink aan als klanten
+                            kleuropties kunnen kiezen voor dit product</p>
+                    </div>
+
+                    <div id="colorsSection" style="display: none; margin-top: 20px;">
+                        <label>Selecteer beschikbare kleuren</label>
+                        <p style="font-size: 0.75rem; color: var(--taupe); margin-bottom: 10px;">Klik op de kleuren die
+                            beschikbaar zijn voor dit product</p>
+                        <div id="colorsGrid" class="admin-colors-grid"></div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button id="saveProductBtn" class="save-btn">Opslaan</button>
+                        <button id="cancelFormBtn" class="cancel-btn">Annuleren</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
@@ -156,7 +183,6 @@
                     <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/_atelier_luz_/"
                             target="_blank" style="color: #d4c4ae;">@_atelier_luz_</a></p>
                 </div>
-
                 <div class="footer-links">
                     <div>
                         <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
@@ -171,126 +197,207 @@
         </div>
     </footer>
 
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-    import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, where } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-    
-    const firebaseConfig = {
-        apiKey: "AIzaSyDig9gjA_N1Jp-m6ptnarZJZ8yJxFHyR1w",
-        authDomain: "atelierluz-73d72.firebaseapp.com",
-        projectId: "atelierluz-73d72",
-        storageBucket: "atelierluz-73d72.firebasestorage.app",
-        messagingSenderId: "18595217516",
-        appId: "1:18595217516:web:a1f1eb7ac47f242cfb5849",
-        measurementId: "G-S4C7ZCG16W"
-    };
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+        import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, where } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-    
-    let currentFilter = 'all';
-    let editingProductId = null;
-    let imageCounter = 0;
-    
-    // DOM elementen
-    const loginSection = document.getElementById('loginSection');
-    const adminSection = document.getElementById('adminSection');
-    const loginBtn = document.getElementById('loginBtn');
-    const logoutBtn = document.getElementById('logoutBtn');
-    const loginEmail = document.getElementById('loginEmail');
-    const loginPassword = document.getElementById('loginPassword');
-    const loginError = document.getElementById('loginError');
-    const adminProductGrid = document.getElementById('adminProductGrid');
-    const productForm = document.getElementById('productForm');
-    const showAddFormBtn = document.getElementById('showAddFormBtn');
-    const saveProductBtn = document.getElementById('saveProductBtn');
-    const cancelFormBtn = document.getElementById('cancelFormBtn');
-    const formTitle = document.getElementById('formTitle');
-    const productId = document.getElementById('productId');
-    const productName = document.getElementById('productName');
-    const productPrice = document.getElementById('productPrice');
-    const productCategory = document.getElementById('productCategory');
-    const productDescription = document.getElementById('productDescription');
-    const productImageUrl = document.getElementById('productImageUrl');
-    const extraImagesContainer = document.getElementById('extraImagesContainer');
-    const addImageBtn = document.getElementById('addImageBtn');
-    const formError = document.getElementById('formError');
-    const formSuccess = document.getElementById('formSuccess');
-    
-    // Auth state listener
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            loginSection.style.display = 'none';
-            adminSection.style.display = 'block';
-            laadProducten();
-        } else {
-            loginSection.style.display = 'flex';
-            adminSection.style.display = 'none';
-            resetForm();
-        }
-    });
-    
-    // Inloggen
-    loginBtn.addEventListener('click', async () => {
-        const email = loginEmail.value;
-        const password = loginPassword.value;
-        
-        try {
-            await signInWithEmailAndPassword(auth, email, password);
-            loginError.style.display = 'none';
-        } catch (error) {
-            loginError.textContent = error.message;
-            loginError.style.display = 'block';
-        }
-    });
-    
-    // Uitloggen
-    logoutBtn.addEventListener('click', async () => {
-        await signOut(auth);
-    });
-    
-    // Producten laden
-    async function laadProducten() {
-        adminProductGrid.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Producten laden...</div>';
-        
-        try {
-            let q;
-            if (currentFilter === 'all') {
-                q = collection(db, "products");
-            } else {
-                q = query(collection(db, "products"), where("category", "==", currentFilter));
-            }
-            
-            const querySnapshot = await getDocs(q);
-            const producten = [];
-            querySnapshot.forEach((doc) => {
-                producten.push({ id: doc.id, ...doc.data() });
+        const firebaseConfig = {
+            apiKey: "AIzaSyDig9gjA_N1Jp-m6ptnarZJZ8yJxFHyR1w",
+            authDomain: "atelierluz-73d72.firebaseapp.com",
+            projectId: "atelierluz-73d72",
+            storageBucket: "atelierluz-73d72.firebasestorage.app",
+            messagingSenderId: "18595217516",
+            appId: "1:18595217516:web:a1f1eb7ac47f242cfb5849",
+            measurementId: "G-S4C7ZCG16W"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let currentFilter = 'all';
+        let editingProductId = null;
+        let geselecteerdeKleuren = [];
+
+        // LOKALE KLEUREN BIBLIOTHEEK (niet uit Firebase)
+        const KLEUREN_BIBLIOTHEEK = [
+            { id: 'cognac', name: 'Warm Cognac', imageUrl: 'https://placehold.co/100x100/C17B4A/white?text=Cognac' },
+            { id: 'diep-bruin', name: 'Diep Bruin', imageUrl: 'https://placehold.co/100x100/5C3D2E/white?text=Bruin' },
+            { id: 'zwart', name: 'Zwart (Ebony)', imageUrl: 'https://placehold.co/100x100/2C2420/white?text=Zwart' },
+            { id: 'camel', name: 'Natuur (Camel)', imageUrl: 'https://placehold.co/100x100/D8B08C/white?text=Camel' },
+            { id: 'kastanje', name: 'Kastanjebruin', imageUrl: 'https://placehold.co/100x100/9E6F4D/white?text=Kastanje' },
+            { id: 'zand', name: 'Zandkleur', imageUrl: 'https://placehold.co/100x100/D1BFAe/white?text=Zand' },
+            { id: 'koper', name: 'Koper', imageUrl: 'https://placehold.co/100x100/B87333/white?text=Koper' },
+            { id: 'noten', name: 'Notenhout', imageUrl: 'https://placehold.co/100x100/C5A07A/white?text=Noten' },
+            { id: 'olijf', name: 'Olijfgroen', imageUrl: 'https://placehold.co/100x100/6B8E23/white?text=Olijf' },
+            { id: 'bordeaux', name: 'Bordeauxrood', imageUrl: 'https://placehold.co/100x100/722F37/white?text=Bordeaux' },
+            { id: 'grijs', name: 'Antraciet', imageUrl: 'https://placehold.co/100x100/4A4A4A/white?text=Grijs' },
+            { id: 'blauw', name: 'Diepblauw', imageUrl: 'https://placehold.co/100x100/1E3A5F/white?text=Blauw' }
+        ];
+
+        // DOM elementen
+        const loginSection = document.getElementById('loginSection');
+        const adminSection = document.getElementById('adminSection');
+        const loginBtn = document.getElementById('loginBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const loginEmail = document.getElementById('loginEmail');
+        const loginPassword = document.getElementById('loginPassword');
+        const loginError = document.getElementById('loginError');
+        const adminProductGrid = document.getElementById('adminProductGrid');
+        const productForm = document.getElementById('productForm');
+        const showAddFormBtn = document.getElementById('showAddFormBtn');
+        const saveProductBtn = document.getElementById('saveProductBtn');
+        const cancelFormBtn = document.getElementById('cancelFormBtn');
+        const formTitle = document.getElementById('formTitle');
+        const productId = document.getElementById('productId');
+        const productName = document.getElementById('productName');
+        const productPrice = document.getElementById('productPrice');
+        const productCategory = document.getElementById('productCategory');
+        const productDescription = document.getElementById('productDescription');
+        const productImageUrl = document.getElementById('productImageUrl');
+        const extraImagesContainer = document.getElementById('extraImagesContainer');
+        const addImageBtn = document.getElementById('addImageBtn');
+        const enableColorsCheckbox = document.getElementById('enableColorsCheckbox');
+        const colorsSection = document.getElementById('colorsSection');
+        const colorsGrid = document.getElementById('colorsGrid');
+        const formError = document.getElementById('formError');
+        const formSuccess = document.getElementById('formSuccess');
+
+        // Toggle kleuren sectie
+        enableColorsCheckbox.addEventListener('change', (e) => {
+            colorsSection.style.display = e.target.checked ? 'block' : 'none';
+        });
+
+        // Render kleuren selectie grid
+        function renderKleurenGrid() {
+            if (!colorsGrid) return;
+
+            colorsGrid.innerHTML = '';
+            KLEUREN_BIBLIOTHEEK.forEach(kleur => {
+                const isSelected = geselecteerdeKleuren.some(k => k.id === kleur.id);
+                const option = document.createElement('div');
+                option.className = `admin-color-option ${isSelected ? 'selected' : ''}`;
+                option.onclick = () => toggleKleur(kleur);
+                option.innerHTML = `
+                <div class="admin-color-swatch" style="background-image: url('${kleur.imageUrl}'); background-size: cover; background-position: center;"></div>
+                <span class="admin-color-name">${escapeHtml(kleur.name)}</span>
+                ${isSelected ? '<i class="fas fa-check-circle" style="color: #8b6946; font-size: 0.7rem; margin-top: 4px;"></i>' : ''}
+            `;
+                colorsGrid.appendChild(option);
             });
-            
-            renderProducten(producten);
-        } catch (error) {
-            adminProductGrid.innerHTML = '<div class="loading">Fout bij laden producten</div>';
         }
-    }
-    
-    function renderProducten(producten) {
-        if (producten.length === 0) {
-            adminProductGrid.innerHTML = '<div class="loading">Geen producten gevonden</div>';
-            return;
+
+        function toggleKleur(kleur) {
+            const index = geselecteerdeKleuren.findIndex(k => k.id === kleur.id);
+            if (index === -1) {
+                geselecteerdeKleuren.push(kleur);
+            } else {
+                geselecteerdeKleuren.splice(index, 1);
+            }
+            renderKleurenGrid();
         }
-        
-        adminProductGrid.innerHTML = '';
-        producten.forEach(product => {
-            const card = document.createElement('div');
-            card.className = 'admin-product-card';
-            card.innerHTML = `
-                <div class="admin-product-image">
-                    <img src="${product.imageUrl || 'https://placehold.co/400x400/f5f0eb/8b7d6b?text=Geen+foto'}" alt="${product.name}">
+
+        function getColorsFromForm() {
+            return geselecteerdeKleuren.map(kleur => ({
+                id: kleur.id,
+                name: kleur.name,
+                imageUrl: kleur.imageUrl
+            }));
+        }
+
+        function loadColorsIntoForm(colors) {
+            geselecteerdeKleuren = colors || [];
+            if (geselecteerdeKleuren.length > 0) {
+                enableColorsCheckbox.checked = true;
+                colorsSection.style.display = 'block';
+            } else {
+                enableColorsCheckbox.checked = false;
+                colorsSection.style.display = 'none';
+            }
+            renderKleurenGrid();
+        }
+
+        // Extra afbeelding functies
+        function addExtraImageField(value = '') {
+            const div = document.createElement('div');
+            div.className = 'image-input-group';
+            div.style.cssText = 'display: flex; gap: 10px; margin-bottom: 10px;';
+            div.innerHTML = `
+            <input type="text" class="extra-image" placeholder="Afbeelding URL" value="${escapeHtml(value)}" style="flex: 1; padding: 8px; border: 1px solid var(--sand); border-radius: 8px;">
+            <button type="button" class="remove-image" style="background: #e8ddd0; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer;"><i class="fas fa-times"></i></button>
+        `;
+            div.querySelector('.remove-image').addEventListener('click', () => div.remove());
+            extraImagesContainer.appendChild(div);
+        }
+
+        addImageBtn.addEventListener('click', () => addExtraImageField());
+
+        // Auth state listener
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loginSection.style.display = 'none';
+                adminSection.style.display = 'block';
+                laadProducten();
+                renderKleurenGrid();
+            } else {
+                loginSection.style.display = 'flex';
+                adminSection.style.display = 'none';
+                resetForm();
+            }
+        });
+
+        loginBtn.addEventListener('click', async () => {
+            try {
+                await signInWithEmailAndPassword(auth, loginEmail.value, loginPassword.value);
+                loginError.style.display = 'none';
+            } catch (error) {
+                loginError.textContent = error.message;
+                loginError.style.display = 'block';
+            }
+        });
+
+        logoutBtn.addEventListener('click', async () => {
+            await signOut(auth);
+        });
+
+        async function laadProducten() {
+            adminProductGrid.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Producten laden...</div>';
+            try {
+                let q;
+                if (currentFilter === 'all') {
+                    q = collection(db, "products");
+                } else {
+                    q = query(collection(db, "products"), where("category", "==", currentFilter));
+                }
+                const querySnapshot = await getDocs(q);
+                const producten = [];
+                querySnapshot.forEach((doc) => {
+                    producten.push({ id: doc.id, ...doc.data() });
+                });
+                renderProducten(producten);
+            } catch (error) {
+                adminProductGrid.innerHTML = '<div class="loading">Fout bij laden producten</div>';
+            }
+        }
+
+        function renderProducten(producten) {
+            if (producten.length === 0) {
+                adminProductGrid.innerHTML = '<div class="loading">Geen producten gevonden</div>';
+                return;
+            }
+            adminProductGrid.innerHTML = '';
+            producten.forEach(product => {
+                const hasColors = product.colors && product.colors.length > 0;
+                const card = document.createElement('div');
+                card.className = 'admin-product-card';
+                card.innerHTML = `
+                <div class="admin-product-image" style="position: relative;">
+                    <img src="${product.imageUrl || 'https://placehold.co/400x400/f5f0eb/8b7d6b?text=Geen+foto'}" alt="${escapeHtml(product.name)}">
+                    ${hasColors ? '<span style="position: absolute; top: 10px; right: 10px; background: #8b6946; color: white; padding: 4px 8px; border-radius: 20px; font-size: 0.7rem;"><i class="fas fa-palette"></i> Kleuren</span>' : ''}
                 </div>
                 <div class="admin-product-info">
-                    <h3>${product.name}</h3>
+                    <h3>${escapeHtml(product.name)}</h3>
                     <div class="admin-product-price">€ ${product.price ? product.price.toFixed(2) : '0,00'}</div>
                     <div class="admin-product-actions">
                         <button class="edit-btn" data-id="${product.id}"><i class="fas fa-edit"></i> Bewerken</button>
@@ -298,215 +405,210 @@
                     </div>
                 </div>
             `;
-            adminProductGrid.appendChild(card);
+                adminProductGrid.appendChild(card);
+            });
+
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    editProduct(btn.dataset.id);
+                });
+            });
+
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (confirm('Weet je zeker dat je dit product wilt verwijderen?')) {
+                        deleteProduct(btn.dataset.id);
+                    }
+                });
+            });
+        }
+
+        async function editProduct(id) {
+            const productRef = doc(db, "products", id);
+            const productSnap = await getDocs(query(collection(db, "products"), where("__name__", "==", id)));
+            let product = null;
+            productSnap.forEach((doc) => {
+                product = { id: doc.id, ...doc.data() };
+            });
+
+            if (product) {
+                editingProductId = id;
+                productId.value = id;
+                productName.value = product.name || '';
+                productPrice.value = product.price || '';
+                productCategory.value = product.category || 'lederen-juwelen';
+                productDescription.value = product.description || '';
+                productImageUrl.value = product.imageUrl || '';
+
+                extraImagesContainer.innerHTML = '';
+                if (product.images && product.images.length > 0) {
+                    product.images.forEach(img => addExtraImageField(img));
+                }
+
+                // Laad kleuren
+                loadColorsIntoForm(product.colors || []);
+
+                formTitle.textContent = 'Product bewerken';
+                productForm.style.display = 'block';
+                window.scrollTo({ top: productForm.offsetTop - 100, behavior: 'smooth' });
+            }
+        }
+
+        async function deleteProduct(id) {
+            try {
+                await deleteDoc(doc(db, "products", id));
+                laadProducten();
+                showSuccess('Product verwijderd!');
+            } catch (error) {
+                showError(error.message);
+            }
+        }
+
+        saveProductBtn.addEventListener('click', async () => {
+            const name = productName.value.trim();
+            const price = parseFloat(productPrice.value);
+            const category = productCategory.value;
+            const description = productDescription.value.trim();
+            const imageUrl = productImageUrl.value.trim();
+
+            const extraImages = [];
+            document.querySelectorAll('.extra-image').forEach(input => {
+                if (input.value.trim()) extraImages.push(input.value.trim());
+            });
+
+            if (imageUrl && !extraImages.includes(imageUrl)) {
+                extraImages.unshift(imageUrl);
+            }
+
+            if (!name) {
+                showError('Vul een productnaam in');
+                return;
+            }
+            if (isNaN(price)) {
+                showError('Vul een geldige prijs in');
+                return;
+            }
+
+            const productData = {
+                name: name,
+                price: price,
+                category: category,
+                description: description,
+                imageUrl: imageUrl,
+                images: extraImages,
+                updatedAt: new Date().toISOString()
+            };
+
+            // Voeg kleuren toe indien ingeschakeld
+            if (enableColorsCheckbox.checked) {
+                const colors = getColorsFromForm();
+                if (colors.length > 0) {
+                    productData.colors = colors;
+                    productData.hasColors = true;
+                }
+            } else {
+                productData.colors = [];
+                productData.hasColors = false;
+            }
+
+            try {
+                if (editingProductId) {
+                    await updateDoc(doc(db, "products", editingProductId), productData);
+                    showSuccess('Product bijgewerkt!');
+                } else {
+                    productData.createdAt = new Date().toISOString();
+                    await addDoc(collection(db, "products"), productData);
+                    showSuccess('Product toegevoegd!');
+                }
+                resetForm();
+                laadProducten();
+            } catch (error) {
+                showError(error.message);
+            }
         });
-        
-        // Edit buttons
-        document.querySelectorAll('.edit-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const id = btn.dataset.id;
-                editProduct(id);
+
+        function resetForm() {
+            editingProductId = null;
+            productId.value = '';
+            productName.value = '';
+            productPrice.value = '';
+            productCategory.value = 'lederen-juwelen';
+            productDescription.value = '';
+            productImageUrl.value = '';
+            extraImagesContainer.innerHTML = '';
+            geselecteerdeKleuren = [];
+            enableColorsCheckbox.checked = false;
+            colorsSection.style.display = 'none';
+            productForm.style.display = 'none';
+            formTitle.textContent = 'Product toevoegen';
+            formError.style.display = 'none';
+            formSuccess.style.display = 'none';
+            renderKleurenGrid();
+        }
+
+        function showSuccess(msg) {
+            formSuccess.textContent = msg;
+            formSuccess.style.display = 'block';
+            setTimeout(() => formSuccess.style.display = 'none', 3000);
+        }
+
+        function showError(msg) {
+            formError.textContent = msg;
+            formError.style.display = 'block';
+            setTimeout(() => formError.style.display = 'none', 3000);
+        }
+
+        cancelFormBtn.addEventListener('click', resetForm);
+        showAddFormBtn.addEventListener('click', () => {
+            resetForm();
+            productForm.style.display = 'block';
+            window.scrollTo({ top: productForm.offsetTop - 100, behavior: 'smooth' });
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                laadProducten();
             });
         });
-        
-        // Delete buttons
-        document.querySelectorAll('.delete-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const id = btn.dataset.id;
-                if (confirm('Weet je zeker dat je dit product wilt verwijderen?')) {
-                    deleteProduct(id);
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+    </script>
+
+    <script>
+        // Mobile navigation
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const navLinks = document.querySelector(".nav-links");
+        const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
+
+        if (hamburgerBtn) {
+            hamburgerBtn.addEventListener("click", () => {
+                hamburgerBtn.classList.toggle("open");
+                navLinks.classList.toggle("open");
+            });
+        }
+
+        dropdownArrows.forEach(arrow => {
+            arrow.addEventListener("click", (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
+                    if (menu) menu.classList.toggle("open");
+                    arrow.style.transform = menu?.classList.contains("open") ? "rotate(180deg)" : "";
                 }
             });
         });
-    }
-    
-    async function editProduct(id) {
-        const q = query(collection(db, "products"), where("__name__", "==", id));
-        const querySnapshot = await getDocs(q);
-        let product = null;
-        querySnapshot.forEach((doc) => {
-            product = { id: doc.id, ...doc.data() };
-        });
-        
-        if (product) {
-            editingProductId = id;
-            productId.value = id;
-            productName.value = product.name || '';
-            productPrice.value = product.price || '';
-            productCategory.value = product.category || 'lederen-juwelen';
-            productDescription.value = product.description || '';
-            productImageUrl.value = product.imageUrl || '';
-            
-            // Laad extra afbeeldingen
-            extraImagesContainer.innerHTML = '';
-            if (product.images && product.images.length > 0) {
-                product.images.forEach((img, index) => {
-                    addExtraImageField(img, index);
-                });
-            }
-            
-            formTitle.textContent = 'Product bewerken';
-            productForm.style.display = 'block';
-            window.scrollTo({ top: productForm.offsetTop - 100, behavior: 'smooth' });
-        }
-    }
-    
-    async function deleteProduct(id) {
-        try {
-            await deleteDoc(doc(db, "products", id));
-            laadProducten();
-            formSuccess.textContent = 'Product verwijderd!';
-            formSuccess.style.display = 'block';
-            setTimeout(() => formSuccess.style.display = 'none', 3000);
-        } catch (error) {
-            formError.textContent = error.message;
-            formError.style.display = 'block';
-            setTimeout(() => formError.style.display = 'none', 3000);
-        }
-    }
-    
-    function addExtraImageField(value = '', index = null) {
-        const div = document.createElement('div');
-        div.className = 'image-input-group';
-        const inputId = `extraImage_${imageCounter++}`;
-        div.innerHTML = `
-            <input type="text" class="extra-image" placeholder="Afbeelding URL" value="${value}">
-            <button type="button" class="remove-image"><i class="fas fa-times"></i></button>
-        `;
-        div.querySelector('.remove-image').addEventListener('click', () => div.remove());
-        extraImagesContainer.appendChild(div);
-    }
-    
-    addImageBtn.addEventListener('click', () => addExtraImageField());
-    
-    // Product opslaan (toevoegen of bewerken)
-    saveProductBtn.addEventListener('click', async () => {
-        const name = productName.value.trim();
-        const price = parseFloat(productPrice.value);
-        const category = productCategory.value;
-        const description = productDescription.value.trim();
-        const imageUrl = productImageUrl.value.trim();
-        
-        // Verzamel extra afbeeldingen
-        // Verzamel extra afbeeldingen
-const extraImages = [];
-document.querySelectorAll('.extra-image').forEach(input => {
-    if (input.value.trim()) extraImages.push(input.value.trim());
-});
-
-// Voeg hoofdafbeelding automatisch toe aan extra afbeeldingen als die er nog niet in zit
-if (imageUrl && !extraImages.includes(imageUrl)) {
-    extraImages.unshift(imageUrl);  // Zet de hoofdafbeelding vooraan
-}
-        
-        if (!name) {
-            formError.textContent = 'Vul een productnaam in';
-            formError.style.display = 'block';
-            return;
-        }
-        
-        if (isNaN(price)) {
-            formError.textContent = 'Vul een geldige prijs in';
-            formError.style.display = 'block';
-            return;
-        }
-        
-        const productData = {
-            name: name,
-            price: price,
-            category: category,
-            description: description,
-            imageUrl: imageUrl,
-            images: extraImages,
-            updatedAt: new Date().toISOString()
-        };
-        
-        try {
-            if (editingProductId) {
-                await updateDoc(doc(db, "products", editingProductId), productData);
-                formSuccess.textContent = 'Product bijgewerkt!';
-            } else {
-                await addDoc(collection(db, "products"), productData);
-                formSuccess.textContent = 'Product toegevoegd!';
-            }
-            formSuccess.style.display = 'block';
-            setTimeout(() => formSuccess.style.display = 'none', 3000);
-            resetForm();
-            laadProducten();
-        } catch (error) {
-            formError.textContent = error.message;
-            formError.style.display = 'block';
-            setTimeout(() => formError.style.display = 'none', 3000);
-        }
-    });
-    
-    function resetForm() {
-        editingProductId = null;
-        productId.value = '';
-        productName.value = '';
-        productPrice.value = '';
-        productCategory.value = 'lederen-juwelen';
-        productDescription.value = '';
-        productImageUrl.value = '';
-        extraImagesContainer.innerHTML = '';
-        imageCounter = 0;
-        productForm.style.display = 'none';
-        formTitle.textContent = 'Product toevoegen';
-        formError.style.display = 'none';
-        formSuccess.style.display = 'none';
-    }
-    
-    cancelFormBtn.addEventListener('click', resetForm);
-    showAddFormBtn.addEventListener('click', () => {
-        resetForm();
-        productForm.style.display = 'block';
-        window.scrollTo({ top: productForm.offsetTop - 100, behavior: 'smooth' });
-    });
-    
-    // Filter buttons
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentFilter = btn.dataset.filter;
-            laadProducten();
-        });
-    });
-</script>
-
-<script>
-// Mobile navigation
-const hamburgerBtn = document.getElementById("hamburgerBtn");
-const navLinks = document.querySelector(".nav-links");
-const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
-
-hamburgerBtn.addEventListener("click", () => {
-    hamburgerBtn.classList.toggle("open");
-    navLinks.classList.toggle("open");
-});
-
-dropdownArrows.forEach(arrow => {
-    arrow.addEventListener("click", (e) => {
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            e.stopPropagation();
-            const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
-            menu.classList.toggle("open");
-            arrow.style.transform = menu.classList.contains("open") ? "rotate(180deg)" : "";
-        }
-    });
-});
-
-navLinks.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-        if (window.innerWidth <= 768) {
-            hamburgerBtn.classList.remove("open");
-            navLinks.classList.remove("open");
-        }
-    });
-});
-</script>
+    </script>
 </body>
+
 </html>

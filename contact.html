@@ -1,244 +1,271 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Contact - Atelier Luz</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<header class="site-header">
-    <div class="container header-inner">
-        <a href="index.html" class="logo-link" style="text-decoration: none;">
-            <div class="logo">
-                <h1>Atelier Luz</h1>
-                <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
-            </div>
-        </a>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            
-            <div class="nav-item">
-                <div style="display: flex; align-items: center; gap: 5px;">
-                    <a href="collectie.html" class="dropdown-trigger-link" style="text-decoration: none;">Collectie</a>
-                    <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo-link" style="text-decoration: none;">
+                <div class="logo">
+                    <h1>Atelier Luz</h1>
+                    <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
                 </div>
-                <div class="dropdown-menu">
-                    <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
-                    <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
-                    <a href="collectie-lederwerken.html">Lederwerken</a>
-                </div>
-            </div>
-            
-            <a href="het-atelier.html">Het Atelier</a>
-            <a href="contact.html">Contact</a>
-            <a href="winkelwagen.html" class="cart-link">
-                <i class="fas fa-shopping-bag"></i> 
-                Winkelwagen
-                <span class="cart-count" style="display: none;">0</span>
             </a>
-        </div>
-        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </div>
-</header>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
 
-<section class="products-section" style="padding-top: 0;">
-    <div class="container">
-        <div class="title-wrapper">
-            <h2 class="section-title">Contact</h2>
-        </div>
-        
-        <!-- Contact informatie grid -->
-        <div class="contact-grid">
-            <!-- Adres -->
-            <div class="contact-info-card">
-                <i class="fas fa-map-marker-alt"></i>
-                <h3>Adres</h3>
-                <p>Atelier Luz</p>
-                <p>Yolanda Smeets</p>
-                <p>Stiemerbeekstraat 25, 3600 Genk</p>
-                <div class="map-wrapper" style="margin-top: 15px;">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2518.234567890123!2d5.496078!3d50.965134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c0e8b5b5b5b5b5%3A0x5b5b5b5b5b5b5b5b!2sStiemerbeekstraat%2025%2C%203600%20Genk!5e0!3m2!1snl!2sbe!4v1700000000000!5m2!1snl!2sbe" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-            
-            <!-- Contact gegevens -->
-            <div class="contact-info-card">
-                <i class="fas fa-envelope"></i>
-                <h3>Contact</h3>
-                <p><strong>E-mail:</strong><br><a href="mailto:info@atelierluz.be">info@atelierluz.be</a></p>
-                <p><strong>Telefoon:</strong><br><a href="tel:+32468209909">+32 468 20 99 09</a></p>
-                <p><strong>Instagram:</strong><br><a href="https://www.instagram.com/_atelier_luz_" target="_blank" class="social-link"><i class="fab fa-instagram"></i> @_atelier_luz_</a></p>
-            </div>
-            
-            <!-- Openingstijden -->
-            <div class="contact-info-card">
-                <i class="fas fa-clock"></i>
-                <h3>Openingstijden</h3>
-                <div class="opening-hours">
-                    <p><span>✉️ Op afspraak:</span><span>Altijd mogelijk</span></p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Contact formulier met Netlify Forms -->
-        <div class="contact-form-wrapper">
-            <h3>Stel een vraag</h3>
-            <p>Heb je een vraag over een product, een bestelling of wil je iets op maat laten maken? Laat het me weten!</p>
-            
-            <div id="formSuccess" class="form-success" style="display: none;">
-                <i class="fas fa-check-circle"></i> Bedankt voor je bericht! Ik neem zo snel mogelijk contact met je op.
-            </div>
-            <div id="formError" class="form-error" style="display: none;">
-                <i class="fas fa-exclamation-triangle"></i> Er is een fout opgetreden. Probeer het later opnieuw.
-            </div>
-            
-            <!-- NETLIFY FORM - Belangrijk: het formulier heeft netlify attribuut en een verborgen form-name -->
-            <form id="contactForm" name="contact" method="POST" netlify netlify-honeypot="bot-field">
-                <input type="hidden" name="form-name" value="contact">
-                
-                <!-- Honeypot veld tegen spam (verborgen voor gebruikers) -->
-                <div style="display: none;">
-                    <label>Niet invullen: <input type="text" name="bot-field"></label>
-                </div>
-                
-                <div class="form-row">
-                    <div class="contact-form-group">
-                        <label for="name">Naam *</label>
-                        <input type="text" id="name" name="name" required>
+                <div class="nav-item">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <a href="collectie.html" class="dropdown-trigger-link"
+                            style="text-decoration: none;">Collectie</a>
+                        <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
                     </div>
-                    <div class="contact-form-group">
-                        <label for="email">E-mailadres *</label>
-                        <input type="email" id="email" name="email" required>
+                    <div class="dropdown-menu">
+                        <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
+                        <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
+                        <a href="collectie-lederwerken.html">Lederwerken</a>
                     </div>
                 </div>
-                
-                <div class="contact-form-group">
-                    <label for="subject">Onderwerp *</label>
-                    <input type="text" id="subject" name="subject" required>
-                </div>
-                
-                <div class="contact-form-group">
-                    <label for="message">Bericht *</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn">
-                    <i class="fas fa-paper-plane"></i> Verstuur bericht
-                </button>
-            </form>
+
+                <a href="het-atelier.html">Het Atelier</a>
+                <!-- NIEUWE NAVIGATIELINK: Op Aanvraag -->
+                <a href="aanvraag.html" class="active-nav-link">Op Aanvraag</a>
+                <a href="contact.html">Contact</a>
+                <a href="winkelwagen.html" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    Winkelwagen
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+            </div>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Gratis verzending strook -->
+    <div class="free-shipping-bar">
+        <div class="container">
+            <i class="fas fa-gift"></i>
+            <span>- Gratis verzending vanaf €100 -</span>
+            <i class="fas fa-truck"></i>
         </div>
     </div>
-</section>
 
-<footer class="site-footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-info">
-                <h3>Atelier Luz</h3>
-                <p><i class="fas fa-map-marker-alt"></i> <a href="https://maps.google.com/?q=Stiemerbeekstraat+25+3600+Genk" target="_blank" style="color: #d4c4ae; text-decoration: none;">Stiemerbeekstraat 25, 3600 Genk</a></p>
-                <p><i class="fas fa-envelope"></i> <a href="mailto:info@atelierluz.be" style="color: #d4c4ae; text-decoration: none;">info@atelierluz.be</a></p>
-                <p><i class="fas fa-phone-alt"></i> <a href="tel:+32468209909" style="color: #d4c4ae; text-decoration: none;">+32 468 20 99 09</a></p>
-                <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/_atelier_luz_/" target="_blank" style="color: #d4c4ae;">@_atelier_luz_</a></p>
+    <section class="products-section" style="padding-top: 0;">
+        <div class="container">
+            <div class="title-wrapper">
+                <h2 class="section-title">Contact</h2>
             </div>
 
-            <div class="footer-links">
-                <div>
-                    <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
-                    <p><a href="contact.html">Contact</a></p>
-                    <p><a href="admin.html" id="adminLink">Admin</a></p>
+            <!-- Contact informatie grid -->
+            <div class="contact-grid">
+                <!-- Adres -->
+                <div class="contact-info-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Adres</h3>
+                    <p>Atelier Luz</p>
+                    <p>Yolanda Smeets</p>
+                    <p>Stiemerbeekstraat 25, 3600 Genk</p>
+                    <div class="map-wrapper" style="margin-top: 15px;">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2518.234567890123!2d5.496078!3d50.965134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c0e8b5b5b5b5b5%3A0x5b5b5b5b5b5b5b5b!2sStiemerbeekstraat%2025%2C%203600%20Genk!5e0!3m2!1snl!2sbe!4v1700000000000!5m2!1snl!2sbe"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <!-- Contact gegevens -->
+                <div class="contact-info-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Contact</h3>
+                    <p><strong>E-mail:</strong><br><a href="mailto:info@atelierluz.be">info@atelierluz.be</a></p>
+                    <p><strong>Telefoon:</strong><br><a href="tel:+32468209909">+32 468 20 99 09</a></p>
+                    <p><strong>Instagram:</strong><br><a href="https://www.instagram.com/_atelier_luz_" target="_blank"
+                            class="social-link"><i class="fab fa-instagram"></i> @_atelier_luz_</a></p>
+                </div>
+
+                <!-- Openingstijden -->
+                <div class="contact-info-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Openingstijden</h3>
+                    <div class="opening-hours">
+                        <p><span>✉️ Op afspraak:</span><span>Altijd mogelijk</span></p>
+                    </div>
                 </div>
             </div>
+
+            <!-- Contact formulier met Netlify Forms -->
+            <div class="contact-form-wrapper">
+                <h3>Stel een vraag</h3>
+                <p>Heb je een vraag over een product, een bestelling of wil je iets op maat laten maken? Laat het me
+                    weten!</p>
+
+                <div id="formSuccess" class="form-success" style="display: none;">
+                    <i class="fas fa-check-circle"></i> Bedankt voor je bericht! Ik neem zo snel mogelijk contact met je
+                    op.
+                </div>
+                <div id="formError" class="form-error" style="display: none;">
+                    <i class="fas fa-exclamation-triangle"></i> Er is een fout opgetreden. Probeer het later opnieuw.
+                </div>
+
+                <!-- NETLIFY FORM - Belangrijk: het formulier heeft netlify attribuut en een verborgen form-name -->
+                <form id="contactForm" name="contact" method="POST" netlify netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="contact">
+
+                    <!-- Honeypot veld tegen spam (verborgen voor gebruikers) -->
+                    <div style="display: none;">
+                        <label>Niet invullen: <input type="text" name="bot-field"></label>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="contact-form-group">
+                            <label for="name">Naam *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="contact-form-group">
+                            <label for="email">E-mailadres *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-group">
+                        <label for="subject">Onderwerp *</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+
+                    <div class="contact-form-group">
+                        <label for="message">Bericht *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Verstuur bericht
+                    </button>
+                </form>
+            </div>
         </div>
-        <div class="footer-bottom">
-            <p>© 2026 Atelier Luz – Ontworpen en met de hand gemaakt</p>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Atelier Luz</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <a
+                            href="https://maps.google.com/?q=Stiemerbeekstraat+25+3600+Genk" target="_blank"
+                            style="color: #d4c4ae; text-decoration: none;">Stiemerbeekstraat 25, 3600 Genk</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@atelierluz.be"
+                            style="color: #d4c4ae; text-decoration: none;">info@atelierluz.be</a></p>
+                    <p><i class="fas fa-phone-alt"></i> <a href="tel:+32468209909"
+                            style="color: #d4c4ae; text-decoration: none;">+32 468 20 99 09</a></p>
+                    <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/_atelier_luz_/"
+                            target="_blank" style="color: #d4c4ae;">@_atelier_luz_</a></p>
+                </div>
+
+                <div class="footer-links">
+                    <div>
+                        <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
+                        <p><a href="contact.html">Contact</a></p>
+                        <p><a href="admin.html" id="adminLink">Admin</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Atelier Luz – Ontworpen en met de hand gemaakt</p>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
-<script>
-    // Netlify Forms met AJAX submit (zonder pagina herladen)
-    const contactForm = document.getElementById('contactForm');
-    const formSuccess = document.getElementById('formSuccess');
-    const formError = document.getElementById('formError');
-    
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        // Verzamel formulier data
-        const formData = new FormData(contactForm);
-        
-        try {
-            const response = await fetch('/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(formData).toString()
-            });
-            
-            if (response.ok) {
-                // Succes
-                formSuccess.style.display = 'block';
-                formError.style.display = 'none';
-                contactForm.reset();
-                
-                // Verberg succesmelding na 5 seconden
-                setTimeout(() => {
-                    formSuccess.style.display = 'none';
-                }, 5000);
-            } else {
-                throw new Error('Netlify form submission failed');
-            }
-        } catch (error) {
-            // Foutmelding
-            formError.style.display = 'block';
-            formSuccess.style.display = 'none';
-            
-            setTimeout(() => {
-                formError.style.display = 'none';
-            }, 5000);
-        }
-    });
-</script>
+    <script>
+        // Netlify Forms met AJAX submit (zonder pagina herladen)
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+        const formError = document.getElementById('formError');
 
-<script>
-// Mobile navigation
-const hamburgerBtn = document.getElementById("hamburgerBtn");
-const navLinks = document.querySelector(".nav-links");
-const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
-
-hamburgerBtn.addEventListener("click", () => {
-    hamburgerBtn.classList.toggle("open");
-    navLinks.classList.toggle("open");
-});
-
-dropdownArrows.forEach(arrow => {
-    arrow.addEventListener("click", (e) => {
-        if (window.innerWidth <= 768) {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            e.stopPropagation();
-            const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
-            menu.classList.toggle("open");
-            arrow.style.transform = menu.classList.contains("open") ? "rotate(180deg)" : "";
-        }
-    });
-});
 
-navLinks.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-        if (window.innerWidth <= 768) {
-            hamburgerBtn.classList.remove("open");
-            navLinks.classList.remove("open");
-        }
-    });
-});
-</script>
+            // Verzamel formulier data
+            const formData = new FormData(contactForm);
+
+            try {
+                const response = await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString()
+                });
+
+                if (response.ok) {
+                    // Succes
+                    formSuccess.style.display = 'block';
+                    formError.style.display = 'none';
+                    contactForm.reset();
+
+                    // Verberg succesmelding na 5 seconden
+                    setTimeout(() => {
+                        formSuccess.style.display = 'none';
+                    }, 5000);
+                } else {
+                    throw new Error('Netlify form submission failed');
+                }
+            } catch (error) {
+                // Foutmelding
+                formError.style.display = 'block';
+                formSuccess.style.display = 'none';
+
+                setTimeout(() => {
+                    formError.style.display = 'none';
+                }, 5000);
+            }
+        });
+    </script>
+
+    <script>
+        // Mobile navigation
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const navLinks = document.querySelector(".nav-links");
+        const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
+
+        hamburgerBtn.addEventListener("click", () => {
+            hamburgerBtn.classList.toggle("open");
+            navLinks.classList.toggle("open");
+        });
+
+        dropdownArrows.forEach(arrow => {
+            arrow.addEventListener("click", (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
+                    menu.classList.toggle("open");
+                    arrow.style.transform = menu.classList.contains("open") ? "rotate(180deg)" : "";
+                }
+            });
+        });
+
+        navLinks.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                if (window.innerWidth <= 768) {
+                    hamburgerBtn.classList.remove("open");
+                    navLinks.classList.remove("open");
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
