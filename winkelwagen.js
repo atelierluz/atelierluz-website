@@ -1,6 +1,6 @@
 // winkelwagen.js
 
-const STRIPE_PUBLIC_KEY = 'pk_test_51TUoFqGk0NdntuoyCLTItjKP2yfirYKgSx7OntsRAkI54519DF2eJTnISG9UJyLyC1Dod1zDRqFDXdTkB19CpoPa00Ab8GYX32';
+const STRIPE_PUBLIC_KEY = 'pk_test_51TWGa1RtQWOKpGNnpgZ3SLLskhPiL2ttupZIgJz5ZZmLJK1oFBFQ80gIJVwTyL8AKpRRvBjs5XZ7eaHd9J3DjDbZ003U9WxZG3';
 let stripe = null;
 
 // Winkelwagen data
