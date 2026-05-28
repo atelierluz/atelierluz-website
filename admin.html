@@ -11,6 +11,10 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="winkelwagen.js"></script>
+
+    <!-- Cloudinary Widget SDK -->
+    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -94,7 +98,7 @@
                     <div class="loading"><i class="fas fa-spinner fa-spin"></i> Producten laden...</div>
                 </div>
 
-                <!-- Product formulier met kleuropties -->
+                <!-- Product formulier met upload mogelijkheden -->
                 <div id="productForm" class="admin-form" style="display: none;">
                     <h3 id="formTitle">Product toevoegen</h3>
                     <div id="formError" class="admin-error" style="display: none;"></div>
@@ -128,16 +132,31 @@
                             placeholder="Uitgebreide beschrijving van het product..."></textarea>
                     </div>
 
+                    <!-- HOOFDAFBEELD MET UPLOAD -->
                     <div class="form-group">
-                        <label>Hoofdafbeelding URL</label>
-                        <input type="text" id="productImageUrl" placeholder="https://...">
+                        <label>Hoofdafbeelding *</label>
+                        <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                            <button type="button" id="uploadMainImageBtn" class="upload-image-btn" style="background: #8b6946; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">
+                                <i class="fas fa-cloud-upload-alt"></i> Upload foto
+                            </button>
+                            <span style="color: var(--taupe); font-size: 0.85rem;">of</span>
+                            <input type="text" id="productImageUrl" placeholder="Of plak een URL" style="flex: 1;">
+                        </div>
+                        <div id="mainImagePreview" style="margin-top: 10px; display: none;">
+                            <img id="mainPreviewImg" style="max-width: 100px; border-radius: 8px; border: 2px solid var(--sand);">
+                        </div>
                     </div>
 
+                    <!-- EXTRA AFBEELDINGEN MET UPLOAD -->
                     <div class="form-group">
-                        <label>Extra afbeeldingen (URL's)</label>
+                        <label>Extra afbeeldingen</label>
+                        <div>
+                            <button type="button" id="uploadExtraImageBtn" class="upload-image-btn" style="background: #a0886e; color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 10px;">
+                                <i class="fas fa-cloud-upload-alt"></i> Extra foto uploaden
+                            </button>
+                        </div>
                         <div id="extraImagesContainer"></div>
-                        <button type="button" id="addImageBtn" class="add-image-btn"><i class="fas fa-plus"></i> Nog een
-                            afbeelding toevoegen</button>
+                        <button type="button" id="addImageBtn" class="add-image-btn" style="margin-top: 10px;"><i class="fas fa-plus"></i> Of handmatig URL toevoegen</button>
                     </div>
 
                     <!-- KLEUREN OPTIES SECTIE -->
@@ -197,19 +216,29 @@
         </div>
     </footer>
 
+    <script>
+        // ============================================
+        // CLOUDINARY CONFIGURATIE
+        // ============================================
+        const CLOUDINARY_CONFIG = {
+            cloudName: 'dygtlvuxm',
+            uploadPreset: 'atelier_luz_preset'
+        };
+    </script>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
         import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, where } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
-       const firebaseConfig = {
-    apiKey: "AIzaSyB3RzPBPIYbpwlvm74pcjbtmFUaeQjF5Pg",
-    authDomain: "atelierluz-45097.firebaseapp.com",
-    projectId: "atelierluz-45097",
-    storageBucket: "atelierluz-45097.firebasestorage.app",
-    messagingSenderId: "472943932463",
-    appId: "1:472943932463:web:325aa9b99a0dcccf4202da"
-};
+        const firebaseConfig = {
+            apiKey: "AIzaSyB3RzPBPIYbpwlvm74pcjbtmFUaeQjF5Pg",
+            authDomain: "atelierluz-45097.firebaseapp.com",
+            projectId: "atelierluz-45097",
+            storageBucket: "atelierluz-45097.firebasestorage.app",
+            messagingSenderId: "472943932463",
+            appId: "1:472943932463:web:325aa9b99a0dcccf4202da"
+        };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -219,7 +248,6 @@
         let editingProductId = null;
         let geselecteerdeKleuren = [];
 
-        // LOKALE KLEUREN BIBLIOTHEEK (niet uit Firebase)
         const KLEUREN_BIBLIOTHEEK = [
             { id: 'cognac', name: 'Warm Cognac', imageUrl: 'https://placehold.co/100x100/C17B4A/white?text=Cognac' },
             { id: 'diep-bruin', name: 'Diep Bruin', imageUrl: 'https://placehold.co/100x100/5C3D2E/white?text=Bruin' },
@@ -262,77 +290,128 @@
         const colorsGrid = document.getElementById('colorsGrid');
         const formError = document.getElementById('formError');
         const formSuccess = document.getElementById('formSuccess');
+        const mainImagePreview = document.getElementById('mainImagePreview');
+        const mainPreviewImg = document.getElementById('mainPreviewImg');
 
-        // Toggle kleuren sectie
+        // ============================================
+        // CHECKBOX EVENT LISTENER (DE OPLOSSING!)
+        // ============================================
         enableColorsCheckbox.addEventListener('change', (e) => {
-            colorsSection.style.display = e.target.checked ? 'block' : 'none';
+            if (e.target.checked) {
+                colorsSection.style.display = 'block';
+                // Zorg dat het kleurengrid zichtbaar is
+                if (colorsGrid && colorsGrid.children.length === 0) {
+                    renderKleurenGrid();
+                }
+            } else {
+                colorsSection.style.display = 'none';
+                geselecteerdeKleuren = [];
+                renderKleurenGrid();
+            }
         });
 
-        // Render kleuren selectie grid
-        function renderKleurenGrid() {
-            if (!colorsGrid) return;
+        // ============================================
+        // CLOUDINARY UPLOAD FUNCTIES
+        // ============================================
+        
+        function checkCloudinaryConfig() {
+            if (!CLOUDINARY_CONFIG.cloudName || CLOUDINARY_CONFIG.cloudName === '') {
+                console.warn('⚠️ Cloudinary nog niet geconfigureerd! Vul je cloudName in.');
+                return false;
+            }
+            if (!CLOUDINARY_CONFIG.uploadPreset || CLOUDINARY_CONFIG.uploadPreset === '') {
+                console.warn('⚠️ Cloudinary upload preset nog niet geconfigureerd!');
+                return false;
+            }
+            return true;
+        }
 
-            colorsGrid.innerHTML = '';
-            KLEUREN_BIBLIOTHEEK.forEach(kleur => {
-                const isSelected = geselecteerdeKleuren.some(k => k.id === kleur.id);
-                const option = document.createElement('div');
-                option.className = `admin-color-option ${isSelected ? 'selected' : ''}`;
-                option.onclick = () => toggleKleur(kleur);
-                option.innerHTML = `
-                <div class="admin-color-swatch" style="background-image: url('${kleur.imageUrl}'); background-size: cover; background-position: center;"></div>
-                <span class="admin-color-name">${escapeHtml(kleur.name)}</span>
-                ${isSelected ? '<i class="fas fa-check-circle" style="color: #8b6946; font-size: 0.7rem; margin-top: 4px;"></i>' : ''}
-            `;
-                colorsGrid.appendChild(option);
+        function uploadToCloudinary(callback) {
+            if (!checkCloudinaryConfig()) {
+                alert('Cloudinary is nog niet ingesteld! 🎯\n\nVolg deze stappen:\n1. Ga naar cloudinary.com\n2. Maak een gratis account\n3. Kopieer je Cloud name (te vinden in dashboard)\n4. Ga naar Settings > Upload > Upload presets\n5. Maak een nieuwe preset met naam "atelier_luz_preset" (Unsigned)\n6. Vul de gegevens in de code bij CLOUDINARY_CONFIG');
+                return;
+            }
+
+            const widget = cloudinary.createUploadWidget(
+                {
+                    cloudName: CLOUDINARY_CONFIG.cloudName,
+                    uploadPreset: CLOUDINARY_CONFIG.uploadPreset,
+                    sources: ['local', 'camera'],
+                    multiple: false,
+                    cropping: false,
+                    showUploadMoreButton: false,
+                    styles: {
+                        palette: {
+                            window: "#FFFFFF",
+                            sourceBg: "#F5F0EB",
+                            windowBorder: "#8b6946",
+                            tabIcon: "#8b6946",
+                            inactiveTabIcon: "#D1BFAE",
+                            link: "#8b6946"
+                        }
+                    }
+                },
+                (error, result) => {
+                    if (error) {
+                        console.error('Upload error:', error);
+                        alert('Upload mislukt: ' + error.message);
+                        return;
+                    }
+                    if (result.event === 'success') {
+                        callback(result.info.secure_url);
+                    }
+                }
+            );
+            widget.open();
+        }
+
+        document.getElementById('uploadMainImageBtn').addEventListener('click', () => {
+            uploadToCloudinary((url) => {
+                productImageUrl.value = url;
+                mainPreviewImg.src = url;
+                mainImagePreview.style.display = 'block';
+                showSuccess('Hoofdafbeelding geüpload!');
             });
-        }
+        });
 
-        function toggleKleur(kleur) {
-            const index = geselecteerdeKleuren.findIndex(k => k.id === kleur.id);
-            if (index === -1) {
-                geselecteerdeKleuren.push(kleur);
+        document.getElementById('uploadExtraImageBtn').addEventListener('click', () => {
+            uploadToCloudinary((url) => {
+                addExtraImageField(url);
+                showSuccess('Extra afbeelding toegevoegd!');
+            });
+        });
+
+        productImageUrl.addEventListener('input', (e) => {
+            if (e.target.value) {
+                mainPreviewImg.src = e.target.value;
+                mainImagePreview.style.display = 'block';
             } else {
-                geselecteerdeKleuren.splice(index, 1);
+                mainImagePreview.style.display = 'none';
             }
-            renderKleurenGrid();
-        }
+        });
 
-        function getColorsFromForm() {
-            return geselecteerdeKleuren.map(kleur => ({
-                id: kleur.id,
-                name: kleur.name,
-                imageUrl: kleur.imageUrl
-            }));
-        }
-
-        function loadColorsIntoForm(colors) {
-            geselecteerdeKleuren = colors || [];
-            if (geselecteerdeKleuren.length > 0) {
-                enableColorsCheckbox.checked = true;
-                colorsSection.style.display = 'block';
-            } else {
-                enableColorsCheckbox.checked = false;
-                colorsSection.style.display = 'none';
-            }
-            renderKleurenGrid();
-        }
-
-        // Extra afbeelding functies
         function addExtraImageField(value = '') {
             const div = document.createElement('div');
             div.className = 'image-input-group';
-            div.style.cssText = 'display: flex; gap: 10px; margin-bottom: 10px;';
+            div.style.cssText = 'display: flex; gap: 10px; margin-bottom: 10px; align-items: center;';
             div.innerHTML = `
-            <input type="text" class="extra-image" placeholder="Afbeelding URL" value="${escapeHtml(value)}" style="flex: 1; padding: 8px; border: 1px solid var(--sand); border-radius: 8px;">
-            <button type="button" class="remove-image" style="background: #e8ddd0; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer;"><i class="fas fa-times"></i></button>
-        `;
+                <img src="${value ? value : 'https://placehold.co/60x60/f5f0eb/8b7d6b?text=preview'}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;" onerror="this.src='https://placehold.co/60x60/f5f0eb/8b7d6b?text=preview'">
+                <input type="text" class="extra-image" placeholder="Afbeelding URL" value="${escapeHtml(value)}" style="flex: 1; padding: 8px; border: 1px solid var(--sand); border-radius: 8px;">
+                <button type="button" class="remove-image" style="background: #e8ddd0; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer;"><i class="fas fa-times"></i></button>
+            `;
+            
+            const input = div.querySelector('.extra-image');
+            const preview = div.querySelector('img');
+            input.addEventListener('input', (e) => {
+                preview.src = e.target.value || 'https://placehold.co/60x60/f5f0eb/8b7d6b?text=preview';
+            });
+            
             div.querySelector('.remove-image').addEventListener('click', () => div.remove());
             extraImagesContainer.appendChild(div);
         }
 
-        addImageBtn.addEventListener('click', () => addExtraImageField());
+        addImageBtn.addEventListener('click', () => addExtraImageField(''));
 
-        // Auth state listener
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 loginSection.style.display = 'none';
@@ -425,7 +504,6 @@
         }
 
         async function editProduct(id) {
-            const productRef = doc(db, "products", id);
             const productSnap = await getDocs(query(collection(db, "products"), where("__name__", "==", id)));
             let product = null;
             productSnap.forEach((doc) => {
@@ -440,13 +518,17 @@
                 productCategory.value = product.category || 'lederen-juwelen';
                 productDescription.value = product.description || '';
                 productImageUrl.value = product.imageUrl || '';
+                
+                if (product.imageUrl) {
+                    mainPreviewImg.src = product.imageUrl;
+                    mainImagePreview.style.display = 'block';
+                }
 
                 extraImagesContainer.innerHTML = '';
                 if (product.images && product.images.length > 0) {
                     product.images.forEach(img => addExtraImageField(img));
                 }
 
-                // Laad kleuren
                 loadColorsIntoForm(product.colors || []);
 
                 formTitle.textContent = 'Product bewerken';
@@ -472,14 +554,15 @@
             const description = productDescription.value.trim();
             const imageUrl = productImageUrl.value.trim();
 
+            if (!imageUrl) {
+                showError('Voeg een hoofdfoto toe (upload of URL)');
+                return;
+            }
+
             const extraImages = [];
             document.querySelectorAll('.extra-image').forEach(input => {
                 if (input.value.trim()) extraImages.push(input.value.trim());
             });
-
-            if (imageUrl && !extraImages.includes(imageUrl)) {
-                extraImages.unshift(imageUrl);
-            }
 
             if (!name) {
                 showError('Vul een productnaam in');
@@ -500,7 +583,6 @@
                 updatedAt: new Date().toISOString()
             };
 
-            // Voeg kleuren toe indien ingeschakeld
             if (enableColorsCheckbox.checked) {
                 const colors = getColorsFromForm();
                 if (colors.length > 0) {
@@ -536,6 +618,7 @@
             productCategory.value = 'lederen-juwelen';
             productDescription.value = '';
             productImageUrl.value = '';
+            mainImagePreview.style.display = 'none';
             extraImagesContainer.innerHTML = '';
             geselecteerdeKleuren = [];
             enableColorsCheckbox.checked = false;
@@ -559,7 +642,55 @@
             setTimeout(() => formError.style.display = 'none', 3000);
         }
 
+        function renderKleurenGrid() {
+            if (!colorsGrid) return;
+            colorsGrid.innerHTML = '';
+            KLEUREN_BIBLIOTHEEK.forEach(kleur => {
+                const isSelected = geselecteerdeKleuren.some(k => k.id === kleur.id);
+                const option = document.createElement('div');
+                option.className = `admin-color-option ${isSelected ? 'selected' : ''}`;
+                option.onclick = () => toggleKleur(kleur);
+                option.innerHTML = `
+                    <div class="admin-color-swatch" style="background-image: url('${kleur.imageUrl}'); background-size: cover; background-position: center;"></div>
+                    <span class="admin-color-name">${escapeHtml(kleur.name)}</span>
+                    ${isSelected ? '<i class="fas fa-check-circle" style="color: #8b6946; font-size: 0.7rem; margin-top: 4px;"></i>' : ''}
+                `;
+                colorsGrid.appendChild(option);
+            });
+        }
+
+        function toggleKleur(kleur) {
+            const index = geselecteerdeKleuren.findIndex(k => k.id === kleur.id);
+            if (index === -1) {
+                geselecteerdeKleuren.push(kleur);
+            } else {
+                geselecteerdeKleuren.splice(index, 1);
+            }
+            renderKleurenGrid();
+        }
+
+        function getColorsFromForm() {
+            return geselecteerdeKleuren.map(kleur => ({
+                id: kleur.id,
+                name: kleur.name,
+                imageUrl: kleur.imageUrl
+            }));
+        }
+
+        function loadColorsIntoForm(colors) {
+            geselecteerdeKleuren = colors || [];
+            if (geselecteerdeKleuren.length > 0) {
+                enableColorsCheckbox.checked = true;
+                colorsSection.style.display = 'block';
+            } else {
+                enableColorsCheckbox.checked = false;
+                colorsSection.style.display = 'none';
+            }
+            renderKleurenGrid();
+        }
+
         cancelFormBtn.addEventListener('click', resetForm);
+        
         showAddFormBtn.addEventListener('click', () => {
             resetForm();
             productForm.style.display = 'block';
@@ -584,7 +715,6 @@
     </script>
 
     <script>
-        // Mobile navigation
         const hamburgerBtn = document.getElementById("hamburgerBtn");
         const navLinks = document.querySelector(".nav-links");
         const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
@@ -608,6 +738,9 @@
             });
         });
     </script>
+    
+    <link rel="preconnect" href="https://upload-widget.cloudinary.com">
+    <link rel="dns-prefetch" href="https://upload-widget.cloudinary.com">
 </body>
 
 </html>
