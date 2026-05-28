@@ -186,7 +186,7 @@
         grid.innerHTML = '';
         
         producten.forEach(product => {
-            const afbeeldingen = product.images || [product.imageUrl];
+            const afbeeldingen = (product.images && product.images.length > 0) ? product.images : [product.imageUrl];
             const hoofdAfbeelding = afbeeldingen[0] || 'https://placehold.co/600x600/f5f0eb/8b7d6b?text=Atelier+Luz';
             
             const productCard = document.createElement('div');
