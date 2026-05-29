@@ -1168,6 +1168,7 @@ body {
     }
 
     /* Foto container - vaste minimale hoogte zodat venster niet krimpt */
+        /* Foto container - zelfde hoogte voor alle foto's */
     .modal-main-image {
         height: 35vh !important;
         min-height: 35vh !important;
@@ -1177,7 +1178,7 @@ body {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        background: #f5ede3 !important;
+        background: transparent !important;  /* ← veranderd van #f5ede3 naar transparent */
         border-radius: 12px !important;
     }
     
