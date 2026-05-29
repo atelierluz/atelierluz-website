@@ -1144,6 +1144,12 @@ body {
 }
 
 @media (max-width: 768px) {
+    /* Fix voor afsnijden modal op mobiel */
+    .modal-content {
+        max-height: 90vh !important;
+        margin: 5vh auto !important;
+    }
+    
     .modal-body {
         flex-direction: column;
         padding: 20px;
