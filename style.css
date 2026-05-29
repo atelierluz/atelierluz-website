@@ -1156,6 +1156,28 @@ body {
         gap: 20px;
     }
 
+    /* Beperk de hoogte van langwerpige foto's - nog kleiner */
+    .modal-main-image {
+        max-height: 30vh !important;
+        height: auto !important;
+        min-height: 150px !important;
+        z-index: 1 !important;
+        position: relative !important;
+    }
+    
+    .modal-main-image img {
+        max-height: 30vh !important;
+        width: auto !important;
+        max-width: 100% !important;
+        object-fit: contain !important;
+    }
+
+    .modal-details {
+        flex: 1;
+        overflow-y: auto !important;
+        max-height: 50vh !important;
+    }
+
     .modal-details h2 {
         font-size: 1.4rem;
     }
@@ -1168,7 +1190,6 @@ body {
         margin-top: 20px;
     }
 
-    /* Alleen het kruisje fixen */
     .modal-close {
         top: 10px !important;
         right: 10px !important;
@@ -1183,17 +1204,6 @@ body {
         z-index: 10001 !important;
         box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
     }
-    
-    .modal-main-image {
-    max-height: 40vh !important;
-    height: auto !important;
-}
-
-.modal-main-image img {
-    max-height: 40vh !important;
-    width: auto !important;
-    object-fit: contain !important;
-}
 }
 
 /* ========== ADMIN PAGINA STIJLEN ========== */
