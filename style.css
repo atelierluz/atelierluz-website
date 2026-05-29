@@ -1161,6 +1161,28 @@ body {
     .modal-add-to-cart {
         margin-top: 20px;
     }
+
+    /* Alleen het kruisje fixen - de rest blijft zoals het was */
+    .modal-close {
+        top: 10px !important;
+        right: 10px !important;
+        width: 36px !important;
+        height: 36px !important;
+        background: white !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 22px !important;
+        z-index: 10001 !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+    }
+    
+    /* Zorg dat de foto niet over het kruisje komt */
+    .modal-main-image {
+        z-index: 1 !important;
+        position: relative !important;
+    }
 }
 
 /* ========== ADMIN PAGINA STIJLEN ========== */
