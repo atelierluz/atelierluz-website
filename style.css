@@ -1167,20 +1167,28 @@ body {
         min-height: auto !important;
     }
 
-    /* Foto wordt kleiner */
+    /* Foto container - vaste minimale hoogte zodat venster niet krimpt */
     .modal-main-image {
+        height: 35vh !important;
+        min-height: 35vh !important;
         max-height: 35vh !important;
-        height: auto !important;
         z-index: 1 !important;
         position: relative !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: #f5ede3 !important;
+        border-radius: 12px !important;
     }
     
     .modal-main-image img {
         max-height: 35vh !important;
-        width: auto !important;
         max-width: 100% !important;
+        width: auto !important;
+        height: auto !important;
         object-fit: contain !important;
     }
+
 
     /* Details worden scrollbaar */
     .modal-details {
