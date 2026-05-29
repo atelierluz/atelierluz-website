@@ -1162,7 +1162,7 @@ body {
         margin-top: 20px;
     }
 
-    /* Alleen het kruisje fixen - de rest blijft zoals het was */
+    /* Alleen het kruisje fixen */
     .modal-close {
         top: 10px !important;
         right: 10px !important;
@@ -1178,7 +1178,6 @@ body {
         box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
     }
     
-    /* Zorg dat de foto niet over het kruisje komt */
     .modal-main-image {
         z-index: 1 !important;
         position: relative !important;
