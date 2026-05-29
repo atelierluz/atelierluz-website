@@ -1185,9 +1185,15 @@ body {
     }
     
     .modal-main-image {
-        z-index: 1 !important;
-        position: relative !important;
-    }
+    max-height: 40vh !important;
+    height: auto !important;
+}
+
+.modal-main-image img {
+    max-height: 40vh !important;
+    width: auto !important;
+    object-fit: contain !important;
+}
 }
 
 /* ========== ADMIN PAGINA STIJLEN ========== */
