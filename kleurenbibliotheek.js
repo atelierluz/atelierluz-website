@@ -1,23 +1,44 @@
 // kleurenbibliotheek.js
 // Centrale bibliotheek met alle beschikbare kleuren
 
-// LOKALE KLEUREN BIBLIOTHEEK (zonder tekst in de bolletjes)
-const KLEUREN_BIBLIOTHEEK = [
-    { id: 'cognac', name: 'Warm Cognac', imageUrl: 'https://placehold.co/100x100/C17B4A/white' },
-    { id: 'diep-bruin', name: 'Diep Bruin', imageUrl: 'https://placehold.co/100x100/5C3D2E/white' },
-    { id: 'zwart', name: 'Zwart (Ebony)', imageUrl: 'https://placehold.co/100x100/2C2420/white' },
-    { id: 'camel', name: 'Natuur (Camel)', imageUrl: 'https://placehold.co/100x100/D8B08C/white' },
-    { id: 'kastanje', name: 'Kastanjebruin', imageUrl: 'https://placehold.co/100x100/9E6F4D/white' },
-    { id: 'zand', name: 'Zandkleur', imageUrl: 'https://placehold.co/100x100/D1BFAe/white' },
-    { id: 'koper', name: 'Koper', imageUrl: 'https://placehold.co/100x100/B87333/white' },
-    { id: 'noten', name: 'Notenhout', imageUrl: 'https://placehold.co/100x100/C5A07A/white' },
-    { id: 'olijf', name: 'Olijfgroen', imageUrl: 'https://placehold.co/100x100/6B8E23/white' },
-    { id: 'bordeaux', name: 'Bordeauxrood', imageUrl: 'https://placehold.co/100x100/722F37/white' },
-    { id: 'grijs', name: 'Antraciet', imageUrl: 'https://placehold.co/100x100/4A4A4A/white' },
-    { id: 'blauw', name: 'Diepblauw', imageUrl: 'https://placehold.co/100x100/1E3A5F/white' }
-];
+// Beschikbare categorieën
+const KLEUREN_CATEGORIEEN = ['Zomerkleuren', 'Kroko leder', 'Overige kleuren'];
+
+// Kleuren per categorie (alfabetisch gesorteerd)
+const KLEUREN_BIBLIOTHEEK = {
+    'Zomerkleuren': [
+        { id: 'appelgroen', name: 'Appelgroen' },
+        { id: 'babyroze', name: 'Babyroze' },
+        { id: 'fuchsia', name: 'Fuchsia' },
+        { id: 'geel', name: 'Geel' },
+        { id: 'kobaltblauw', name: 'Kobaltblauw' },
+        { id: 'lichtgrijs-zomer', name: 'Lichtgrijs' },
+        { id: 'oranje', name: 'Oranje' },
+        { id: 'rood', name: 'Rood' },
+        { id: 'turquoise', name: 'Turquoise' }
+    ],
+    'Kroko leder': [
+        { id: 'camel-kroko', name: 'Camel' },
+        { id: 'jeans-blauw', name: 'Jeans blauw' },
+        { id: 'zwart-kroko', name: 'Zwart' }
+    ],
+    'Overige kleuren': [
+        { id: 'beige', name: 'Beige' },
+        { id: 'donkergrijs', name: 'Donkergrijs' },
+        { id: 'grijs-zwart', name: 'Grijs / zwart' },
+        { id: 'kakigroen', name: 'Kaki groen' },
+        { id: 'koffiebruin', name: 'Koffiebruin' },
+        { id: 'lichtgrijs-overig', name: 'Lichtgrijs' },
+        { id: 'middengrijs', name: 'Middengrijs' },
+        { id: 'mintgroen', name: 'Mintgroen' },
+        { id: 'paars', name: 'Paars / Aubergine' },
+        { id: 'roestbruin', name: 'Roestbruin' },
+        { id: 'taupe', name: 'Taupe' },
+        { id: 'zwart-overig', name: 'Zwart' }
+    ]
+};
 
 // Exporteer voor gebruik in andere bestanden
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { KLEUREN_BIBLIOTHEEK };
+    module.exports = { KLEUREN_BIBLIOTHEEK, KLEUREN_CATEGORIEEN };
 }

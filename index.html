@@ -31,7 +31,7 @@
                 </div>
             </a>
             <div class="nav-links">
-                <a href="index.html">Home</a>
+                <a href="index.html" class="active-nav-link">Home</a>
 
                 <div class="nav-item">
                     <div style="display: flex; align-items: center; gap: 5px;">
@@ -43,12 +43,12 @@
                         <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
                         <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
                         <a href="collectie-lederwerken.html">Lederwerken</a>
+                        <a href="collectie-juwelen.html">Zomer Juwelen</a>
                     </div>
                 </div>
 
                 <a href="het-atelier.html">Het Atelier</a>
-                <!-- NIEUWE NAVIGATIELINK: Op Aanvraag -->
-                <a href="aanvraag.html" class="active-nav-link">Op Aanvraag</a>
+                <a href="aanvraag.html">Op Aanvraag</a>
                 <a href="contact.html">Contact</a>
                 <a href="winkelwagen.html" class="cart-link">
                     <i class="fas fa-shopping-bag"></i>
@@ -62,8 +62,8 @@
                 <span></span>
             </button>
         </div>
-
     </header>
+
     <!-- Gratis verzending strook -->
     <div class="free-shipping-bar">
         <div class="container">
@@ -157,7 +157,7 @@
                     <p class="signature">— Yolanda Smeets</p>
                 </div>
                 <div class="about-image"
-                    style="background-image: url('https://primary.jwwb.nl/public/y/d/p/temp-ujpjpvrbduucndxbwnyp/img_9759-high.jpg?enable-io=true&crop=0.6672%3A1&width=347')">
+                    style="background-image: url('https://res.cloudinary.com/dygtlvuxm/image/upload/v1780832496/IMG_6467_hxadrn.jpg')">
                 </div>
             </div>
         </div>
@@ -171,7 +171,7 @@
                     <p><i class="fas fa-map-marker-alt"></i> <a
                             href="https://maps.google.com/?q=Stiemerbeekstraat+25+3600+Genk" target="_blank"
                             style="color: #d4c4ae; text-decoration: none;">Stiemerbeekstraat 25, 3600 Genk</a></p>
-                  <p><i class="fas fa-envelope"></i> <a href="mailto:info.atelierluz@gmail.com"
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info.atelierluz@gmail.com"
                             style="color: #d4c4ae; text-decoration: none;">info.atelierluz@gmail.com</a></p>
                     <p><i class="fas fa-phone-alt"></i> <a href="tel:+32468209909"
                             style="color: #d4c4ae; text-decoration: none;">+32 468 20 99 09</a></p>
@@ -194,17 +194,22 @@
     </footer>
 
     <!-- Carrousel JavaScript -->
-    <script>
+<script>
+    (function() {
         const track = document.getElementById('carouselTrack');
         const slides = document.querySelectorAll('.carousel-slide');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         const dotsContainer = document.getElementById('carouselDots');
 
+        if (!track || !slides.length || !prevBtn || !nextBtn) return;
+
         let currentIndex = 0;
         const totalSlides = slides.length;
 
         function createDots() {
+            if (!dotsContainer) return;
+            dotsContainer.innerHTML = '';
             for (let i = 0; i < totalSlides; i++) {
                 const dot = document.createElement('div');
                 dot.classList.add('dot');
@@ -215,6 +220,7 @@
         }
 
         function updateDots() {
+            if (!dotsContainer) return;
             const dots = document.querySelectorAll('.dot');
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentIndex);
@@ -253,47 +259,56 @@
         let autoPlay = setInterval(nextSlide, 5000);
 
         const carouselContainer = document.querySelector('.carousel-container');
-        carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlay));
-        carouselContainer.addEventListener('mouseleave', () => {
-            autoPlay = setInterval(nextSlide, 5000);
-        });
+        if (carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', () => clearInterval(autoPlay));
+            carouselContainer.addEventListener('mouseleave', () => {
+                autoPlay = setInterval(nextSlide, 5000);
+            });
+        }
 
         createDots();
         goToSlide(0);
-    </script>
+    })();
+</script>
 
-    <script>
-        // Mobile navigation
-        const hamburgerBtn = document.getElementById("hamburgerBtn");
-        const navLinks = document.querySelector(".nav-links");
-        const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
+<!-- Mobile navigation met dropdown fix -->
+<script>
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const navLinks = document.querySelector(".nav-links");
+    const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
 
+    if (hamburgerBtn) {
         hamburgerBtn.addEventListener("click", () => {
             hamburgerBtn.classList.toggle("open");
             navLinks.classList.toggle("open");
         });
+    }
 
-        dropdownArrows.forEach(arrow => {
-            arrow.addEventListener("click", (e) => {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
+    dropdownArrows.forEach(arrow => {
+        arrow.addEventListener("click", (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
+                if (menu) {
                     menu.classList.toggle("open");
                     arrow.style.transform = menu.classList.contains("open") ? "rotate(180deg)" : "";
                 }
-            });
+            }
         });
+    });
 
+    if (navLinks) {
         navLinks.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => {
                 if (window.innerWidth <= 768) {
-                    hamburgerBtn.classList.remove("open");
+                    hamburgerBtn?.classList.remove("open");
                     navLinks.classList.remove("open");
                 }
             });
         });
-    </script>
+    }
+</script>
 </body>
 
 </html>

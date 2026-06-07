@@ -39,6 +39,7 @@
                         <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
                         <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
                         <a href="collectie-lederwerken.html">Lederwerken</a>
+                        <a href="collectie-juwelen.html">Zomer Juwelen</a>
                     </div>
                 </div>
                 <a href="het-atelier.html">Het Atelier</a>
@@ -87,6 +88,7 @@
                     <button class="filter-btn" data-filter="lederen-juwelen">Lederen Juwelen</button>
                     <button class="filter-btn" data-filter="lederen-handtassen">Lederen Handtassen</button>
                     <button class="filter-btn" data-filter="lederwerken">Lederwerken</button>
+                    <button class="filter-btn" data-filter="zomer-juwelen">Zomer Juwelen</button>
                 </div>
 
                 <div style="margin-bottom: 20px;">
@@ -122,6 +124,7 @@
                                 <option value="lederen-juwelen">Lederen Juwelen</option>
                                 <option value="lederen-handtassen">Lederen Handtassen</option>
                                 <option value="lederwerken">Lederwerken</option>
+                                <option value="zomer-juwelen">Zomer Juwelen</option>
                             </select>
                         </div>
                     </div>
@@ -159,7 +162,30 @@
                         <button type="button" id="addImageBtn" class="add-image-btn" style="margin-top: 10px;"><i class="fas fa-plus"></i> Of handmatig URL toevoegen</button>
                     </div>
 
-                    <!-- KLEUREN OPTIES SECTIE -->
+                    <!-- SNELTOETSEN VOOR KLEURENKAARTEN -->
+                    <div class="form-group" style="border-top: 2px solid var(--sand); padding-top: 20px; margin-top: 20px;">
+                        <label style="font-weight: 600; margin-bottom: 10px; display: block;"><i class="fas fa-images"></i> Kleurenkaarten toevoegen</label>
+                        <p style="font-size: 0.8rem; color: var(--taupe); margin-bottom: 12px;">Klik op een kaart om deze als extra afbeelding toe te voegen</p>
+                        <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                            <div style="text-align: center; cursor: pointer;" id="addZomerkleurenBtn">
+                                <img src="https://res.cloudinary.com/dygtlvuxm/image/upload/v1780844410/image0_ksk0ad.png" 
+                                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; border: 2px solid var(--sand); transition: transform 0.2s;">
+                                <p style="font-size: 0.7rem; margin-top: 5px; color: var(--charcoal);">Zomerkleuren</p>
+                            </div>
+                            <div style="text-align: center; cursor: pointer;" id="addKrokoLederBtn">
+                                <img src="https://res.cloudinary.com/dygtlvuxm/image/upload/v1780844408/image1_kmeo5d.png" 
+                                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; border: 2px solid var(--sand); transition: transform 0.2s;">
+                                <p style="font-size: 0.7rem; margin-top: 5px; color: var(--charcoal);">Kroko leder</p>
+                            </div>
+                            <div style="text-align: center; cursor: pointer;" id="addOverigeKleurenBtn">
+                                <img src="https://res.cloudinary.com/dygtlvuxm/image/upload/v1780844407/image2_dnkcu8.png" 
+                                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; border: 2px solid var(--sand); transition: transform 0.2s;">
+                                <p style="font-size: 0.7rem; margin-top: 5px; color: var(--charcoal);">Overige kleuren</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KLEUREN OPTIES SECTIE - TEXT ONLY -->
                     <div class="form-group"
                         style="border-top: 2px solid var(--sand); padding-top: 20px; margin-top: 20px;">
                         <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
@@ -175,7 +201,7 @@
                         <label>Selecteer beschikbare kleuren</label>
                         <p style="font-size: 0.75rem; color: var(--taupe); margin-bottom: 10px;">Klik op de kleuren die
                             beschikbaar zijn voor dit product</p>
-                        <div id="colorsGrid" class="admin-colors-grid"></div>
+                        <div id="colorsGrid" class="admin-colors-grid-with-categories"></div>
                     </div>
 
                     <div class="form-actions">
@@ -216,6 +242,92 @@
         </div>
     </footer>
 
+    <style>
+        /* Stijlen voor kleuren grid met categorieën - van links naar rechts */
+        .admin-colors-grid-with-categories {
+            background: var(--bg-warm);
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 10px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .color-category {
+            margin-bottom: 24px;
+        }
+
+        .color-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .color-category-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--deep-brown);
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--sand);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .color-category-title i {
+            color: var(--burnt-brown);
+            font-size: 0.9rem;
+        }
+
+        /* Grid van links naar rechts */
+        .color-items-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .admin-color-option-text {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+            background: white;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        .admin-color-option-text:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .admin-color-option-text.selected {
+            border-color: var(--burnt-brown);
+            background: var(--bg-warm);
+        }
+
+        .admin-color-name-text {
+            color: var(--charcoal);
+        }
+
+        .admin-color-option-text .fa-check-circle {
+            color: var(--burnt-brown);
+            font-size: 0.8rem;
+            margin-left: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .admin-color-option-text {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+
     <script>
         // ============================================
         // CLOUDINARY CONFIGURATIE
@@ -229,7 +341,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-        import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, where } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, where, orderBy } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyB3RzPBPIYbpwlvm74pcjbtmFUaeQjF5Pg",
@@ -248,20 +360,39 @@
         let editingProductId = null;
         let geselecteerdeKleuren = [];
 
-        const KLEUREN_BIBLIOTHEEK = [
-            { id: 'cognac', name: 'Warm Cognac', imageUrl: 'https://placehold.co/100x100/C17B4A/white?text=Cognac' },
-            { id: 'diep-bruin', name: 'Diep Bruin', imageUrl: 'https://placehold.co/100x100/5C3D2E/white?text=Bruin' },
-            { id: 'zwart', name: 'Zwart (Ebony)', imageUrl: 'https://placehold.co/100x100/2C2420/white?text=Zwart' },
-            { id: 'camel', name: 'Natuur (Camel)', imageUrl: 'https://placehold.co/100x100/D8B08C/white?text=Camel' },
-            { id: 'kastanje', name: 'Kastanjebruin', imageUrl: 'https://placehold.co/100x100/9E6F4D/white?text=Kastanje' },
-            { id: 'zand', name: 'Zandkleur', imageUrl: 'https://placehold.co/100x100/D1BFAe/white?text=Zand' },
-            { id: 'koper', name: 'Koper', imageUrl: 'https://placehold.co/100x100/B87333/white?text=Koper' },
-            { id: 'noten', name: 'Notenhout', imageUrl: 'https://placehold.co/100x100/C5A07A/white?text=Noten' },
-            { id: 'olijf', name: 'Olijfgroen', imageUrl: 'https://placehold.co/100x100/6B8E23/white?text=Olijf' },
-            { id: 'bordeaux', name: 'Bordeauxrood', imageUrl: 'https://placehold.co/100x100/722F37/white?text=Bordeaux' },
-            { id: 'grijs', name: 'Antraciet', imageUrl: 'https://placehold.co/100x100/4A4A4A/white?text=Grijs' },
-            { id: 'blauw', name: 'Diepblauw', imageUrl: 'https://placehold.co/100x100/1E3A5F/white?text=Blauw' }
-        ];
+        // KLEUREN BIBLIOTHEEK MET CATEGORIEËN (alfabetisch gesorteerd)
+        const KLEUREN_BIBLIOTHEEK_MET_CATEGORIEEN = {
+            'Zomerkleuren': [
+                { id: 'appelgroen', name: 'Appelgroen' },
+                { id: 'babyroze', name: 'Babyroze' },
+                { id: 'fuchsia', name: 'Fuchsia' },
+                { id: 'geel', name: 'Geel' },
+                { id: 'kobaltblauw', name: 'Kobaltblauw' },
+                { id: 'lichtgrijs-zomer', name: 'Lichtgrijs' },
+                { id: 'oranje', name: 'Oranje' },
+                { id: 'rood', name: 'Rood' },
+                { id: 'turquoise', name: 'Turquoise' }
+            ],
+            'Kroko leder': [
+                { id: 'camel-kroko', name: 'Camel' },
+                { id: 'jeans-blauw', name: 'Jeans blauw' },
+                { id: 'zwart-kroko', name: 'Zwart' }
+            ],
+            'Overige kleuren': [
+                { id: 'beige', name: 'Beige' },
+                { id: 'donkergrijs', name: 'Donkergrijs' },
+                { id: 'grijs-zwart', name: 'Grijs / zwart' },
+                { id: 'kakigroen', name: 'Kaki groen' },
+                { id: 'koffiebruin', name: 'Koffiebruin' },
+                { id: 'lichtgrijs-overig', name: 'Lichtgrijs' },
+                { id: 'middengrijs', name: 'Middengrijs' },
+                { id: 'mintgroen', name: 'Mintgroen' },
+                { id: 'paars', name: 'Paars / Aubergine' },
+                { id: 'roestbruin', name: 'Roestbruin' },
+                { id: 'taupe', name: 'Taupe' },
+                { id: 'zwart-overig', name: 'Zwart' }
+            ]
+        };
 
         // DOM elementen
         const loginSection = document.getElementById('loginSection');
@@ -293,13 +424,48 @@
         const mainImagePreview = document.getElementById('mainImagePreview');
         const mainPreviewImg = document.getElementById('mainPreviewImg');
 
-        // ============================================
-        // CHECKBOX EVENT LISTENER (DE OPLOSSING!)
-        // ============================================
+        // Kleurenkaarten URLs
+        const KLEURENKAARTEN = {
+            zomerkleuren: 'https://res.cloudinary.com/dygtlvuxm/image/upload/v1780844410/image0_ksk0ad.png',
+            krokoLeder: 'https://res.cloudinary.com/dygtlvuxm/image/upload/v1780844408/image1_kmeo5d.png',
+            overigeKleuren: 'https://res.cloudinary.com/dygtlvuxm/image/upload/v1780844407/image2_dnkcu8.png'
+        };
+
+        // Functie om een kleurenkaart toe te voegen aan extra afbeeldingen
+        function voegKleurenkaartToe(imageUrl, naam) {
+            const existingInputs = document.querySelectorAll('.extra-image');
+            let bestaatAl = false;
+            existingInputs.forEach(input => {
+                if (input.value === imageUrl) {
+                    bestaatAl = true;
+                }
+            });
+            
+            if (bestaatAl) {
+                showSuccess(`${naam} is al toegevoegd!`);
+                return;
+            }
+            
+            addExtraImageField(imageUrl);
+            showSuccess(`${naam} toegevoegd!`);
+        }
+
+        // Event listeners voor kleurenkaarten
+        document.getElementById('addZomerkleurenBtn')?.addEventListener('click', () => {
+            voegKleurenkaartToe(KLEURENKAARTEN.zomerkleuren, 'Zomerkleuren');
+        });
+        
+        document.getElementById('addKrokoLederBtn')?.addEventListener('click', () => {
+            voegKleurenkaartToe(KLEURENKAARTEN.krokoLeder, 'Kroko leder');
+        });
+        
+        document.getElementById('addOverigeKleurenBtn')?.addEventListener('click', () => {
+            voegKleurenkaartToe(KLEURENKAARTEN.overigeKleuren, 'Overige kleuren');
+        });
+
         enableColorsCheckbox.addEventListener('change', (e) => {
             if (e.target.checked) {
                 colorsSection.style.display = 'block';
-                // Zorg dat het kleurengrid zichtbaar is
                 if (colorsGrid && colorsGrid.children.length === 0) {
                     renderKleurenGrid();
                 }
@@ -310,13 +476,10 @@
             }
         });
 
-        // ============================================
-        // CLOUDINARY UPLOAD FUNCTIES
-        // ============================================
-        
+        // Cloudinary upload functies
         function checkCloudinaryConfig() {
             if (!CLOUDINARY_CONFIG.cloudName || CLOUDINARY_CONFIG.cloudName === '') {
-                console.warn('⚠️ Cloudinary nog niet geconfigureerd! Vul je cloudName in.');
+                console.warn('⚠️ Cloudinary nog niet geconfigureerd!');
                 return false;
             }
             if (!CLOUDINARY_CONFIG.uploadPreset || CLOUDINARY_CONFIG.uploadPreset === '') {
@@ -444,9 +607,13 @@
             try {
                 let q;
                 if (currentFilter === 'all') {
-                    q = collection(db, "products");
+                    q = query(collection(db, "products"), orderBy("createdAt", "desc"));
                 } else {
-                    q = query(collection(db, "products"), where("category", "==", currentFilter));
+                    q = query(
+                        collection(db, "products"), 
+                        where("category", "==", currentFilter),
+                        orderBy("createdAt", "desc")
+                    );
                 }
                 const querySnapshot = await getDocs(q);
                 const producten = [];
@@ -455,6 +622,7 @@
                 });
                 renderProducten(producten);
             } catch (error) {
+                console.error("Fout bij laden producten:", error);
                 adminProductGrid.innerHTML = '<div class="loading">Fout bij laden producten</div>';
             }
         }
@@ -522,6 +690,8 @@
                 if (product.imageUrl) {
                     mainPreviewImg.src = product.imageUrl;
                     mainImagePreview.style.display = 'block';
+                } else {
+                    mainImagePreview.style.display = 'none';
                 }
 
                 extraImagesContainer.innerHTML = '';
@@ -642,21 +812,47 @@
             setTimeout(() => formError.style.display = 'none', 3000);
         }
 
+        // Render functie voor kleuren grid met categorieën - van links naar rechts
         function renderKleurenGrid() {
             if (!colorsGrid) return;
             colorsGrid.innerHTML = '';
-            KLEUREN_BIBLIOTHEEK.forEach(kleur => {
-                const isSelected = geselecteerdeKleuren.some(k => k.id === kleur.id);
-                const option = document.createElement('div');
-                option.className = `admin-color-option ${isSelected ? 'selected' : ''}`;
-                option.onclick = () => toggleKleur(kleur);
-                option.innerHTML = `
-                    <div class="admin-color-swatch" style="background-image: url('${kleur.imageUrl}'); background-size: cover; background-position: center;"></div>
-                    <span class="admin-color-name">${escapeHtml(kleur.name)}</span>
-                    ${isSelected ? '<i class="fas fa-check-circle" style="color: #8b6946; font-size: 0.7rem; margin-top: 4px;"></i>' : ''}
-                `;
-                colorsGrid.appendChild(option);
-            });
+            colorsGrid.className = 'admin-colors-grid-with-categories';
+            
+            const categorieIconen = {
+                'Zomerkleuren': 'fa-sun',
+                'Kroko leder': 'fa-dragon',
+                'Overige kleuren': 'fa-palette'
+            };
+            
+            for (const [categorieNaam, kleurenLijst] of Object.entries(KLEUREN_BIBLIOTHEEK_MET_CATEGORIEEN)) {
+                const categorieDiv = document.createElement('div');
+                categorieDiv.className = 'color-category';
+                
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'color-category-title';
+                const icon = categorieIconen[categorieNaam] || 'fa-tag';
+                titleDiv.innerHTML = `<i class="fas ${icon}"></i> ${categorieNaam}`;
+                categorieDiv.appendChild(titleDiv);
+                
+                // Grid van links naar rechts (flex wrap in plaats van grid)
+                const gridDiv = document.createElement('div');
+                gridDiv.className = 'color-items-grid';
+                
+                kleurenLijst.forEach(kleur => {
+                    const isSelected = geselecteerdeKleuren.some(k => k.id === kleur.id);
+                    const option = document.createElement('div');
+                    option.className = `admin-color-option-text ${isSelected ? 'selected' : ''}`;
+                    option.onclick = () => toggleKleur(kleur);
+                    option.innerHTML = `
+                        <span class="admin-color-name-text">${escapeHtml(kleur.name)}</span>
+                        ${isSelected ? '<i class="fas fa-check-circle"></i>' : ''}
+                    `;
+                    gridDiv.appendChild(option);
+                });
+                
+                categorieDiv.appendChild(gridDiv);
+                colorsGrid.appendChild(categorieDiv);
+            }
         }
 
         function toggleKleur(kleur) {
@@ -672,8 +868,7 @@
         function getColorsFromForm() {
             return geselecteerdeKleuren.map(kleur => ({
                 id: kleur.id,
-                name: kleur.name,
-                imageUrl: kleur.imageUrl
+                name: kleur.name
             }));
         }
 

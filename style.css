@@ -72,6 +72,17 @@ body {
     margin-top: 4px;
 }
 
+.logo-link {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.logo-link:hover .logo h1 {
+    background: linear-gradient(135deg, var(--burnt-brown) 0%, var(--deep-brown) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 .nav-links {
     display: flex;
     gap: 40px;
@@ -376,9 +387,7 @@ body {
     flex: 1;
     min-height: 450px;
     background-size: contain;
-    /* ← Gewijzigd: toont hele foto */
     background-repeat: no-repeat;
-    /* ← Toevoegen: geen herhaling */
     background-position: center;
     margin: 48px 48px 48px 0;
     border-radius: 16px;
@@ -421,21 +430,6 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 0 80px;
-}
-
-.collectie-overzicht .title-wrapper {
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-.collectie-overzicht .section-title::before,
-.collectie-overzicht .section-title::after {
-    content: '—';
-    color: var(--taupe);
-    font-size: 1.5rem;
-    margin: 0 15px;
-    opacity: 0.6;
-    display: inline-block;
 }
 
 .category-card {
@@ -537,6 +531,10 @@ body {
     color: var(--taupe);
 }
 
+.footer-info a {
+    text-decoration: none;
+}
+
 .footer-links {
     display: flex;
     gap: 48px;
@@ -607,279 +605,6 @@ body {
     transform: translateY(-7px) rotate(-45deg);
 }
 
-/* ========== RESPONSIVE ========== */
-@media (max-width: 768px) {
-    .container {
-        padding: 0 16px;
-    }
-
-    /* Header */
-    .header-inner {
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        gap: 0;
-        position: relative;
-    }
-
-    .hamburger-btn {
-        display: flex;
-    }
-
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0;
-        position: absolute;
-        top: calc(100% + 20px);
-        left: 0;
-        right: 0;
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(12px);
-        border-top: 1px solid rgba(139, 105, 70, 0.15);
-        border-bottom: 1px solid rgba(139, 105, 70, 0.15);
-        padding: 8px 0;
-        z-index: 150;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    }
-
-    .nav-links.open {
-        display: flex;
-    }
-
-    .nav-links>a,
-    .nav-item {
-        width: 100%;
-        padding: 12px 24px;
-        border-bottom: 1px solid rgba(139, 105, 70, 0.08);
-    }
-
-    .nav-links>a:last-child,
-    .nav-item:last-child {
-        border-bottom: none;
-    }
-
-    .nav-links a::after {
-        display: none;
-    }
-
-    /* Dropdown in mobile nav */
-    .nav-item>div {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .dropdown-menu {
-        position: static;
-        transform: none !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        box-shadow: none;
-        border: none;
-        border-radius: 0;
-        background: var(--bg-warm);
-        min-width: 100%;
-        display: none;
-        margin-top: 8px;
-        border-radius: 8px;
-    }
-
-    .dropdown-menu.open {
-        display: block;
-    }
-
-    .dropdown-menu::before {
-        display: none;
-    }
-
-    .dropdown-menu a {
-        padding: 10px 16px;
-        font-size: 0.9rem;
-    }
-
-    .nav-item:hover .dropdown-menu {
-        display: none;
-    }
-
-    /* Section title */
-    .section-title {
-        font-size: 1.6rem;
-    }
-
-    /* Carousel */
-    .carousel-slide img {
-        height: 220px;
-    }
-
-    .carousel-caption h3 {
-        font-size: 1.1rem;
-    }
-
-    .carousel-caption p {
-        font-size: 0.8rem;
-    }
-
-    .carousel-btn {
-        width: 34px;
-        height: 34px;
-        font-size: 0.85rem;
-    }
-
-    .carousel-container {
-        border-radius: 12px;
-    }
-
-    /* About */
-    .about-section {
-        padding: 40px 0;
-    }
-
-    .about-wrapper {
-        flex-direction: column;
-    }
-
-    .about-text {
-        padding: 28px 24px;
-        order: 2;
-    }
-
-    .about-text h2 {
-        font-size: 1.6rem;
-    }
-
-    .about-image {
-        min-height: 240px;
-        width: auto;
-        margin: 24px 24px 0 24px;
-        order: 1;
-    }
-
-    /* Footer */
-    .footer-content {
-        flex-direction: column;
-        text-align: center;
-        gap: 24px;
-    }
-
-    .footer-links {
-        justify-content: center;
-        gap: 25px;
-    }
-
-    /* Category grid */
-    .category-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        padding: 0 0 48px;
-    }
-
-    .category-card h3 {
-        font-size: 1.3rem;
-    }
-
-    /* Products grid */
-    .producten-grid {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 16px;
-    }
-
-    .product-item-image {
-        height: 180px;
-    }
-
-    .product-item-info {
-        padding: 14px;
-    }
-
-    .product-item-info h3 {
-        font-size: 1rem;
-    }
-
-    .product-item-price {
-        font-size: 1.1rem;
-    }
-
-    /* Modal */
-    .modal-content {
-        width: 95%;
-        max-height: 90vh;
-        border-radius: 16px;
-    }
-
-    .modal-body {
-        flex-direction: column;
-        padding: 20px;
-        gap: 16px;
-    }
-
-    .modal-details h2 {
-        font-size: 1.3rem;
-    }
-
-    .modal-details .modal-price {
-        font-size: 1.4rem;
-    }
-
-    .modal-add-to-cart {
-        margin-top: 16px;
-    }
-
-    /* Admin */
-    .admin-header-actions {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
-
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-    }
-
-    .admin-form {
-        padding: 20px 16px;
-    }
-}
-
-@media (max-width: 480px) {
-    .logo h1 {
-        font-size: 1.4rem;
-    }
-
-    .logo p {
-        font-size: 0.7rem;
-    }
-
-    .carousel-slide img {
-        height: 180px;
-    }
-
-    .carousel-caption {
-        padding: 24px 16px 12px;
-    }
-
-    .carousel-caption h3 {
-        font-size: 1rem;
-    }
-
-    .carousel-caption p {
-        display: none;
-    }
-
-    .section-title {
-        font-size: 1.4rem;
-    }
-
-    .producten-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-    }
-
-    .product-item-image {
-        height: 150px;
-    }
-}
-
 /* ========== SUBCATEGORIE PAGINA'S ========== */
 .producten-grid {
     display: grid;
@@ -909,6 +634,7 @@ body {
     height: 260px;
     overflow: hidden;
     background: var(--bg-warm);
+    position: relative;
 }
 
 .product-item-image img {
@@ -921,6 +647,21 @@ body {
 
 .product-item:hover .product-item-image img {
     transform: scale(1.05);
+}
+
+.product-color-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--deep-brown);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    z-index: 5;
+    text-transform: uppercase;
 }
 
 .product-item-info {
@@ -962,7 +703,6 @@ body {
 }
 
 /* ========== MODAL (POP-UP) STIJLEN ========== */
-/* ========== MODAL (POP-UP) STIJLEN ========== */
 .modal {
     display: none;
     position: fixed;
@@ -996,7 +736,6 @@ body {
         opacity: 0;
         transform: scale(0.95);
     }
-
     to {
         opacity: 1;
         transform: scale(1);
@@ -1024,7 +763,6 @@ body {
     padding: 30px;
     gap: 30px;
     min-height: 500px;
-    /* ← Vaste minimale hoogte */
 }
 
 .modal-gallery {
@@ -1037,14 +775,12 @@ body {
 .modal-main-image {
     width: 100%;
     height: 450px;
-    /* ← Geforceerde vaste hoogte */
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 16px;
     overflow: hidden;
     flex-shrink: 0;
-    /* ← Zorgt dat de container niet krimpt */
 }
 
 .modal-main-image img {
@@ -1054,7 +790,6 @@ body {
     height: auto;
     display: block;
     object-fit: contain;
-    /* ← Hele foto zichtbaar */
 }
 
 .modal-thumbnails {
@@ -1143,92 +878,79 @@ body {
     transform: translateY(-2px);
 }
 
-@media (max-width: 768px) {
-    /* De modal vult het scherm beter */
-    .modal-content {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        max-height: 100% !important;
-        border-radius: 0 !important;
-        margin: 0 !important;
-        overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .modal-body {
-        flex-direction: column;
-        padding: 20px;
-        gap: 20px;
-        min-height: auto !important;
-    }
+/* Kleuren dropdown in product modal */
+.kleur-select-group {
+    margin-bottom: 20px;
+}
 
-    /* Foto container - vaste minimale hoogte zodat venster niet krimpt */
-        /* Foto container - zelfde hoogte voor alle foto's */
-    .modal-main-image {
-        height: 35vh !important;
-        min-height: 35vh !important;
-        max-height: 35vh !important;
-        z-index: 1 !important;
-        position: relative !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        background: transparent !important;  /* ← veranderd van #f5ede3 naar transparent */
-        border-radius: 12px !important;
-    }
-    
-    .modal-main-image img {
-        max-height: 35vh !important;
-        max-width: 100% !important;
-        width: auto !important;
-        height: auto !important;
-        object-fit: contain !important;
-    }
+.kleur-select-group label {
+    display: block;
+    font-weight: 600;
+    color: var(--deep-brown);
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
 
+.kleur-select-group label i {
+    margin-right: 8px;
+    color: var(--burnt-brown);
+}
 
-    /* Details worden scrollbaar */
-    .modal-details {
-        flex: 1;
-        overflow-y: auto !important;
-        max-height: none !important;
-    }
+.kleur-select-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--sand);
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    background-color: var(--white);
+    color: var(--charcoal);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
 
-    .modal-details h2 {
-        font-size: 1.4rem;
-    }
+.kleur-select-group select:focus {
+    outline: none;
+    border-color: var(--burnt-brown);
+    box-shadow: 0 0 0 3px rgba(139, 105, 70, 0.1);
+}
 
-    .modal-details .modal-price {
-        font-size: 1.5rem;
-    }
+.kleur-select-group select:hover {
+    border-color: var(--burnt-brown);
+}
 
-    .modal-add-to-cart {
-        margin-top: 20px;
-        position: sticky;
-        bottom: 0;
-        background: var(--deep-brown);
-    }
+.kleur-select-note {
+    font-size: 0.7rem;
+    color: var(--taupe);
+    margin-top: 6px;
+    font-style: italic;
+}
 
-    .modal-close {
-        position: fixed !important;
-        top: 12px !important;
-        right: 12px !important;
-        width: 40px !important;
-        height: 40px !important;
-        background: white !important;
-        border-radius: 50% !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        font-size: 24px !important;
-        z-index: 10001 !important;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.15) !important;
-        border: none !important;
-    }
+/* Title met counter - gecentreerde titel, counter rechts */
+.title-with-counter {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.title-with-counter .section-title {
+    margin: 0;
+    text-align: center;
+}
+
+.product-counter {
+    position: absolute;
+    right: 0;
+    font-size: 0.9rem;
+    color: var(--burnt-brown);
+    background: var(--bg-warm);
+    padding: 6px 14px;
+    border-radius: 40px;
+    font-weight: 500;
+    white-space: nowrap;
 }
 
 /* ========== ADMIN PAGINA STIJLEN ========== */
@@ -1371,6 +1093,7 @@ body {
 .admin-product-image {
     height: 180px;
     overflow: hidden;
+    position: relative;
 }
 
 .admin-product-image img {
@@ -1401,8 +1124,7 @@ body {
     gap: 10px;
 }
 
-.edit-btn,
-.delete-btn {
+.edit-btn, .delete-btn {
     flex: 1;
     padding: 8px;
     border-radius: 8px;
@@ -1572,7 +1294,54 @@ body {
     margin-bottom: 20px;
 }
 
-/* ========== HET ATELIER PAGINA ========== */
+/* Admin kleuren selectie - tekst only */
+.admin-colors-grid-text {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+    background: var(--bg-warm);
+    padding: 20px;
+    border-radius: 16px;
+    margin-top: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.admin-color-option-text {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+    background: white;
+    font-weight: 500;
+}
+
+.admin-color-option-text:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.admin-color-option-text.selected {
+    border-color: var(--burnt-brown);
+    background: var(--bg-warm);
+}
+
+.admin-color-name-text {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--charcoal);
+    flex: 1;
+}
+
+.admin-color-option-text .fa-check-circle {
+    color: var(--burnt-brown);
+    font-size: 0.9rem;
+}
+
 /* ========== HET ATELIER PAGINA ========== */
 .atelier-section {
     padding-top: 40px;
@@ -1596,6 +1365,7 @@ body {
     border-radius: 24px;
     overflow: hidden;
     box-shadow: var(--shadow);
+    max-width: 450px;
 }
 
 .atelier-image img {
@@ -1718,36 +1488,6 @@ body {
     background: var(--burnt-brown);
 }
 
-@media (max-width: 768px) {
-    .atelier-section {
-        padding-top: 0;
-    }
-
-    .atelier-block {
-        flex-direction: column;
-        gap: 30px;
-        margin-bottom: 50px;
-    }
-
-    .atelier-block.reverse {
-        flex-direction: column;
-    }
-
-    .atelier-text h3 {
-        font-size: 1.4rem;
-    }
-
-    .atelier-carrousel-slide img {
-        height: 280px;
-    }
-
-    .atelier-carrousel-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 0.9rem;
-    }
-}
-
 /* ========== CONTACT PAGINA ========== */
 .contact-grid {
     display: grid;
@@ -1799,7 +1539,6 @@ body {
     text-decoration: underline;
 }
 
-/* Contact formulier */
 .contact-form-wrapper {
     background: var(--white);
     border-radius: 24px;
@@ -1815,16 +1554,9 @@ body {
     margin-bottom: 10px;
 }
 
-.contact-form-wrapper>p {
+.contact-form-wrapper > p {
     color: var(--taupe);
     margin-bottom: 30px;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 20px;
 }
 
 .contact-form-group {
@@ -1893,12 +1625,6 @@ body {
     display: none;
 }
 
-/* Openingstijden tabel */
-.opening-hours {
-    margin-top: 15px;
-    text-align: left;
-}
-
 .opening-hours p {
     display: flex;
     justify-content: space-between;
@@ -1938,93 +1664,7 @@ body {
     border: none;
 }
 
-@media (max-width: 768px) {
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-    }
-
-    .contact-info-card {
-        padding: 20px;
-    }
-
-    .contact-form-wrapper {
-        padding: 25px;
-    }
-
-    .opening-hours p {
-        flex-direction: column;
-        gap: 5px;
-    }
-}
-
-.logo-link {
-    text-decoration: none;
-    display: inline-block;
-}
-
-.logo-link:hover .logo h1 {
-    background: linear-gradient(135deg, var(--burnt-brown) 0%, var(--deep-brown) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-@media (max-width: 768px) {
-    .nav-item:hover .dropdown-menu {
-        display: none;
-        opacity: 0;
-        visibility: hidden;
-    }
-
-    .nav-item .dropdown-menu.open {
-        display: block;
-        opacity: 1;
-        visibility: visible;
-    }
-}
-
-.cart-link {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.cart-count {
-    position: absolute;
-    top: -8px;
-    right: -12px;
-    background: #8b6946;
-    color: white;
-    font-size: 0.7rem;
-    font-weight: 600;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.footer-info a {
-    text-decoration: none;
-}
-
-/* Zorg dat de zoom boven het modal venster komt */
-.medium-zoom-overlay {
-    z-index: 9999 !important;
-}
-
-.medium-zoom-image {
-    z-index: 10000 !important;
-    cursor: zoom-out;
-}
-
-.modal {
-    z-index: 1000;
-}
-
-/* Aanvraag pagina specifieke stijlen */
+/* ========== AANVRAAG PAGINA ========== */
 .aanvraag-block {
     display: flex;
     align-items: center;
@@ -2067,64 +1707,6 @@ body {
     margin-bottom: 18px;
 }
 
-/* Kleuren overzicht grid */
-.kleuren-overzicht {
-    margin: 28px 0 28px 0;
-    background: var(--bg-warm);
-    padding: 20px;
-    border-radius: 20px;
-}
-
-.kleuren-overzicht h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: var(--deep-brown);
-    margin-bottom: 16px;
-}
-
-.kleuren-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-    gap: 20px;
-    margin-bottom: 12px;
-}
-
-.kleur-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 8px;
-}
-
-.kleur-bol {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border: 2px solid white;
-    outline: 1px solid rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease;
-}
-
-.kleur-bol:hover {
-    transform: scale(1.08);
-}
-
-.kleur-naam {
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--charcoal);
-}
-
-.kleur-toelichting {
-    font-size: 0.75rem;
-    color: var(--taupe);
-    margin-top: 12px;
-    font-style: italic;
-}
-
 .aanvraag-btn-wrapper {
     margin-top: 35px;
 }
@@ -2147,20 +1729,10 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
-.aanvraag-btn i {
-    font-size: 1.1rem;
-}
-
 .aanvraag-btn:hover {
     background: var(--burnt-brown);
     transform: translateY(-3px);
     box-shadow: var(--shadow-hover);
-}
-
-.btn-extra-info {
-    font-size: 0.8rem;
-    margin-top: 12px;
-    color: var(--taupe);
 }
 
 .aanvraag-image {
@@ -2175,7 +1747,6 @@ body {
     width: 100%;
     height: auto;
     display: block;
-    object-fit: cover;
     transition: transform 0.4s ease;
 }
 
@@ -2183,600 +1754,83 @@ body {
     transform: scale(1.02);
 }
 
-/* Responsive */
-@media (max-width: 968px) {
-    .aanvraag-block {
-        flex-direction: column;
-        padding: 28px;
-        gap: 30px;
-    }
-
-    .aanvraag-image {
-        order: -1;
-        max-width: 450px;
-        margin: 0 auto;
-    }
-
-    .aanvraag-text h3::after {
-        left: 0;
-    }
-
-    .kleuren-grid {
-        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-        gap: 12px;
-    }
-
-    .kleur-bol {
-        width: 40px;
-        height: 40px;
-    }
+.kleuren-sectie {
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
-@media (max-width: 560px) {
-    .aanvraag-block {
-        padding: 20px;
-    }
-
-    .kleuren-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .aanvraag-btn {
-        padding: 12px 24px;
-        font-size: 1rem;
-        width: 100%;
-        justify-content: center;
-    }
-}
-
-/* Winkelwagen teller */
-.cart-count {
-    position: absolute;
-    top: -8px;
-    right: -12px;
-    background: #8b6946;
-    color: white;
-    font-size: 0.7rem;
-    font-weight: 600;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.cart-link {
-    position: relative;
-}
-
-/* ========== ADMIN KLEUREN SELECTIE GRID ========== */
-.admin-colors-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 15px;
+.kleuren-overzicht {
+    margin: 28px 0 28px 0;
     background: var(--bg-warm);
     padding: 20px;
-    border-radius: 16px;
-    margin-top: 10px;
-    max-height: 400px;
-    overflow-y: auto;
+    border-radius: 20px;
 }
 
-.admin-color-option {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 10px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: 2px solid transparent;
-    background: white;
-}
-
-.admin-color-option:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.admin-color-option.selected {
-    border-color: var(--burnt-brown);
-    background: var(--bg-warm);
-    box-shadow: 0 2px 8px rgba(139, 105, 70, 0.2);
-}
-
-.admin-color-swatch {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 8px;
-    border: 2px solid white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.admin-color-name {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--charcoal);
-}
-
-/* ========== KLEUREN BIBLIOTHEEK BEHEER SECTIE ========== */
-.kleuren-beheer-section {
-    margin-top: 40px;
-    border-top: 2px solid var(--sand);
-    padding-top: 30px;
-}
-
-.kleuren-beheer-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.kleuren-beheer-header h3 {
+.kleuren-overzicht h4 {
     font-family: 'Playfair Display', serif;
     font-size: 1.3rem;
-    color: var(--deep-brown);
-}
-
-.kleur-toevoegen-btn {
-    background: var(--deep-brown);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 40px;
-    cursor: pointer;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.kleur-toevoegen-btn:hover {
-    background: var(--burnt-brown);
-    transform: translateY(-2px);
-}
-
-.kleuren-beheer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.kleur-beheer-card {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 15px;
-    border: 1px solid rgba(139, 105, 70, 0.15);
-    box-shadow: var(--shadow);
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.kleur-beheer-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-hover);
-}
-
-.kleur-beheer-swatch {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    border: 2px solid white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    flex-shrink: 0;
-}
-
-.kleur-beheer-info {
-    flex: 1;
-}
-
-.kleur-beheer-info h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    color: var(--deep-brown);
-    margin-bottom: 4px;
-}
-
-.kleur-beheer-info p {
-    font-size: 0.7rem;
-    color: var(--taupe);
-    word-break: break-all;
-}
-
-.kleur-beheer-actions {
-    display: flex;
-    gap: 8px;
-    flex-shrink: 0;
-}
-
-.kleur-edit-btn,
-.kleur-delete-btn {
-    background: transparent;
-    border: none;
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 0.9rem;
-}
-
-.kleur-edit-btn {
-    color: var(--burnt-brown);
-    border: 1px solid var(--sand);
-}
-
-.kleur-edit-btn:hover {
-    background: var(--burnt-brown);
-    color: white;
-}
-
-.kleur-delete-btn {
-    color: #c8b5a6;
-    border: 1px solid var(--sand);
-}
-
-.kleur-delete-btn:hover {
-    background: #dc2626;
-    color: white;
-    border-color: #dc2626;
-}
-
-/* ========== KLEUR MODAL (POP-UP VOOR TOEVOEGEN/BEWERKEN) ========== */
-.kleur-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 2000;
-    justify-content: center;
-    align-items: center;
-}
-
-.kleur-modal.active {
-    display: flex;
-}
-
-.kleur-modal-content {
-    background: var(--white);
-    max-width: 500px;
-    width: 90%;
-    border-radius: 24px;
-    padding: 30px;
-    position: relative;
-    animation: modalFadeIn 0.3s ease;
-}
-
-.kleur-modal-content h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    color: var(--deep-brown);
-    margin-bottom: 20px;
-}
-
-.kleur-modal-close {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    font-size: 24px;
-    cursor: pointer;
-    color: var(--charcoal);
-    transition: color 0.2s;
-}
-
-.kleur-modal-close:hover {
-    color: var(--burnt-brown);
-}
-
-.kleur-form-group {
-    margin-bottom: 20px;
-}
-
-.kleur-form-group label {
-    display: block;
-    margin-bottom: 8px;
     font-weight: 500;
-    color: var(--charcoal);
-}
-
-.kleur-form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--sand);
-    border-radius: 12px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-}
-
-.kleur-form-group input:focus {
-    outline: none;
-    border-color: var(--burnt-brown);
-}
-
-.kleur-voorbeeld {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-top: 10px;
-    padding: 10px;
-    background: var(--bg-warm);
-    border-radius: 12px;
-}
-
-.kleur-voorbeeld-swatch {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    border: 2px solid white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.kleur-voorbeeld-text {
-    font-size: 0.85rem;
-    color: var(--charcoal);
-}
-
-.kleur-modal-actions {
-    display: flex;
-    gap: 15px;
-    margin-top: 25px;
-}
-
-.kleur-save-btn {
-    flex: 1;
-    background: var(--deep-brown);
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 40px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.2s;
-}
-
-.kleur-save-btn:hover {
-    background: var(--burnt-brown);
-}
-
-.kleur-cancel-btn {
-    flex: 1;
-    background: transparent;
-    border: 1px solid var(--sand);
-    padding: 12px;
-    border-radius: 40px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.kleur-cancel-btn:hover {
-    background: var(--bg-warm);
-}
-
-/* ========== KLEUREN SECTIE IN PRODUCT MODAL (VOOR KLANTEN) ========== */
-.modal-colors-section {
-    margin: 20px 0;
-    padding: 15px;
-    background: var(--bg-warm);
-    border-radius: 16px;
-}
-
-.modal-colors-section h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
     color: var(--deep-brown);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    margin-bottom: 16px;
 }
 
-/* Vaste afmetingen voor kleuren items */
-.modal-colors-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 12px;
-    justify-content: flex-start;
-}
-
-.modal-color-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 6px;
-    width: 85px;
-    /* Vaste breedte voor alle items */
-    flex-shrink: 0;
-    /* Voorkomt dat items krimpen */
-}
-
-.modal-color-swatch {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    border: 2px solid white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.modal-color-name {
-    font-size: 0.68rem;
-    font-weight: 500;
-    color: var(--charcoal);
-    text-align: center;
-    line-height: 1.3;
-    max-width: 80px;
-    word-break: break-word;
-    display: block;
-}
-
-.modal-color-swatch:hover {
-    transform: scale(1.1);
-}
-
-.modal-colors-note {
+.kleuren-instructie {
     font-size: 0.75rem;
     color: var(--taupe);
-    margin-top: 8px;
+    margin-bottom: 16px;
     font-style: italic;
 }
 
-.modal-colors-note a {
-    color: var(--burnt-brown);
-    text-decoration: none;
-}
-
-.modal-colors-note a:hover {
-    text-decoration: underline;
-}
-
-/* ========== PRODUCT KAART PALLET ICON ========== */
-.product-item-image {
-    position: relative;
-}
-
-.product-color-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: var(--burnt-brown);
-    color: white;
-    padding: 4px 8px;
-    border-radius: 20px;
-    font-size: 0.7rem;
+.kleur-fotos-grid {
     display: flex;
-    align-items: center;
-    gap: 4px;
-    z-index: 5;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    margin: 20px 0;
 }
 
-/* ========== RESPONSIVE AANPASSINGEN ========== */
-@media (max-width: 768px) {
-    .admin-colors-grid {
-        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-        gap: 10px;
-        padding: 15px;
-    }
-
-    .admin-color-swatch {
-        width: 50px;
-        height: 50px;
-    }
-
-    .admin-color-name {
-        font-size: 0.65rem;
-    }
-
-    .kleuren-beheer-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .kleur-beheer-card {
-        flex-wrap: wrap;
-    }
-
-    .kleur-beheer-actions {
-        width: 100%;
-        justify-content: flex-end;
-        margin-top: 10px;
-    }
-
-    .modal-colors-grid {
-        gap: 10px;
-    }
-
-    .modal-color-swatch {
-        width: 45px;
-        height: 45px;
-    }
-
-    .modal-color-name {
-        font-size: 0.65rem;
-        max-width: 55px;
-    }
+.kleur-foto-item {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: var(--shadow);
 }
 
-@media (max-width: 480px) {
-    .admin-colors-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .kleuren-beheer-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .modal-color-swatch {
-        width: 40px;
-        height: 40px;
-    }
-
-    .modal-color-name {
-        font-size: 0.6rem;
-        max-width: 50px;
-    }
+.kleur-foto-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
 }
 
-/* Geselecteerde kleur styling */
-.modal-color-item.selected {
-    border: 2px solid var(--burnt-brown);
-    border-radius: 12px;
-    padding: 5px;
-    background: var(--bg-warm);
-}
-
-.modal-color-item .fa-check-circle {
-    display: none;
-}
-
-.modal-color-item.selected .fa-check-circle {
+.kleur-foto-item img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
     display: block;
+    transition: transform 0.4s ease;
+    background-color: #f5ede3;
 }
 
-/* Badge voor meerdere kleuren op productfoto */
-.product-color-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: var(--deep-brown);
-    /* #5c3d2e - dezelfde als de knoppen */
-    color: white;
-    padding: 5px 12px;
-    border-radius: 4px;
-    font-size: 0.7rem;
+.kleur-foto-item:hover img {
+    transform: scale(1.03);
+}
+
+.kleur-foto-label {
+    display: block;
+    font-family: 'Playfair Display', serif;
     font-weight: 600;
-    letter-spacing: 0.5px;
-    z-index: 5;
-    text-transform: uppercase;
+    font-size: 1rem;
+    color: var(--deep-brown);
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 
-/* ========== KLEUREN PREVIEW MODAL (voor aanvraag pagina) ========== */
-
-/* Preview Modal voor grote kleurweergave */
+/* Kleur preview modal */
 .kleur-preview-modal {
     display: none;
     position: fixed;
@@ -2838,53 +1892,63 @@ body {
     color: var(--burnt-brown);
 }
 
-/* Aanvraag pagina - klikbare kleuren indicator */
-.preview-clickable {
-    cursor: pointer;
-    transition: transform 0.2s ease;
+/* ========== WINKELWAGEN ========== */
+.cart-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.preview-clickable:hover {
-    transform: scale(1.08);
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background: #8b6946;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.preview-clickable .kleur-bol {
-    transition: box-shadow 0.2s ease;
+/* Gratis verzending strook */
+.free-shipping-bar {
+    background: #2c2420;
+    color: #d4c4ae;
+    text-align: center;
+    padding: 12px 0;
+    width: 100%;
+    position: relative;
+    z-index: 99;
 }
 
-.preview-clickable:hover .kleur-bol {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+.free-shipping-bar .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
 }
 
-/* Instructie tekst voor kleuren */
-.kleuren-instructie {
-    font-size: 0.75rem;
-    color: var(--taupe);
-    margin-bottom: 16px;
-    font-style: italic;
+.free-shipping-bar span {
+    color: #d4c4ae;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    font-weight: 450;
+    letter-spacing: 0.5px;
 }
 
-/* Responsive voor mobiel */
-@media (max-width: 768px) {
-    .kleur-preview-content {
-        max-width: 90%;
-    }
-
-    .kleur-preview-content img {
-        max-height: 60vh;
-    }
-
-    .kleur-preview-content p {
-        font-size: 1rem;
-    }
-
-    .kleur-preview-close {
-        top: -35px;
-        font-size: 28px;
-    }
+.free-shipping-bar i {
+    color: #d4c4ae;
+    opacity: 0.6;
+    font-size: 0.8rem;
 }
 
-/* ========== VERZENDOPTIES IN WINKELWAGEN ========== */
+/* Verzendopties in winkelwagen */
 .shipping-options {
     margin: 20px 0;
     padding: 20px;
@@ -2948,10 +2012,6 @@ body {
     text-align: center;
 }
 
-.free-shipping-info i {
-    margin-right: 6px;
-}
-
 .free-shipping-threshold {
     font-size: 0.7rem;
     color: var(--taupe);
@@ -2959,35 +2019,601 @@ body {
     margin-top: 8px;
 }
 
-/* ========== GRATIS VERZENDING STROOK ========== */
-.free-shipping-bar {
-    background: #2c2420;
-    color: #d4c4ae;
-    text-align: center;
-    padding: 12px 0;
-    width: 100%;
-    position: relative;
-    z-index: 99;
-
+/* ========== WINKELWAGEN PAGINA (extra stijlen) ========== */
+.cart-container {
+    background: white;
+    border-radius: 24px;
+    padding: 30px;
+    margin-bottom: 60px;
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+    min-height: 400px;
 }
 
-.free-shipping-bar .container {
+.cart-items {
+    border-bottom: 1px solid #e8ddd0;
+    margin-bottom: 30px;
+}
+
+.cart-item {
     display: flex;
-    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #f5ede3;
+    align-items: center;
+}
+
+.cart-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.cart-item-details {
+    flex: 2;
+}
+
+.cart-item-details h4 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 5px;
+    color: #3a322c;
+}
+
+.cart-item-quantity {
+    display: flex;
     align-items: center;
     gap: 12px;
+    margin-top: 10px;
 }
 
-.free-shipping-bar span {
+.cart-item-quantity button {
+    background: #f5ede3;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.cart-item-quantity button:first-child:hover,
+.cart-item-quantity button:nth-child(3):hover {
+    background: #e8ddd0;
+}
+
+.cart-item-quantity button:last-child {
+    background: none;
+    width: auto;
+    color: #b29a7a;
+}
+
+.cart-item-quantity button:last-child:hover {
+    color: #8b6946;
+}
+
+.cart-item-subtotal {
+    font-weight: 600;
+    min-width: 100px;
+    text-align: right;
+}
+
+.cart-summary {
+    max-width: 400px;
+    margin-left: auto;
+}
+
+.cart-summary div {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #f5ede3;
+}
+
+.cart-summary .total {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #5c3d2e;
+    border-bottom: none;
+    margin-top: 10px;
+}
+
+.checkout-btn {
+    width: 100%;
+    background: #5c3d2e;
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 40px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.2s ease;
+}
+
+.checkout-btn:hover {
+    background: #8b6946;
+    transform: translateY(-2px);
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-cart i {
+    font-size: 4rem;
     color: #d4c4ae;
+    margin-bottom: 20px;
+}
+
+.empty-cart h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 0.9rem;
-    font-weight: 450;
-    letter-spacing: 0.5px;
+    font-size: 1.5rem;
+    color: #3a322c;
+    margin-bottom: 10px;
 }
 
-.free-shipping-bar i {
-    color: #d4c4ae;
-    opacity: 0.6;
-    font-size: 0.8rem;
+.btn-primary {
+    display: inline-block;
+    background: #5c3d2e;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 40px;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: #8b6946;
+}
+
+.cart-notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #5c3d2e;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 40px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s;
+}
+
+.cart-notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1200px) {
+    .about-image {
+        margin: 48px 48px 48px 0;
+    }
+}
+
+@media (max-width: 968px) {
+    .aanvraag-block {
+        flex-direction: column;
+        padding: 28px;
+        gap: 30px;
+    }
+    .aanvraag-image {
+        order: -1;
+        max-width: 450px;
+        margin: 0 auto;
+    }
+    .aanvraag-text h3::after {
+        left: 0;
+    }
+    .kleur-fotos-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .kleur-foto-item {
+        max-width: 350px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    /* Header */
+    .header-inner {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 0;
+        position: relative;
+    }
+    .hamburger-btn {
+        display: flex;
+    }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        position: absolute;
+        top: calc(100% + 20px);
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(139, 105, 70, 0.15);
+        border-bottom: 1px solid rgba(139, 105, 70, 0.15);
+        padding: 8px 0;
+        z-index: 150;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+    .nav-links.open {
+        display: flex;
+    }
+    .nav-links > a,
+    .nav-item {
+        width: 100%;
+        padding: 12px 24px;
+        border-bottom: 1px solid rgba(139, 105, 70, 0.08);
+    }
+    .nav-links > a:last-child,
+    .nav-item:last-child {
+        border-bottom: none;
+    }
+    .nav-links a::after {
+        display: none;
+    }
+
+    /* Dropdown in mobile nav - COMPLETE FIX */
+    .nav-item > div {
+        width: 100%;
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+    }
+    .dropdown-menu {
+        position: static !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        box-shadow: none;
+        border: none;
+        background: var(--bg-warm);
+        min-width: 100%;
+        margin-top: 8px;
+        border-radius: 8px;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+    }
+    .dropdown-menu::before {
+        display: none;
+    }
+    .dropdown-menu a {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+    .nav-item:hover .dropdown-menu {
+        display: none !important;
+    }
+    .nav-item:hover .dropdown-arrow {
+        transform: none;
+    }
+    .dropdown-arrow {
+        cursor: pointer;
+        padding: 8px;
+        margin: -8px;
+        transition: transform 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .dropdown-arrow.rotated {
+        transform: rotate(180deg);
+    }
+
+    /* FORCEER MOBILE DROPDOWN */
+    .nav-item .dropdown-menu.open,
+    .dropdown-menu.open {
+        display: block !important;
+    }
+    .nav-item .dropdown-menu {
+        display: none !important;
+    }
+
+    /* Section title */
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    /* Carousel */
+    .carousel-slide img {
+        height: 220px;
+    }
+    .carousel-caption h3 {
+        font-size: 1.1rem;
+    }
+    .carousel-caption p {
+        font-size: 0.8rem;
+    }
+    .carousel-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 0.85rem;
+    }
+    .carousel-container {
+        border-radius: 12px;
+    }
+
+    /* About */
+    .about-section {
+        padding: 40px 0;
+    }
+    .about-wrapper {
+        flex-direction: column;
+    }
+    .about-text {
+        padding: 28px 24px;
+        order: 2;
+    }
+    .about-text h2 {
+        font-size: 1.6rem;
+    }
+    .about-image {
+        min-height: 240px;
+        width: auto;
+        margin: 24px 24px 0 24px;
+        order: 1;
+    }
+
+    /* Footer */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 24px;
+    }
+    .footer-links {
+        justify-content: center;
+        gap: 25px;
+    }
+
+    /* Category grid */
+    .category-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 0 0 48px;
+    }
+    .category-card h3 {
+        font-size: 1.3rem;
+    }
+
+    /* Products grid */
+    .producten-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 16px;
+    }
+    .product-item-image {
+        height: 180px;
+    }
+    .product-item-info {
+        padding: 14px;
+    }
+    .product-item-info h3 {
+        font-size: 1rem;
+    }
+    .product-item-price {
+        font-size: 1.1rem;
+    }
+
+    /* Modal */
+    .modal-content {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-height: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+    }
+    .modal-body {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+        min-height: auto !important;
+    }
+    .modal-main-image {
+        height: 35vh !important;
+        min-height: 35vh !important;
+        max-height: 35vh !important;
+        background: transparent !important;
+        border-radius: 12px !important;
+    }
+    .modal-main-image img {
+        max-height: 35vh !important;
+        max-width: 100% !important;
+        width: auto !important;
+        height: auto !important;
+        object-fit: contain !important;
+    }
+    .modal-details {
+        flex: 1;
+        overflow-y: auto !important;
+    }
+    .modal-details h2 {
+        font-size: 1.4rem;
+    }
+    .modal-details .modal-price {
+        font-size: 1.5rem;
+    }
+    .modal-add-to-cart {
+        margin-top: 20px;
+        position: sticky;
+        bottom: 0;
+        background: var(--deep-brown);
+    }
+    .modal-close {
+        position: fixed !important;
+        top: 12px !important;
+        right: 12px !important;
+        width: 40px !important;
+        height: 40px !important;
+        background: white !important;
+        border-radius: 50% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 24px !important;
+        z-index: 10001 !important;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15) !important;
+        border: none !important;
+    }
+
+    /* Title with counter responsive */
+    .title-with-counter {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .product-counter {
+        position: static;
+        white-space: normal;
+    }
+
+    /* Admin */
+    .admin-header-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    .admin-form {
+        padding: 20px 16px;
+    }
+    .admin-colors-grid-text {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        padding: 15px;
+    }
+
+    /* Atelier */
+    .atelier-block {
+        flex-direction: column;
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+    .atelier-block.reverse {
+        flex-direction: column;
+    }
+    .atelier-text h3 {
+        font-size: 1.4rem;
+    }
+    .atelier-carrousel-slide img {
+        height: 280px;
+    }
+    .atelier-carrousel-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+
+    /* Contact */
+    .contact-form-wrapper {
+        padding: 25px;
+    }
+    .opening-hours p {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    /* Winkelwagen */
+    .cart-item {
+        flex-wrap: wrap;
+    }
+    .cart-item-subtotal {
+        text-align: left;
+        margin-left: 120px;
+    }
+    .cart-summary {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 560px) {
+    .aanvraag-block {
+        padding: 20px;
+    }
+    .aanvraag-btn {
+        padding: 12px 24px;
+        font-size: 1rem;
+        width: 100%;
+        justify-content: center;
+    }
+    .kleur-foto-item {
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 1.4rem;
+    }
+    .logo p {
+        font-size: 0.7rem;
+    }
+    .carousel-slide img {
+        height: 180px;
+    }
+    .carousel-caption {
+        padding: 24px 16px 12px;
+    }
+    .carousel-caption h3 {
+        font-size: 1rem;
+    }
+    .carousel-caption p {
+        display: none;
+    }
+    .section-title {
+        font-size: 1.4rem;
+    }
+    .producten-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+    .product-item-image {
+        height: 150px;
+    }
+}
+
+/* Medium zoom overlay */
+.medium-zoom-overlay {
+    z-index: 9999 !important;
+}
+
+.medium-zoom-image {
+    z-index: 10000 !important;
+    cursor: zoom-out;
+}
+
+.modal {
+    z-index: 1000;
+}
+
+.kleur-preview-modal {
+    z-index: 2000;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #b29a7a;
 }

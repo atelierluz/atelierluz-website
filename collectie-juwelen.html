@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Lederen Juwelen - Atelier Luz</title>
+    <title>Zomer Juwelen - Atelier Luz</title>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
@@ -72,7 +72,7 @@
         <div class="container">
             <div class="title-wrapper">
                 <div class="title-with-counter">
-                    <h2 class="section-title">Lederen Juwelen</h2>
+                    <h2 class="section-title">Zomer Juwelen</h2>
                     <div id="productCounter" class="product-counter">
                         <span id="productCount">0</span> producten beschikbaar
                     </div>
@@ -97,7 +97,7 @@
                     <div class="modal-price" id="modalPrice"></div>
                     <div class="modal-description" id="modalDescription"></div>
 
-                    <!-- Kleuren dropdown container -->
+                    <!-- Kleuren dropdown komt hier -->
                     <div id="modalColorsContainer" style="margin: 15px 0;"></div>
 
                     <button class="modal-add-to-cart" id="modalAddToCart"><i class="fas fa-shopping-bag"></i> In
@@ -148,7 +148,6 @@
             messagingSenderId: "472943932463",
             appId: "1:472943932463:web:325aa9b99a0dcccf4202da"
         };
-
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
@@ -156,7 +155,7 @@
         let currentImageIndex = 0;
         let geselecteerdeKleur = null;
 
-        // Categorisering voor kleuren in de dropdown (zonder iconen)
+        // Categorisering voor kleuren in de dropdown
         const KLEUR_CATEGORIEEN = {
             'Zomerkleuren': [
                 'appelgroen', 'babyroze', 'fuchsia', 'geel', 'kobaltblauw',
@@ -201,7 +200,7 @@
             try {
                 const q = query(
                     collection(db, "products"),
-                    where("category", "==", "lederen-juwelen"),
+                    where("category", "==", "zomer-juwelen"),
                     orderBy("createdAt", "desc")
                 );
                 const querySnapshot = await getDocs(q);
@@ -224,7 +223,7 @@
                 renderProducten(producten);
             } catch (error) {
                 console.error("Fout bij laden producten:", error);
-                grid.innerHTML = '<div class="loading"><i class="fas fa-exclamation-triangle"></i> Er is een fout opgetreden.</div>';
+                grid.innerHTML = '<div class="loading"><i class="fas fa-exclamation-triangle"></i> Er is een fout opgetreden. Probeer later opnieuw.</div>';
             }
         }
 
@@ -322,7 +321,7 @@
                 }
             });
 
-            // Kleuren dropdown met optgroepen (zonder iconen)
+            // Kleuren dropdown met optgroepen (categorieën)
             const colorsContainer = document.getElementById('modalColorsContainer');
             colorsContainer.innerHTML = '';
 
@@ -337,6 +336,7 @@
                 const select = document.createElement('select');
                 select.id = 'kleurSelect';
 
+                // Standaard optie
                 const defaultOption = document.createElement('option');
                 defaultOption.value = '';
                 defaultOption.textContent = '-- Selecteer een kleur --';
@@ -344,7 +344,7 @@
                 defaultOption.selected = true;
                 select.appendChild(defaultOption);
 
-                // Groepeer kleuren per categorie (zonder iconen)
+                // Groepeer kleuren per categorie
                 for (const [categorieNaam, ids] of Object.entries(KLEUR_CATEGORIEEN)) {
                     const kleurenInCategorie = product.colors.filter(color => ids.includes(color.id));
 
@@ -380,7 +380,7 @@
 
                 const note = document.createElement('p');
                 note.className = 'kleur-select-note';
-                note.innerHTML = '<i class="fas fa-info-circle"></i> Selecteer een kleur voordat je het product toevoegt aan de winkelwagen.';
+                note.innerHTML = '<i class="fas fa-info-circle"></i> Selecteer een kleur uit de lijst. De kleuren zijn gegroepeerd per categorie.';
                 groupDiv.appendChild(note);
 
                 colorsContainer.appendChild(groupDiv);
@@ -422,6 +422,7 @@
                     closeModal();
                 } else {
                     alert(`${currentProduct.name} toegevoegd aan winkelwagen!`);
+                    closeModal();
                 }
             }
         }
@@ -439,6 +440,7 @@
     </script>
 
     <script>
+        // Mobile navigation
         const hamburgerBtn = document.getElementById("hamburgerBtn");
         const navLinks = document.querySelector(".nav-links");
         const dropdownArrows = document.querySelectorAll(".dropdown-arrow");

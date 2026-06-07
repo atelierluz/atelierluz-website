@@ -201,14 +201,6 @@ function renderCartPage() {
         `;
     }
 
-    if (isGratisVerzending) {
-        html += `
-            <div class="free-shipping-info">
-                <i class="fas fa-check-circle"></i> Gefeliciteerd! Je hebt gratis verzending verdiend.
-            </div>
-        `;
-    }
-
     html += '</div>';
 
     // Samenvatting

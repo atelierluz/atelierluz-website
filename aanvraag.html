@@ -38,6 +38,7 @@
                         <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
                         <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
                         <a href="collectie-lederwerken.html">Lederwerken</a>
+                        <a href="collectie-juwelen.html">Zomer Juwelen</a>
                     </div>
                 </div>
 
@@ -88,24 +89,6 @@
                     <p>Zelfs het leer zelf kan variëren: van glad en gepolijst tot een natuurlijke, korrelige structuur.
                         Combineer kleuren, voeg een persoonlijke initiale of een subtiele embossing toe.</p>
 
-                    <!-- KLEUREN OVERZICHT MET KLIK VOOR PREVIEW -->
-                    <div class="kleuren-overzicht">
-                        <h4>Mogelijke kleuren (selectie)</h4>
-                        <p class="kleuren-instructie">Klik op een kleur voor een grotere preview</p>
-                        <div class="kleuren-grid" id="kleurenGridAanvraag">
-                            <div class="loading"><i class="fas fa-spinner fa-spin"></i> Kleuren laden...</div>
-                        </div>
-                    </div>
-
-                    <!-- PREVIEW MODAL VOOR GROTE WEERGAVE -->
-                    <div id="kleurPreviewModal" class="kleur-preview-modal">
-                        <div class="kleur-preview-content">
-                            <span class="kleur-preview-close">&times;</span>
-                            <img id="kleurPreviewImage" src="" alt="">
-                            <p id="kleurPreviewName"></p>
-                        </div>
-                    </div>
-
                     <!-- KNOP DIE LEIDT NAAR CONTACT.HTML -->
                     <div class="aanvraag-btn-wrapper">
                         <a href="contact.html" class="aanvraag-btn">
@@ -115,12 +98,47 @@
                 </div>
 
                 <div class="aanvraag-image">
-                    <img src="https://placehold.co/700x700/e8ddd0/8b6946?text=Personalisatie+Voorbeeld"
+                    <img src="https://res.cloudinary.com/dygtlvuxm/image/upload/v1780833201/test_btkpmj.webp"
                         alt="Personalisatie voorbeeld">
+                </div>
+            </div>
+
+            <!-- KLEUREN OVERZICHT MET 3 FOTO'S (onder de tekst en afbeelding, naast elkaar) -->
+            <div class="kleuren-sectie">
+                <div class="kleuren-overzicht">
+                    <h4>Ontdek onze kleuren</h4>
+                    <p class="kleuren-instructie">Klik op een afbeelding voor een grotere weergave</p>
+                    <div class="kleur-fotos-grid" id="kleurFotosGrid">
+                        <div class="kleur-foto-item" data-color-name="Warme Aardetinten">
+                            <img src="https://res.cloudinary.com/dygtlvuxm/image/upload/v1780844410/image0_ksk0ad.png" alt="Kroko leder" loading="lazy">
+                            <span class="kleur-foto-label">Kroko leder</span>
+                            
+                        </div>
+                        <div class="kleur-foto-item" data-color-name="Natuurlijke Tinten">
+                            <img src="https://res.cloudinary.com/dygtlvuxm/image/upload/v1780844408/image1_kmeo5d.png" alt="Zomerkleuren" loading="lazy">
+                            <span class="kleur-foto-label">Zomerkleuren</span>
+                            
+                        </div>
+                        <div class="kleur-foto-item" data-color-name="Diepe & Donkere Tinten">
+                            <img src="https://res.cloudinary.com/dygtlvuxm/image/upload/v1780844407/image2_dnkcu8.png" alt="Overige kleuren" loading="lazy">
+                            <span class="kleur-foto-label">Overige kleuren</span>
+                            
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- PREVIEW MODAL VOOR GROTE WEERGAVE -->
+    <div id="kleurPreviewModal" class="kleur-preview-modal">
+        <div class="kleur-preview-content">
+            <span class="kleur-preview-close">&times;</span>
+            <img id="kleurPreviewImage" src="" alt="">
+            <p id="kleurPreviewName"></p>
+        </div>
+    </div>
 
     <footer class="site-footer">
         <div class="container">
@@ -138,7 +156,7 @@
                             target="_blank" style="color: #d4c4ae;">@_atelier_luz_</a></p>
                 </div>
                 <div class="footer-links">
-                    <div>
+                    <div>ttps://
                         <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
                         <p><a href="contact.html">Contact</a></p>
                         <p><a href="admin.html" id="adminLink">Admin</a></p>
@@ -152,54 +170,7 @@
     </footer>
 
     <script>
-        // Kleuren bibliotheek - lokaal gedefinieerd (zelfde als in admin)
-        const KLEUREN_BIBLIOTHEEK = [
-            { id: 'cognac', name: 'Warm Cognac', imageUrl: 'https://placehold.co/200x200/C17B4A/white?text=Cognac' },
-            { id: 'diep-bruin', name: 'Diep Bruin', imageUrl: 'https://placehold.co/200x200/5C3D2E/white?text=Bruin' },
-            { id: 'zwart', name: 'Zwart (Ebony)', imageUrl: 'https://placehold.co/200x200/2C2420/white?text=Zwart' },
-            { id: 'camel', name: 'Natuur (Camel)', imageUrl: 'https://placehold.co/200x200/D8B08C/white?text=Camel' },
-            { id: 'kastanje', name: 'Kastanjebruin', imageUrl: 'https://placehold.co/200x200/9E6F4D/white?text=Kastanje' },
-            { id: 'zand', name: 'Zandkleur', imageUrl: 'https://placehold.co/200x200/D1BFAe/white?text=Zand' },
-            { id: 'koper', name: 'Koper', imageUrl: 'https://placehold.co/200x200/B87333/white?text=Koper' },
-            { id: 'noten', name: 'Notenhout', imageUrl: 'https://placehold.co/200x200/C5A07A/white?text=Noten' }
-        ];
-
-        // Laad de kleuren in de grid
-        function laadKleuren() {
-            const grid = document.getElementById('kleurenGridAanvraag');
-            if (!grid) return;
-
-            grid.innerHTML = '';
-
-            KLEUREN_BIBLIOTHEEK.forEach(kleur => {
-                const kleurItem = document.createElement('div');
-                kleurItem.className = 'kleur-item preview-clickable';
-                kleurItem.setAttribute('data-color-name', kleur.name);
-                kleurItem.setAttribute('data-color-image', kleur.imageUrl);
-
-                const kleurBol = document.createElement('div');
-                kleurBol.className = 'kleur-bol';
-                kleurBol.style.backgroundImage = `url('${kleur.imageUrl}')`;
-                kleurBol.style.backgroundSize = 'cover';
-                kleurBol.style.backgroundPosition = 'center';
-
-                const kleurNaam = document.createElement('span');
-                kleurNaam.className = 'kleur-naam';
-                kleurNaam.textContent = kleur.name;
-
-                kleurItem.appendChild(kleurBol);
-                kleurItem.appendChild(kleurNaam);
-
-                // Klik event voor preview modal
-                kleurItem.addEventListener('click', () => {
-                    openKleurPreview(kleur.imageUrl, kleur.name);
-                });
-
-                grid.appendChild(kleurItem);
-            });
-        }
-
-        // Preview modal openen
+        // Preview modal openen met afbeelding en titel
         function openKleurPreview(imageUrl, colorName) {
             const modal = document.getElementById('kleurPreviewModal');
             const modalImage = document.getElementById('kleurPreviewImage');
@@ -209,6 +180,18 @@
             modalName.textContent = colorName;
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+
+            // Medium zoom toepassen op de preview afbeelding
+            if (typeof mediumZoom !== 'undefined') {
+                if (window.previewZoomInstance) {
+                    window.previewZoomInstance.detach();
+                }
+                window.previewZoomInstance = mediumZoom(modalImage, {
+                    background: 'rgba(0, 0, 0, 0.95)',
+                    margin: 24,
+                    scrollOffset: 0
+                });
+            }
         }
 
         // Preview modal sluiten
@@ -216,12 +199,28 @@
             const modal = document.getElementById('kleurPreviewModal');
             modal.classList.remove('active');
             document.body.style.overflow = '';
+            
+            if (window.previewZoomInstance) {
+                window.previewZoomInstance.detach();
+                window.previewZoomInstance = null;
+            }
         }
 
-        // Event listeners voor modal
+        // Event listeners voor de 3 foto's
         document.addEventListener('DOMContentLoaded', () => {
-            laadKleuren();
+            // Klik events voor elke kleur-foto
+            const fotoItems = document.querySelectorAll('.kleur-foto-item');
+            fotoItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const img = item.querySelector('img');
+                    const label = item.querySelector('.kleur-foto-label');
+                    if (img && label) {
+                        openKleurPreview(img.src, label.textContent);
+                    }
+                });
+            });
 
+            // Modal sluitknoppen
             const modal = document.getElementById('kleurPreviewModal');
             const closeBtn = document.querySelector('.kleur-preview-close');
 

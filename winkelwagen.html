@@ -18,53 +18,55 @@
 <body>
 
     <header class="site-header">
-       <div class="container header-inner">
-        <a href="index.html" class="logo-link" style="text-decoration: none;">
-            <div class="logo">
-                <h1>Atelier Luz</h1>
-                <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
-            </div>
-        </a>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            
-            <div class="nav-item">
-                <div style="display: flex; align-items: center; gap: 5px;">
-                    <a href="collectie.html" class="dropdown-trigger-link" style="text-decoration: none;">Collectie</a>
-                    <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+        <div class="container header-inner">
+            <a href="index.html" class="logo-link" style="text-decoration: none;">
+                <div class="logo">
+                    <h1>Atelier Luz</h1>
+                    <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
                 </div>
-                <div class="dropdown-menu">
-                    <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
-                    <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
-                    <a href="collectie-lederwerken.html">Lederwerken</a>
-                </div>
-            </div>
-            
-            <a href="het-atelier.html">Het Atelier</a>
-            <!-- NIEUWE NAVIGATIELINK: Op Aanvraag -->
-            <a href="aanvraag.html" class="active-nav-link">Op Aanvraag</a>
-            <a href="contact.html">Contact</a>
-            <a href="winkelwagen.html" class="cart-link">
-                <i class="fas fa-shopping-bag"></i> 
-                Winkelwagen
-                <span class="cart-count" style="display: none;">0</span>
             </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+
+                <div class="nav-item">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <a href="collectie.html" class="dropdown-trigger-link"
+                            style="text-decoration: none;">Collectie</a>
+                        <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
+                        <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
+                        <a href="collectie-lederwerken.html">Lederwerken</a>
+                        <a href="collectie-juwelen.html">Zomer Juwelen</a>
+                    </div>
+                </div>
+
+                <a href="het-atelier.html">Het Atelier</a>
+                <!-- NIEUWE NAVIGATIELINK: Op Aanvraag -->
+                <a href="aanvraag.html" class="active-nav-link">Op Aanvraag</a>
+                <a href="contact.html">Contact</a>
+                <a href="winkelwagen.html" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    Winkelwagen
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+            </div>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
-        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </div>
     </header>
     <!-- Gratis verzending strook -->
-<div class="free-shipping-bar">
-    <div class="container">
-        <i class="fas fa-gift"></i>
-        <span>- Gratis verzending vanaf €100 -</span>
-        <i class="fas fa-truck"></i>
+    <div class="free-shipping-bar">
+        <div class="container">
+            <i class="fas fa-gift"></i>
+            <span>- Gratis verzending vanaf €100 -</span>
+            <i class="fas fa-truck"></i>
+        </div>
     </div>
-</div>
 
     <section class="cart-section">
         <div class="container">
@@ -85,7 +87,7 @@
                     <p><i class="fas fa-map-marker-alt"></i> <a
                             href="https://maps.google.com/?q=Stiemerbeekstraat+25+3600+Genk" target="_blank"
                             style="color: #d4c4ae; text-decoration: none;">Stiemerbeekstraat 25, 3600 Genk</a></p>
-<p><i class="fas fa-envelope"></i> <a href="mailto:info.atelierluz@gmail.com"
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info.atelierluz@gmail.com"
                             style="color: #d4c4ae; text-decoration: none;">info.atelierluz@gmail.com</a></p>
                     <p><i class="fas fa-phone-alt"></i> <a href="tel:+32468209909"
                             style="color: #d4c4ae; text-decoration: none;">+32 468 20 99 09</a></p>
@@ -140,187 +142,7 @@
         });
     </script>
 
-    <style>
-        /* Alleen specifieke winkelwagen stijlen die niet in style.css staan */
-        .cart-container {
-            background: white;
-            border-radius: 24px;
-            padding: 30px;
-            margin-bottom: 60px;
-            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
-            min-height: 400px;
-        }
 
-        .cart-items {
-            border-bottom: 1px solid #e8ddd0;
-            margin-bottom: 30px;
-        }
-
-        .cart-item {
-            display: flex;
-            gap: 20px;
-            padding: 20px 0;
-            border-bottom: 1px solid #f5ede3;
-            align-items: center;
-        }
-
-        .cart-item img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 12px;
-        }
-
-        .cart-item-details {
-            flex: 2;
-        }
-
-        .cart-item-details h4 {
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 5px;
-            color: #3a322c;
-        }
-
-        .cart-item-quantity {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-top: 10px;
-        }
-
-        .cart-item-quantity button {
-            background: #f5ede3;
-            border: none;
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .cart-item-quantity button:last-child {
-            background: none;
-            width: auto;
-            color: #b29a7a;
-        }
-
-        .cart-item-subtotal {
-            font-weight: 600;
-            min-width: 100px;
-            text-align: right;
-        }
-
-        .cart-summary {
-            max-width: 400px;
-            margin-left: auto;
-        }
-
-        .cart-summary div {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #f5ede3;
-        }
-
-        .cart-summary .total {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: #5c3d2e;
-            border-bottom: none;
-            margin-top: 10px;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            background: #5c3d2e;
-            color: white;
-            border: none;
-            padding: 16px;
-            border-radius: 40px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: all 0.2s ease;
-        }
-
-        .checkout-btn:hover {
-            background: #8b6946;
-            transform: translateY(-2px);
-        }
-
-        .empty-cart {
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .empty-cart i {
-            font-size: 4rem;
-            color: #d4c4ae;
-            margin-bottom: 20px;
-        }
-
-        .empty-cart h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: #3a322c;
-            margin-bottom: 10px;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            background: #5c3d2e;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 40px;
-            text-decoration: none;
-            margin-top: 20px;
-            transition: all 0.2s ease;
-        }
-
-        .btn-primary:hover {
-            background: #8b6946;
-        }
-
-        .cart-notification {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #5c3d2e;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 40px;
-            z-index: 1000;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s;
-        }
-
-        .cart-notification.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #b29a7a;
-        }
-
-        @media (max-width: 768px) {
-            .cart-item {
-                flex-wrap: wrap;
-            }
-
-            .cart-item-subtotal {
-                text-align: left;
-                margin-left: 120px;
-            }
-
-            .cart-summary {
-                max-width: 100%;
-            }
-        }
-    </style>
 </body>
 
 </html>
