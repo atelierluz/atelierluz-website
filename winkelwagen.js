@@ -1,6 +1,6 @@
 // winkelwagen.js
 
-const STRIPE_PUBLIC_KEY = 'pk_test_51TWGa1RtQWOKpGNnpgZ3SLLskhPiL2ttupZIgJz5ZZmLJK1oFBFQ80gIJVwTyL8AKpRRvBjs5XZ7eaHd9J3DjDbZ003U9WxZG3';
+const STRIPE_PUBLIC_KEY = 'pk_live_51TWGZkRqLHxtV56TZdQBJRHGdpULn91gzRJ8kc5T1V1AeeLePcsjqilEDIRENumEBHmZohN4p2R0N9DgkZms4WGZ00gWps2wUv';
 let stripe = null;
 
 // Winkelwagen data
@@ -197,6 +197,15 @@ function renderCartPage() {
         html += `
             <div class="free-shipping-threshold">
                 <i class="fas fa-gift"></i> Nog € ${verschil.toFixed(2)} besteden voor gratis verzending!
+            </div>
+        `;
+    }
+
+    if (verzendMethode === 'afhalen') {
+        html += `
+            <div style="margin-top: 10px; padding: 12px 16px; background: #fdf6ee; border-left: 3px solid #b29a7a; border-radius: 6px; font-size: 0.9rem; color: #5c3d2e;">
+                <i class="fas fa-info-circle" style="margin-right: 6px; color: #b29a7a;"></i>
+                Wij contacteren u zo snel mogelijk om het afhaalmoment te bespreken.
             </div>
         `;
     }

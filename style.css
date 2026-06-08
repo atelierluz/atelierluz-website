@@ -554,15 +554,7 @@ body {
     color: white;
 }
 
-.footer-links a#adminLink {
-    opacity: 0.5;
-    font-size: 0.85rem;
-    transition: opacity 0.2s ease;
-}
 
-.footer-links a#adminLink:hover {
-    opacity: 1;
-}
 
 .footer-bottom {
     text-align: center;
