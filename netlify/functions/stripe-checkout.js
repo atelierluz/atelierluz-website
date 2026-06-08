@@ -80,6 +80,7 @@ exports.handler = async (event, context) => {
             payment_method_types: ['card', 'bancontact', 'ideal'],
             line_items: lineItems,
             mode: 'payment',
+            customer_creation: 'always',
             success_url: `${process.env.URL || 'https://atelierluz.netlify.app'}/betalen-succes.html`,
             cancel_url: `${process.env.URL || 'https://atelierluz.netlify.app'}/winkelwagen.html`,
             metadata: metadata,
