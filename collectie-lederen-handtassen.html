@@ -200,7 +200,7 @@
                 const q = query(
                     collection(db, "products"),
                     where("category", "==", "lederen-handtassen"),
-                    orderBy("createdAt", "desc")
+                    orderBy("sortOrder", "asc")
                 );
                 const querySnapshot = await getDocs(q);
 

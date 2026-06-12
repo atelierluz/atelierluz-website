@@ -201,7 +201,7 @@
                 const q = query(
                     collection(db, "products"),
                     where("category", "==", "lederwerken"),
-                    orderBy("createdAt", "desc")
+                    orderBy("sortOrder", "asc")
                 );
                 const querySnapshot = await getDocs(q);
 

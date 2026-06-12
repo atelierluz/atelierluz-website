@@ -2601,6 +2601,10 @@ body {
     cursor: zoom-out;
 }
 
+.medium-zoom-image--opened {
+    touch-action: pinch-zoom;
+}
+
 .modal {
     z-index: 1000;
 }
