@@ -2868,6 +2868,10 @@ body {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 24px !important;
     }
+
+    .product-item-image {
+        height: 240px !important;
+    }
 }
 
 /* 768px - Mobiel (filter behoudt zelfde uiterlijk) */
@@ -2964,8 +2968,8 @@ body {
     }
 
     .producten-grid {
-        grid-template-columns: 1fr !important;
-        gap: 24px !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 16px !important;
     }
 }
 
