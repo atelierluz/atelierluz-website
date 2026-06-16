@@ -96,10 +96,14 @@
                 <div style="margin-bottom: 20px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
                     <button id="showAddFormBtn" class="add-product-btn"><i class="fas fa-plus"></i> Product
                         toevoegen</button>
-                    <button id="initSortOrderBtn" class="add-product-btn" style="background: var(--taupe); font-size: 0.85rem;"><i class="fas fa-sort-numeric-down"></i> Volgorde initialiseren</button>
+                    <button id="initSortOrderBtn" class="add-product-btn"
+                        style="background: var(--taupe); font-size: 0.85rem;"><i class="fas fa-sort-numeric-down"></i>
+                        Volgorde initialiseren</button>
                 </div>
-                <div id="sortHint" style="display: none; background: #f5f0eb; border: 1px dashed #c4a882; border-radius: 10px; padding: 10px 16px; margin-bottom: 16px; font-size: 0.85rem; color: var(--taupe);">
-                    <i class="fas fa-grip-vertical"></i> Sleep de producten in de gewenste volgorde. Wijzigingen worden automatisch opgeslagen.
+                <div id="sortHint"
+                    style="display: none; background: #f5f0eb; border: 1px dashed #c4a882; border-radius: 10px; padding: 10px 16px; margin-bottom: 16px; font-size: 0.85rem; color: var(--taupe);">
+                    <i class="fas fa-grip-vertical"></i> Sleep de producten in de gewenste volgorde. Wijzigingen worden
+                    automatisch opgeslagen.
                 </div>
 
                 <div id="adminProductGrid" class="admin-product-grid">
@@ -125,14 +129,26 @@
                             <input type="number" id="productPrice" step="0.01" placeholder="99.95">
                         </div>
                         <div class="form-group">
-                            <label>Categorie *</label>
-                            <select id="productCategory">
+                            <label>Hoofdcategorie *</label>
+                            <select id="productMainCategory">
                                 <option value="lederen-juwelen">Lederen Juwelen</option>
                                 <option value="lederen-handtassen">Lederen Handtassen</option>
                                 <option value="lederwerken">Lederwerken</option>
                                 <option value="zomer-juwelen">Zomer Juwelen</option>
                             </select>
                         </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Subcategorie</label>
+                        <select id="productSubCategory">
+                            <option value="alle">Alle (geen subcategorie)</option>
+                            <option value="armbanden">Armbanden</option>
+                            <option value="kettingen">Kettingen</option>
+                            <option value="oorbellen">Oorbellen</option>
+                            <option value="setjes">Setjes</option>
+                        </select>
+                        <p style="font-size: 0.75rem; color: var(--taupe); margin-top: 4px;">Kies een subcategorie voor filtering op de productpagina's</p>
                     </div>
 
                     <div class="form-group">
@@ -145,14 +161,16 @@
                     <div class="form-group">
                         <label>Hoofdafbeelding *</label>
                         <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                            <button type="button" id="uploadMainImageBtn" class="upload-image-btn" style="background: #8b6946; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">
+                            <button type="button" id="uploadMainImageBtn" class="upload-image-btn"
+                                style="background: #8b6946; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">
                                 <i class="fas fa-cloud-upload-alt"></i> Upload foto
                             </button>
                             <span style="color: var(--taupe); font-size: 0.85rem;">of</span>
                             <input type="text" id="productImageUrl" placeholder="Of plak een URL" style="flex: 1;">
                         </div>
                         <div id="mainImagePreview" style="margin-top: 10px; display: none;">
-                            <img id="mainPreviewImg" style="max-width: 100px; border-radius: 8px; border: 2px solid var(--sand);">
+                            <img id="mainPreviewImg"
+                                style="max-width: 100px; border-radius: 8px; border: 2px solid var(--sand);">
                         </div>
                     </div>
 
@@ -160,33 +178,39 @@
                     <div class="form-group">
                         <label>Extra afbeeldingen</label>
                         <div>
-                            <button type="button" id="uploadExtraImageBtn" class="upload-image-btn" style="background: #a0886e; color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 10px;">
+                            <button type="button" id="uploadExtraImageBtn" class="upload-image-btn"
+                                style="background: #a0886e; color: white; padding: 8px 16px; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 10px;">
                                 <i class="fas fa-cloud-upload-alt"></i> Extra foto uploaden
                             </button>
                         </div>
                         <div id="extraImagesContainer"></div>
-                        <button type="button" id="addImageBtn" class="add-image-btn" style="margin-top: 10px;"><i class="fas fa-plus"></i> Of handmatig URL toevoegen</button>
+                        <button type="button" id="addImageBtn" class="add-image-btn" style="margin-top: 10px;"><i
+                                class="fas fa-plus"></i> Of handmatig URL toevoegen</button>
                     </div>
 
                     <!-- SNELTOETSEN VOOR KLEURENKAARTEN -->
-                    <div class="form-group" style="border-top: 2px solid var(--sand); padding-top: 20px; margin-top: 20px;">
-                        <label style="font-weight: 600; margin-bottom: 10px; display: block;"><i class="fas fa-images"></i> Kleurenkaarten toevoegen</label>
-                        <p style="font-size: 0.8rem; color: var(--taupe); margin-bottom: 12px;">Klik op een kaart om deze als extra afbeelding toe te voegen</p>
+                    <div class="form-group"
+                        style="border-top: 2px solid var(--sand); padding-top: 20px; margin-top: 20px;">
+                        <label style="font-weight: 600; margin-bottom: 10px; display: block;"><i
+                                class="fas fa-images"></i> Kleurenkaarten toevoegen</label>
+                        <p style="font-size: 0.8rem; color: var(--taupe); margin-bottom: 12px;">Klik op een kaart om
+                            deze als extra afbeelding toe te voegen</p>
                         <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                             <div style="text-align: center; cursor: pointer;" id="addZomerkleurenBtn">
-                                <img src="https://res.cloudinary.com/dygtlvuxm/image/upload/v1780844410/image0_ksk0ad.png" 
-                                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; border: 2px solid var(--sand); transition: transform 0.2s;">
+                                <img src="https://res.cloudinary.com/dygtlvuxm/image/upload/v1780844410/image0_ksk0ad.png"
+                                    style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; border: 2px solid var(--sand); transition: transform 0.2s;">
                                 <p style="font-size: 0.7rem; margin-top: 5px; color: var(--charcoal);">Kroko leder</p>
                             </div>
                             <div style="text-align: center; cursor: pointer;" id="addKrokoLederBtn">
-                                <img src="https://res.cloudinary.com/dygtlvuxm/image/upload/v1780844408/image1_kmeo5d.png" 
-                                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; border: 2px solid var(--sand); transition: transform 0.2s;">
+                                <img src="https://res.cloudinary.com/dygtlvuxm/image/upload/v1780844408/image1_kmeo5d.png"
+                                    style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; border: 2px solid var(--sand); transition: transform 0.2s;">
                                 <p style="font-size: 0.7rem; margin-top: 5px; color: var(--charcoal);">Zomerkleuren</p>
                             </div>
                             <div style="text-align: center; cursor: pointer;" id="addOverigeKleurenBtn">
-                                <img src="https://res.cloudinary.com/dygtlvuxm/image/upload/v1780844407/image2_dnkcu8.png" 
-                                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; border: 2px solid var(--sand); transition: transform 0.2s;">
-                                <p style="font-size: 0.7rem; margin-top: 5px; color: var(--charcoal);">Overige kleuren</p>
+                                <img src="https://res.cloudinary.com/dygtlvuxm/image/upload/v1780844407/image2_dnkcu8.png"
+                                    style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px; border: 2px solid var(--sand); transition: transform 0.2s;">
+                                <p style="font-size: 0.7rem; margin-top: 5px; color: var(--charcoal);">Overige kleuren
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -249,194 +273,7 @@
         </div>
     </footer>
 
-    <style>
-        /* Admin grid: 3 kolommen zoals de productpagina */
-        .admin-product-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
-        }
-        @media (max-width: 900px) {
-            .admin-product-grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-            }
-        }
-        @media (max-width: 560px) {
-            .admin-product-grid {
-                grid-template-columns: 1fr !important;
-            }
-        }
-
-        /* Admin kaart stijl - gelijk aan productpagina */
-        .admin-product-card {
-            cursor: grab;
-            position: relative;
-            background: var(--white);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(139, 105, 70, 0.15);
-            box-shadow: var(--shadow);
-        }
-        .admin-product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-hover);
-            border-color: rgba(139, 105, 70, 0.3);
-        }
-        .admin-product-card:active {
-            cursor: grabbing;
-        }
-        .admin-product-image {
-            width: 100%;
-            height: 220px !important;
-            overflow: hidden;
-            background: var(--bg-warm);
-            position: relative;
-        }
-        .admin-product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain !important;
-            background-color: #f5ede3;
-            transition: transform 0.5s ease;
-        }
-        .admin-product-card:hover .admin-product-image img {
-            transform: scale(1.05);
-        }
-        .admin-product-info {
-            padding: 16px 20px 20px;
-            text-align: center;
-        }
-        .admin-product-info h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: var(--deep-brown);
-            margin-bottom: 6px;
-        }
-        .admin-product-price {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--burnt-brown);
-            margin-bottom: 12px;
-        }
-        .admin-product-actions {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-        }
-        .admin-product-actions button {
-            cursor: pointer;
-        }
-        .sortable-ghost {
-            opacity: 0.4;
-        }
-        .sortable-chosen {
-            box-shadow: 0 8px 24px rgba(139, 105, 70, 0.3);
-            transform: scale(1.02);
-        }
-        .sort-saving {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--deep-brown, #5c3d2e);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            z-index: 10000;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-            white-space: nowrap;
-        }
-        .sort-saving.visible {
-            opacity: 1;
-        }
-
-        /* Stijlen voor kleuren grid met categorieën - van links naar rechts */
-        .admin-colors-grid-with-categories {
-            background: var(--bg-warm);
-            padding: 20px;
-            border-radius: 16px;
-            margin-top: 10px;
-            max-height: 500px;
-            overflow-y: auto;
-        }
-
-        .color-category {
-            margin-bottom: 24px;
-        }
-
-        .color-category:last-child {
-            margin-bottom: 0;
-        }
-
-        .color-category-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--deep-brown);
-            margin-bottom: 12px;
-            padding-bottom: 6px;
-            border-bottom: 2px solid var(--sand);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .color-category-title i {
-            color: var(--burnt-brown);
-            font-size: 0.9rem;
-        }
-
-        /* Grid van links naar rechts */
-        .color-items-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .admin-color-option-text {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 8px 16px;
-            border-radius: 40px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: 2px solid transparent;
-            background: white;
-            font-weight: 500;
-            font-size: 0.85rem;
-        }
-
-        .admin-color-option-text:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .admin-color-option-text.selected {
-            border-color: var(--burnt-brown);
-            background: var(--bg-warm);
-        }
-
-        .admin-color-name-text {
-            color: var(--charcoal);
-        }
-
-        .admin-color-option-text .fa-check-circle {
-            color: var(--burnt-brown);
-            font-size: 0.8rem;
-            margin-left: 4px;
-        }
-
-        @media (max-width: 768px) {
-            .admin-color-option-text {
-                padding: 6px 12px;
-                font-size: 0.75rem;
-            }
-        }
-    </style>
+    
 
     <script>
         // ============================================
@@ -451,8 +288,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-        import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, where, orderBy, writeBatch } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-
+import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, where, orderBy, writeBatch, limit } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
         const firebaseConfig = {
             apiKey: "AIzaSyB3RzPBPIYbpwlvm74pcjbtmFUaeQjF5Pg",
             authDomain: "atelierluz-45097.firebaseapp.com",
@@ -522,7 +358,8 @@
         const productId = document.getElementById('productId');
         const productName = document.getElementById('productName');
         const productPrice = document.getElementById('productPrice');
-        const productCategory = document.getElementById('productCategory');
+        const productMainCategory = document.getElementById('productMainCategory');
+        const productSubCategory = document.getElementById('productSubCategory');
         const productDescription = document.getElementById('productDescription');
         const productImageUrl = document.getElementById('productImageUrl');
         const extraImagesContainer = document.getElementById('extraImagesContainer');
@@ -542,6 +379,27 @@
             overigeKleuren: 'https://res.cloudinary.com/dygtlvuxm/image/upload/v1780844407/image2_dnkcu8.png'
         };
 
+  // ========== SCROLL FIX VOOR TERUG NAVIGATIE ==========
+// Zet scroll restoration uit
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+// Scroll naar boven bij laden
+window.addEventListener('load', function() {
+    window.scrollTo(0, 0);
+});
+
+// Scroll naar boven bij terug navigeren (met kleine vertraging)
+window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+        // Gebruik requestAnimationFrame voor soepele scroll
+        requestAnimationFrame(function() {
+            window.scrollTo(0, 0);
+        });
+    }
+});
+
         // Functie om een kleurenkaart toe te voegen aan extra afbeeldingen
         function voegKleurenkaartToe(imageUrl, naam) {
             const existingInputs = document.querySelectorAll('.extra-image');
@@ -551,12 +409,12 @@
                     bestaatAl = true;
                 }
             });
-            
+
             if (bestaatAl) {
                 showSuccess(`${naam} is al toegevoegd!`);
                 return;
             }
-            
+
             addExtraImageField(imageUrl);
             showSuccess(`${naam} toegevoegd!`);
         }
@@ -565,11 +423,11 @@
         document.getElementById('addZomerkleurenBtn')?.addEventListener('click', () => {
             voegKleurenkaartToe(KLEURENKAARTEN.zomerkleuren, 'Zomerkleuren');
         });
-        
+
         document.getElementById('addKrokoLederBtn')?.addEventListener('click', () => {
             voegKleurenkaartToe(KLEURENKAARTEN.krokoLeder, 'Kroko leder');
         });
-        
+
         document.getElementById('addOverigeKleurenBtn')?.addEventListener('click', () => {
             voegKleurenkaartToe(KLEURENKAARTEN.overigeKleuren, 'Overige kleuren');
         });
@@ -673,13 +531,13 @@
                 <input type="text" class="extra-image" placeholder="Afbeelding URL" value="${escapeHtml(value)}" style="flex: 1; padding: 8px; border: 1px solid var(--sand); border-radius: 8px;">
                 <button type="button" class="remove-image" style="background: #e8ddd0; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer;"><i class="fas fa-times"></i></button>
             `;
-            
+
             const input = div.querySelector('.extra-image');
             const preview = div.querySelector('img');
             input.addEventListener('input', (e) => {
                 preview.src = e.target.value || 'https://placehold.co/60x60/f5f0eb/8b7d6b?text=preview';
             });
-            
+
             div.querySelector('.remove-image').addEventListener('click', () => div.remove());
             extraImagesContainer.appendChild(div);
         }
@@ -721,10 +579,10 @@
                     q = query(collection(db, "products"), orderBy("createdAt", "desc"));
                 } else {
                     q = query(
-                        collection(db, "products"), 
+                        collection(db, "products"),
                         where("category", "==", currentFilter),
                         orderBy("sortOrder", "asc")
-                        
+
                     );
                 }
                 const querySnapshot = await getDocs(q);
@@ -748,6 +606,9 @@
             adminProductGrid.innerHTML = '';
             producten.forEach(product => {
                 const hasColors = product.colors && product.colors.length > 0;
+                const subCatLabel = product.subCategory && product.subCategory !== 'alle' 
+                    ? `<span class="admin-product-subcategory">${product.subCategory}</span>`
+                    : '';
                 const card = document.createElement('div');
                 card.className = 'admin-product-card';
                 card.dataset.id = product.id;
@@ -759,6 +620,7 @@
                 </div>
                 <div class="admin-product-info">
                     <h3>${escapeHtml(product.name)}</h3>
+                    ${subCatLabel}
                     <div class="admin-product-price">€ ${product.price ? product.price.toFixed(2) : '0,00'}</div>
                     <div class="admin-product-actions">
                         <button class="edit-btn" data-id="${product.id}"><i class="fas fa-edit"></i> Bewerken</button>
@@ -862,10 +724,11 @@
                 productId.value = id;
                 productName.value = product.name || '';
                 productPrice.value = product.price || '';
-                productCategory.value = product.category || 'lederen-juwelen';
+                productMainCategory.value = product.category || 'lederen-juwelen';
+                productSubCategory.value = product.subCategory || 'alle';
                 productDescription.value = product.description || '';
                 productImageUrl.value = product.imageUrl || '';
-                
+
                 if (product.imageUrl) {
                     mainPreviewImg.src = product.imageUrl;
                     mainImagePreview.style.display = 'block';
@@ -899,7 +762,8 @@
         saveProductBtn.addEventListener('click', async () => {
             const name = productName.value.trim();
             const price = parseFloat(productPrice.value);
-            const category = productCategory.value;
+            const category = productMainCategory.value;
+            const subCategory = productSubCategory.value;
             const description = productDescription.value.trim();
             const imageUrl = productImageUrl.value.trim();
 
@@ -926,6 +790,7 @@
                 name: name,
                 price: price,
                 category: category,
+                subCategory: subCategory,
                 description: description,
                 imageUrl: imageUrl,
                 images: extraImages,
@@ -948,6 +813,16 @@
                     await updateDoc(doc(db, "products", editingProductId), productData);
                     showSuccess('Product bijgewerkt!');
                 } else {
+                    const q = query(
+                        collection(db, "products"),
+                        where("category", "==", category),
+                        orderBy("sortOrder", "asc"),
+                        limit(1)
+                    );
+                    const snap = await getDocs(q);
+                    let minOrder = 0;
+                    snap.forEach(d => { minOrder = d.data().sortOrder ?? 0; });
+                    productData.sortOrder = minOrder - 1;
                     productData.createdAt = new Date().toISOString();
                     await addDoc(collection(db, "products"), productData);
                     showSuccess('Product toegevoegd!');
@@ -964,7 +839,8 @@
             productId.value = '';
             productName.value = '';
             productPrice.value = '';
-            productCategory.value = 'lederen-juwelen';
+            productMainCategory.value = 'lederen-juwelen';
+            productSubCategory.value = 'alle';
             productDescription.value = '';
             productImageUrl.value = '';
             mainImagePreview.style.display = 'none';
@@ -996,27 +872,27 @@
             if (!colorsGrid) return;
             colorsGrid.innerHTML = '';
             colorsGrid.className = 'admin-colors-grid-with-categories';
-            
+
             const categorieIconen = {
                 'Zomerkleuren': 'fa-sun',
                 'Kroko leder': 'fa-dragon',
                 'Overige kleuren': 'fa-palette'
             };
-            
+
             for (const [categorieNaam, kleurenLijst] of Object.entries(KLEUREN_BIBLIOTHEEK_MET_CATEGORIEEN)) {
                 const categorieDiv = document.createElement('div');
                 categorieDiv.className = 'color-category';
-                
+
                 const titleDiv = document.createElement('div');
                 titleDiv.className = 'color-category-title';
                 const icon = categorieIconen[categorieNaam] || 'fa-tag';
                 titleDiv.innerHTML = `<i class="fas ${icon}"></i> ${categorieNaam}`;
                 categorieDiv.appendChild(titleDiv);
-                
+
                 // Grid van links naar rechts (flex wrap in plaats van grid)
                 const gridDiv = document.createElement('div');
                 gridDiv.className = 'color-items-grid';
-                
+
                 kleurenLijst.forEach(kleur => {
                     const isSelected = geselecteerdeKleuren.some(k => k.id === kleur.id);
                     const option = document.createElement('div');
@@ -1028,7 +904,7 @@
                     `;
                     gridDiv.appendChild(option);
                 });
-                
+
                 categorieDiv.appendChild(gridDiv);
                 colorsGrid.appendChild(categorieDiv);
             }
@@ -1091,7 +967,7 @@
                 alert('Fout: ' + e.message);
             }
         });
-        
+
         showAddFormBtn.addEventListener('click', () => {
             resetForm();
             productForm.style.display = 'block';
@@ -1138,8 +1014,10 @@
                 }
             });
         });
+
+        
     </script>
-    
+
     <link rel="preconnect" href="https://upload-widget.cloudinary.com">
     <link rel="dns-prefetch" href="https://upload-widget.cloudinary.com">
 </body>

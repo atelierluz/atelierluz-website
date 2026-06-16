@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js"></script>
     <script src="winkelwagen.js"></script>
+
+
 </head>
 
 <body>
@@ -68,6 +70,18 @@
         </div>
     </div>
 
+    <!-- Filter sidebar — fixed, outside the container, to the left of it -->
+    <aside class="filter-sidebar">
+        <p class="filter-title">Categorie</p>
+        <ul class="filter-list">
+            <li><button class="filter-btn active" data-filter="alle">Alle</button></li>
+            <li><button class="filter-btn" data-filter="armbanden">Armbanden</button></li>
+            <li><button class="filter-btn" data-filter="kettingen">Kettingen</button></li>
+            <li><button class="filter-btn" data-filter="oorbellen">Oorbellen</button></li>
+            <li><button class="filter-btn" data-filter="setjes">Setjes</button></li>
+        </ul>
+    </aside>
+
     <section class="products-section" style="padding-top: 0;">
         <div class="container">
             <div class="title-wrapper">
@@ -96,10 +110,7 @@
                     <h2 id="modalTitle"></h2>
                     <div class="modal-price" id="modalPrice"></div>
                     <div class="modal-description" id="modalDescription"></div>
-
-                    <!-- Kleuren dropdown container -->
                     <div id="modalColorsContainer" style="margin: 15px 0;"></div>
-
                     <button class="modal-add-to-cart" id="modalAddToCart"><i class="fas fa-shopping-bag"></i> In
                         winkelwagen</button>
                 </div>
@@ -154,21 +165,13 @@
         let currentProduct = null;
         let currentImageIndex = 0;
         let geselecteerdeKleur = null;
+        let alleProducten = [];
+        let huidigFilter = 'alle';
 
-        // Categorisering voor kleuren in de dropdown (zonder iconen)
         const KLEUR_CATEGORIEEN = {
-            'Zomerkleuren': [
-                'appelgroen', 'babyroze', 'fuchsia', 'geel', 'kobaltblauw',
-                'lichtgrijs-zomer', 'oranje', 'rood', 'turquoise'
-            ],
-            'Kroko leder': [
-                'camel-kroko', 'jeans-blauw', 'zwart-kroko'
-            ],
-            'Overige kleuren': [
-                'beige', 'donkergrijs', 'grijs-zwart', 'kakigroen', 'koffiebruin',
-                'lichtgrijs-overig', 'middengrijs', 'mintgroen', 'paars',
-                'roestbruin', 'taupe', 'zwart-overig'
-            ]
+            'Zomerkleuren': ['appelgroen', 'babyroze', 'fuchsia', 'geel', 'kobaltblauw', 'lichtgrijs-zomer', 'oranje', 'rood', 'turquoise'],
+            'Kroko leder': ['camel-kroko', 'jeans-blauw', 'zwart-kroko'],
+            'Overige kleuren': ['beige', 'donkergrijs', 'grijs-zwart', 'kakigroen', 'koffiebruin', 'lichtgrijs-overig', 'middengrijs', 'mintgroen', 'paars', 'roestbruin', 'taupe', 'zwart-overig']
         };
 
         function escapeHtml(text) {
@@ -188,15 +191,12 @@
             }
             msgDiv.textContent = message;
             msgDiv.style.opacity = '1';
-            setTimeout(() => {
-                msgDiv.style.opacity = '0';
-            }, duration);
+            setTimeout(() => { msgDiv.style.opacity = '0'; }, duration);
         }
 
         async function laadProducten() {
             const grid = document.getElementById('productenGrid');
             grid.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Producten laden...</div>';
-
             try {
                 const q = query(
                     collection(db, "products"),
@@ -205,55 +205,61 @@
                 );
                 const querySnapshot = await getDocs(q);
 
-                const productCountSpan = document.getElementById('productCount');
-                if (productCountSpan) {
-                    productCountSpan.textContent = querySnapshot.size;
-                }
-
                 if (querySnapshot.empty) {
                     grid.innerHTML = '<div class="loading"><i class="fas fa-box-open"></i> Nog geen producten gevonden in deze categorie.</div>';
                     return;
                 }
 
-                let producten = [];
+                alleProducten = [];
                 querySnapshot.forEach((doc) => {
-                    producten.push({ id: doc.id, ...doc.data() });
+                    alleProducten.push({ id: doc.id, ...doc.data() });
                 });
 
-                renderProducten(producten);
+                filterEnRender();
             } catch (error) {
                 console.error("Fout bij laden producten:", error);
                 grid.innerHTML = '<div class="loading"><i class="fas fa-exclamation-triangle"></i> Er is een fout opgetreden.</div>';
             }
         }
 
+        function filterEnRender() {
+            let gefilterd = alleProducten;
+            if (huidigFilter !== 'alle') {
+                gefilterd = alleProducten.filter(product => {
+                    const sub = (product.subCategory || product.subcategory || '').toLowerCase().trim();
+                    return sub === huidigFilter;
+                });
+            }
+            const productCountSpan = document.getElementById('productCount');
+            if (productCountSpan) productCountSpan.textContent = gefilterd.length;
+            renderProducten(gefilterd);
+        }
+
         function renderProducten(producten) {
             const grid = document.getElementById('productenGrid');
             grid.innerHTML = '';
-
+            if (producten.length === 0) {
+                grid.innerHTML = '<div class="loading"><i class="fas fa-box-open"></i> Geen producten gevonden in deze categorie.</div>';
+                return;
+            }
             producten.forEach(product => {
                 const afbeeldingen = [product.imageUrl, ...(product.images || [])].filter(Boolean);
                 const hoofdAfbeelding = afbeeldingen[0] || 'https://placehold.co/600x600/f5f0eb/8b7d6b?text=Atelier+Luz';
-
                 const productCard = document.createElement('div');
                 productCard.className = 'product-item';
                 productCard.onclick = () => openModal(product, afbeeldingen);
-
                 const hasColorsIcon = (product.colors && product.colors.length > 0)
-                    ? '<span class="product-color-badge">Meerdere kleuren</span>'
-                    : '';
-
+                    ? '<span class="product-color-badge">Meerdere kleuren</span>' : '';
                 productCard.innerHTML = `
-        <div class="product-item-image" style="position: relative;">
-            <img src="${hoofdAfbeelding}" alt="${escapeHtml(product.name)}" loading="lazy">
-            ${hasColorsIcon}
-        </div>
-        <div class="product-item-info">
-            <h3>${escapeHtml(product.name)}</h3>
-            <div class="product-item-price">€ ${product.price ? product.price.toFixed(2) : '0,00'}</div>
-            <button class="product-item-btn" onclick="event.stopPropagation(); openModalFromScratch(${JSON.stringify(product).replace(/"/g, '&quot;')}, ${JSON.stringify(afbeeldingen).replace(/"/g, '&quot;')})">Bekijk details</button>
-        </div>
-    `;
+                    <div class="product-item-image" style="position: relative;">
+                        <img src="${hoofdAfbeelding}" alt="${escapeHtml(product.name)}" loading="lazy">
+                        ${hasColorsIcon}
+                    </div>
+                    <div class="product-item-info">
+                        <h3>${escapeHtml(product.name)}</h3>
+                        <div class="product-item-price">€ ${product.price ? product.price.toFixed(2) : '0,00'}</div>
+                        <button class="product-item-btn" onclick="event.stopPropagation(); openModalFromScratch(${JSON.stringify(product).replace(/"/g, '&quot;')}, ${JSON.stringify(afbeeldingen).replace(/"/g, '&quot;')})">Bekijk details</button>
+                    </div>`;
                 grid.appendChild(productCard);
             });
         }
@@ -277,21 +283,15 @@
             const modalImage = document.getElementById('modalMainImage');
             modalImage.src = productAfbeeldingen[0] || 'https://placehold.co/600x600/f5f0eb/8b7d6b?text=Atelier+Luz';
 
-            if (window.zoomInstance) {
-                window.zoomInstance.detach();
-            }
+            if (window.zoomInstance) window.zoomInstance.detach();
             if (typeof mediumZoom !== 'undefined') {
                 window.zoomInstance = mediumZoom(modalImage, {
-                    background: 'rgba(0, 0, 0, 0.9)',
-                    margin: 24,
-                    scrollOffset: 0,
-                    container: document.body
+                    background: 'rgba(0, 0, 0, 0.9)', margin: 24, scrollOffset: 0, container: document.body
                 });
             }
 
             const thumbnailsContainer = document.getElementById('modalThumbnails');
             thumbnailsContainer.innerHTML = '';
-
             productAfbeeldingen.forEach((img, index) => {
                 if (img) {
                     const thumb = document.createElement('div');
@@ -303,16 +303,10 @@
                         currentImageIndex = index;
                         const newModalImage = document.getElementById('modalMainImage');
                         newModalImage.src = productAfbeeldingen[currentImageIndex];
-
                         if (window.zoomInstance && typeof mediumZoom !== 'undefined') {
                             window.zoomInstance.detach();
-                            window.zoomInstance = mediumZoom(newModalImage, {
-                                background: 'rgba(0, 0, 0, 0.9)',
-                                margin: 24,
-                                scrollOffset: 0
-                            });
+                            window.zoomInstance = mediumZoom(newModalImage, { background: 'rgba(0, 0, 0, 0.9)', margin: 24, scrollOffset: 0 });
                         }
-
                         document.querySelectorAll('.modal-thumb').forEach((t, i) => {
                             t.classList.toggle('active', i === currentImageIndex);
                         });
@@ -321,47 +315,36 @@
                 }
             });
 
-            // Kleuren dropdown met optgroepen (zonder iconen)
             const colorsContainer = document.getElementById('modalColorsContainer');
             colorsContainer.innerHTML = '';
-
             if (product.colors && product.colors.length > 0) {
                 const groupDiv = document.createElement('div');
                 groupDiv.className = 'kleur-select-group';
-
                 const label = document.createElement('label');
                 label.innerHTML = '<i class="fas fa-palette"></i> Kies een kleur';
                 groupDiv.appendChild(label);
-
                 const select = document.createElement('select');
                 select.id = 'kleurSelect';
-
                 const defaultOption = document.createElement('option');
                 defaultOption.value = '';
                 defaultOption.textContent = '-- Selecteer een kleur --';
                 defaultOption.disabled = true;
                 defaultOption.selected = true;
                 select.appendChild(defaultOption);
-
-                // Groepeer kleuren per categorie (zonder iconen)
                 for (const [categorieNaam, ids] of Object.entries(KLEUR_CATEGORIEEN)) {
                     const kleurenInCategorie = product.colors.filter(color => ids.includes(color.id));
-
                     if (kleurenInCategorie.length > 0) {
                         const optgroup = document.createElement('optgroup');
                         optgroup.label = categorieNaam;
-
                         kleurenInCategorie.forEach(color => {
                             const option = document.createElement('option');
                             option.value = color.id;
                             option.textContent = color.name;
                             optgroup.appendChild(option);
                         });
-
                         select.appendChild(optgroup);
                     }
                 }
-
                 select.addEventListener('change', (e) => {
                     const selectedId = e.target.value;
                     if (selectedId) {
@@ -374,14 +357,11 @@
                         geselecteerdeKleur = null;
                     }
                 });
-
                 groupDiv.appendChild(select);
-
                 const note = document.createElement('p');
                 note.className = 'kleur-select-note';
                 note.innerHTML = '<i class="fas fa-info-circle"></i> Selecteer een kleur voordat je het product toevoegt aan de winkelwagen.';
                 groupDiv.appendChild(note);
-
                 colorsContainer.appendChild(groupDiv);
             }
 
@@ -392,11 +372,7 @@
         function closeModal() {
             document.getElementById('productModal').classList.remove('active');
             document.body.style.overflow = '';
-
-            if (window.zoomInstance) {
-                window.zoomInstance.detach();
-                window.zoomInstance = null;
-            }
+            if (window.zoomInstance) { window.zoomInstance.detach(); window.zoomInstance = null; }
         }
 
         function addToCartFromModal() {
@@ -405,17 +381,13 @@
                     showTemporaryMessage('Selecteer eerst een kleur uit de lijst!', 2000);
                     return;
                 }
-
                 if (typeof window.addToCart === 'function') {
                     const productWithColor = {
                         id: currentProduct.id,
                         name: currentProduct.name,
                         price: currentProduct.price,
                         imageUrl: currentProduct.imageUrl || (currentProduct.images && currentProduct.images[0]),
-                        selectedColor: geselecteerdeKleur ? {
-                            name: geselecteerdeKleur.name,
-                            imageUrl: geselecteerdeKleur.imageUrl
-                        } : null
+                        selectedColor: geselecteerdeKleur ? { name: geselecteerdeKleur.name, imageUrl: geselecteerdeKleur.imageUrl } : null
                     };
                     window.addToCart(productWithColor);
                     closeModal();
@@ -432,6 +404,15 @@
         });
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && document.getElementById('productModal').classList.contains('active')) closeModal();
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                huidigFilter = btn.dataset.filter;
+                filterEnRender();
+            });
         });
 
         laadProducten();
