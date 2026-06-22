@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Privacyverklaring – Atelier Luz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;450;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .legal-hero {
+            background: var(--bg-warm);
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 1px solid rgba(139, 105, 70, 0.12);
+        }
+        .legal-hero .eyebrow {
+            font-size: 0.8rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--taupe);
+            margin-bottom: 12px;
+            display: block;
+        }
+        .legal-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 500;
+            color: var(--deep-brown);
+            margin-bottom: 14px;
+        }
+        .legal-hero p {
+            color: var(--taupe);
+            font-size: 0.9rem;
+        }
+        .legal-body {
+            padding: 60px 0 80px;
+        }
+        .legal-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .legal-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: var(--deep-brown);
+            margin: 44px 0 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(139, 105, 70, 0.18);
+        }
+        .legal-content h2:first-child {
+            margin-top: 0;
+        }
+        .legal-content p {
+            color: var(--charcoal);
+            line-height: 1.75;
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+        }
+        .legal-content ul {
+            margin: 10px 0 16px 20px;
+            color: var(--charcoal);
+            font-size: 0.95rem;
+            line-height: 1.75;
+        }
+        .legal-content ul li {
+            margin-bottom: 6px;
+        }
+        .legal-content a {
+            color: var(--burnt-brown);
+            text-decoration: none;
+            border-bottom: 1px solid var(--sand);
+            transition: border-color 0.2s;
+        }
+        .legal-content a:hover {
+            border-bottom-color: var(--burnt-brown);
+        }
+        .legal-note {
+            background: var(--cream);
+            border-left: 3px solid var(--burnt-brown);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        .legal-note p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+        }
+        .rights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .right-card {
+            background: var(--cream);
+            border-radius: 12px;
+            padding: 18px 20px;
+            border: 1px solid rgba(139, 105, 70, 0.12);
+        }
+        .right-card strong {
+            display: block;
+            color: var(--deep-brown);
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+        .right-card p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: var(--taupe);
+        }
+        @media (max-width: 600px) {
+            .rights-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo-link" style="text-decoration: none;">
+                <div class="logo">
+                    <h1>Atelier Luz</h1>
+                    <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="active-nav-link">Home</a>
+
+                <div class="nav-item">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <a href="collectie.html" class="dropdown-trigger-link"
+                            style="text-decoration: none;">Collectie</a>
+                        <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
+                        <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
+                        <a href="collectie-lederwerken.html">Lederwerken</a>
+                        <a href="collectie-juwelen.html">Zomer Juwelen</a>
+                    </div>
+                </div>
+
+                <a href="het-atelier.html">Het Atelier</a>
+                <a href="aanvraag.html">Op Aanvraag</a>
+                <a href="contact.html">Contact</a>
+                <a href="winkelwagen.html" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    Winkelwagen
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+            </div>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="legal-hero">
+        <div class="container">
+            <span class="eyebrow">Atelier Luz</span>
+            <h1>Privacyverklaring</h1>
+            <p>Laatste update: juni 2026 · van kracht conform de AVG / GDPR</p>
+        </div>
+    </section>
+
+    <!-- INHOUD -->
+    <main class="legal-body">
+        <div class="legal-content">
+
+            <h2>1. Verwerkingsverantwoordelijke</h2>
+            <p>
+                <strong>Atelier Luz</strong> (Yolanda Smeets) is verantwoordelijk voor de verwerking van jouw persoonsgegevens zoals beschreven in deze verklaring.
+            </p>
+            <p>
+                Stiemerbeekstraat 25, 3600 Genk, België<br>
+                <a href="mailto:info.atelierluz@gmail.com">info.atelierluz@gmail.com</a> · <a href="tel:+32468209909">+32 468 20 99 09</a>
+            </p>
+
+            <h2>2. Welke gegevens verzamelen we?</h2>
+            <p>Atelier Luz verzamelt enkel gegevens die noodzakelijk zijn voor de dienstverlening:</p>
+            <ul>
+                <li><strong>Bestelgegevens:</strong> naam, leveringsadres, e-mailadres, telefoonnummer</li>
+                <li><strong>Betalingsgegevens:</strong> verwerkt via onze betaaldienstverlener — Atelier Luz slaat geen volledige betalingsgegevens op</li>
+                <li><strong>Contactgegevens:</strong> naam en e-mailadres bij gebruik van het contactformulier</li>
+                <li><strong>Technische gegevens:</strong> IP-adres en browserinformatie via cookies (zie ons <a href="cookiebeleid.html">cookiebeleid</a>)</li>
+            </ul>
+
+            <h2>3. Waarom verwerken we jouw gegevens?</h2>
+            <p>Jouw gegevens worden uitsluitend gebruikt voor de volgende doeleinden:</p>
+            <ul>
+                <li>Uitvoering van jouw bestelling (levering, facturatie, klantenservice)</li>
+                <li>Communicatie over jouw bestelling of aanvraag</li>
+                <li>Nakoming van wettelijke verplichtingen (bv. boekhoudkundige bewaarplicht)</li>
+                <li>Verbetering van de website via geanonimiseerde statistieken</li>
+            </ul>
+            <div class="legal-note">
+                <p>Atelier Luz verkoopt jouw gegevens nooit aan derden en gebruikt ze niet voor commerciële doeleinden zonder jouw toestemming.</p>
+            </div>
+
+            <h2>4. Rechtsgrond voor verwerking</h2>
+            <p>
+                De verwerking van persoonsgegevens steunt op de volgende rechtsgrondslagen (artikel 6 AVG):
+            </p>
+            <ul>
+                <li><strong>Uitvoering van een overeenkomst</strong> — voor de afhandeling van bestellingen</li>
+                <li><strong>Wettelijke verplichting</strong> — voor boekhoudkundige en fiscale bewaarplicht</li>
+                <li><strong>Gerechtvaardigd belang</strong> — voor geanonimiseerde websitestatistieken</li>
+                <li><strong>Toestemming</strong> — voor optionele nieuwsbrief of marketingcommunicatie</li>
+            </ul>
+
+            <h2>5. Hoe lang bewaren we jouw gegevens?</h2>
+            <p>
+                Bestelgegevens worden bewaard zolang nodig voor de uitvoering van de overeenkomst en vervolgens zo lang de wettelijke bewaarplichten dit vereisen (fiscale documenten: 7 jaar). Contactberichten worden na 12 maanden verwijderd tenzij er een lopende kwestie is.
+            </p>
+
+            <h2>6. Delen met derden</h2>
+            <p>Atelier Luz deelt jouw gegevens enkel met partijen die strikt noodzakelijk zijn voor de dienstverlening:</p>
+            <ul>
+                <li><strong>Verzendpartners</strong> (bv. bpost, DPD) — voor de levering van bestellingen</li>
+                <li><strong>Betaaldienstverleners</strong> — voor veilige betalingsverwerking</li>
+            </ul>
+            <p>
+                Al deze partijen verwerken jouw gegevens uitsluitend op instructie van Atelier Luz en in overeenstemming met de AVG.
+            </p>
+
+            <h2>7. Jouw rechten</h2>
+            <p>Als betrokkene beschik je over de volgende rechten onder de AVG:</p>
+            <div class="rights-grid">
+                <div class="right-card">
+                    <strong>Recht op inzage</strong>
+                    <p>Je mag weten welke gegevens we over jou bewaren.</p>
+                </div>
+                <div class="right-card">
+                    <strong>Recht op correctie</strong>
+                    <p>Onjuiste gegevens laten we meteen corrigeren.</p>
+                </div>
+                <div class="right-card">
+                    <strong>Recht op verwijdering</strong>
+                    <p>Je kunt vragen jouw gegevens te wissen ('recht op vergetelheid').</p>
+                </div>
+                <div class="right-card">
+                    <strong>Recht op beperking</strong>
+                    <p>Je kunt de verwerking van jouw gegevens laten beperken.</p>
+                </div>
+                <div class="right-card">
+                    <strong>Recht op overdraagbaarheid</strong>
+                    <p>Je kunt jouw gegevens opvragen in een leesbaar formaat.</p>
+                </div>
+                <div class="right-card">
+                    <strong>Recht van bezwaar</strong>
+                    <p>Je kunt bezwaar maken tegen bepaalde verwerkingen.</p>
+                </div>
+            </div>
+            <p>
+                Stuur een e-mail naar <a href="mailto:info.atelierluz@gmail.com">info.atelierluz@gmail.com</a> om een recht uit te oefenen. We reageren binnen 30 dagen.
+            </p>
+
+            <h2>8. Klacht indienen</h2>
+            <p>
+                Ben je niet tevreden over hoe Atelier Luz met jouw gegevens omgaat? Je kunt een klacht indienen bij de Belgische toezichthouder:
+            </p>
+            <p>
+                <strong>Gegevensbeschermingsautoriteit (GBA)</strong><br>
+                Drukpersstraat 35, 1000 Brussel<br>
+                <a href="https://www.gegevensbeschermingsautoriteit.be" target="_blank" rel="noopener">gegevensbeschermingsautoriteit.be</a>
+            </p>
+
+            <h2>9. Beveiliging</h2>
+            <p>
+                Atelier Luz neemt passende technische en organisatorische maatregelen om jouw persoonsgegevens te beschermen tegen ongeoorloofde toegang, verlies of misbruik. De website maakt gebruik van een beveiligde HTTPS-verbinding.
+            </p>
+
+            <h2>10. Wijzigingen</h2>
+            <p>
+                Deze privacyverklaring kan worden bijgewerkt. De meest recente versie is altijd beschikbaar op deze pagina. Bij ingrijpende wijzigingen word je hierover geïnformeerd via e-mail (indien van toepassing).
+            </p>
+
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Atelier Luz</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <a
+                            href="https://maps.google.com/?q=Stiemerbeekstraat+25+3600+Genk" target="_blank"
+                            style="color: #d4c4ae; text-decoration: none;">Stiemerbeekstraat 25, 3600 Genk</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info.atelierluz@gmail.com"
+                            style="color: #d4c4ae; text-decoration: none;">info.atelierluz@gmail.com</a></p>
+                    <p><i class="fas fa-phone-alt"></i> <a href="tel:+32468209909"
+                            style="color: #d4c4ae; text-decoration: none;">+32 468 20 99 09</a></p>
+                    <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/_atelier_luz_/"
+                            target="_blank" style="color: #d4c4ae;">@_atelier_luz_</a></p>
+                </div>
+
+                <div class="footer-links">
+                    <div>
+                        <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
+                        <p><a href="contact.html">Contact</a></p>
+                        <p><a href="algemene-voorwaarden.html">Algemene voorwaarden</a></p>
+                        <p><a href="cookiebeleid.html">Cookiebeleid</a></p>
+                        <p><a href="privacyverklaring.html">Privacyverklaring</a></p>
+                        <p><a href="retourbeleid.html">Retourbeleid</a></p>
+                        <p><a href="wettelijke-vermeldingen.html">Wettelijke vermeldingen</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Atelier Luz – Ontworpen en met de hand gemaakt</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const navLinks = document.querySelector(".nav-links");
+    const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
+
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener("click", () => {
+            hamburgerBtn.classList.toggle("open");
+            navLinks.classList.toggle("open");
+        });
+    }
+
+    dropdownArrows.forEach(arrow => {
+        arrow.addEventListener("click", (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
+                if (menu) {
+                    menu.classList.toggle("open");
+                    arrow.style.transform = menu.classList.contains("open") ? "rotate(180deg)" : "";
+                }
+            }
+        });
+    });
+
+    if (navLinks) {
+        navLinks.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                if (window.innerWidth <= 768) {
+                    hamburgerBtn?.classList.remove("open");
+                    navLinks.classList.remove("open");
+                }
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

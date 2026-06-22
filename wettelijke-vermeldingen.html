@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Wettelijke Vermeldingen – Atelier Luz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;450;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .legal-hero {
+            background: var(--bg-warm);
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 1px solid rgba(139, 105, 70, 0.12);
+        }
+
+        .legal-hero .eyebrow {
+            font-size: 0.8rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--taupe);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .legal-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 500;
+            color: var(--deep-brown);
+            margin-bottom: 14px;
+        }
+
+        .legal-hero p {
+            color: var(--taupe);
+            font-size: 0.9rem;
+        }
+
+        .legal-body {
+            padding: 60px 0 80px;
+        }
+
+        .legal-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .legal-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: var(--deep-brown);
+            margin: 44px 0 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(139, 105, 70, 0.18);
+        }
+
+        .legal-content h2:first-child {
+            margin-top: 0;
+        }
+
+        .legal-content p {
+            color: var(--charcoal);
+            line-height: 1.75;
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+        }
+
+        .legal-content a {
+            color: var(--burnt-brown);
+            text-decoration: none;
+            border-bottom: 1px solid var(--sand);
+            transition: border-color 0.2s;
+        }
+
+        .legal-content a:hover {
+            border-bottom-color: var(--burnt-brown);
+        }
+
+        .info-card {
+            background: var(--white);
+            border: 1px solid rgba(139, 105, 70, 0.15);
+            border-radius: 16px;
+            padding: 32px 36px;
+            box-shadow: var(--shadow);
+            margin: 8px 0 28px;
+        }
+
+        .info-card .info-row {
+            display: flex;
+            gap: 16px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(139, 105, 70, 0.08);
+            align-items: baseline;
+        }
+
+        .info-card .info-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .info-card .info-row:first-child {
+            padding-top: 0;
+        }
+
+        .info-card .info-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--taupe);
+            min-width: 160px;
+        }
+
+        .info-card .info-value {
+            color: var(--charcoal);
+            font-size: 0.95rem;
+        }
+
+        .legal-note {
+            background: var(--cream);
+            border-left: 3px solid var(--burnt-brown);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+
+        .legal-note p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+        }
+
+        .legal-placeholder {
+            background: rgba(139, 105, 70, 0.08);
+            border: 1px dashed var(--taupe);
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 0.85rem;
+            color: var(--burnt-brown);
+            font-style: italic;
+        }
+
+        @media (max-width: 560px) {
+            .info-card .info-row {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .info-card {
+                padding: 22px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo-link" style="text-decoration: none;">
+                <div class="logo">
+                    <h1>Atelier Luz</h1>
+                    <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="active-nav-link">Home</a>
+
+                <div class="nav-item">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <a href="collectie.html" class="dropdown-trigger-link"
+                            style="text-decoration: none;">Collectie</a>
+                        <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
+                        <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
+                        <a href="collectie-lederwerken.html">Lederwerken</a>
+                        <a href="collectie-juwelen.html">Zomer Juwelen</a>
+                    </div>
+                </div>
+
+                <a href="het-atelier.html">Het Atelier</a>
+                <a href="aanvraag.html">Op Aanvraag</a>
+                <a href="contact.html">Contact</a>
+                <a href="winkelwagen.html" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    Winkelwagen
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+            </div>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="legal-hero">
+        <div class="container">
+            <span class="eyebrow">Atelier Luz</span>
+            <h1>Wettelijke Vermeldingen</h1>
+            <p>Verplichte informatie conform de Wet Informatiemaatschappij (11 maart 2003)</p>
+        </div>
+    </section>
+
+    <!-- INHOUD -->
+    <main class="legal-body">
+        <div class="legal-content">
+
+            <h2>Identificatie van de onderneming</h2>
+
+            <div class="info-card">
+                <div class="info-row">
+                    <span class="info-label">Handelsnaam</span>
+                    <span class="info-value">Atelier Luz</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Eigenaar</span>
+                    <span class="info-value">Yolanda Smeets</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Adres</span>
+                    <span class="info-value">Stiemerbeekstraat 25, 3600 Genk, België</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">E-mail</span>
+                    <span class="info-value"><a
+                            href="mailto:info.atelierluz@gmail.com">info.atelierluz@gmail.com</a></span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Telefoon</span>
+                    <span class="info-value"><a href="tel:+32468209909">+32 468 20 99 09</a></span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">KBO-nummer</span>
+                    <span class="info-value"><span>0637465687</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">BTW-nummer</span>
+                    <span class="info-value"><span>BE0637465687</span>
+                </div>
+            </div>
+
+            <h2>Verantwoordelijke voor de inhoud</h2>
+            <p>
+                De inhoud van deze website valt onder de eindverantwoordelijkheid van Yolanda Smeets, eigenaar van
+                Atelier Luz. Bij vragen over de inhoud kun je contact opnemen via <a
+                    href="mailto:info.atelierluz@gmail.com">info.atelierluz@gmail.com</a>.
+            </p>
+
+            <h2>Hosting</h2>
+            <p>
+                Deze website wordt gehost door:<br>
+                <strong>Netlify, Inc.</strong><br>
+                512 2nd Street, Suite 200, San Francisco, CA 94107, Verenigde Staten<br>
+                <a href="https://www.netlify.com" target="_blank" rel="noopener">netlify.com</a>
+            </p>
+
+            <h2>Intellectuele eigendom</h2>
+            <p>
+                Alle foto's, teksten, ontwerpen en andere inhoud op atelierluz.be zijn eigendom van Atelier Luz of
+                worden gebruikt met toestemming van de rechthebbenden. Reproductie of verspreiding zonder schriftelijke
+                toestemming is niet toegestaan.
+            </p>
+
+            <h2>Aansprakelijkheid</h2>
+            <p>
+                Atelier Luz streeft naar correcte en actuele informatie op deze website. Atelier Luz is echter niet
+                aansprakelijk voor eventuele onjuistheden, onvolledigheden of verouderde informatie, noch voor schade
+                die voortvloeit uit het gebruik van de website.
+            </p>
+            <p>
+                Links naar externe websites worden ter informatie aangeboden. Atelier Luz is niet verantwoordelijk voor
+                de inhoud van websites van derden.
+            </p>
+
+            <h2>Geschillenbeslechting (ODR)</h2>
+            <p>
+                Als consument heb je de mogelijkheid om een geschil buitengerechtelijk te beslechten. De Europese
+                Commissie biedt hiervoor een online platform aan:
+            </p>
+            <p>
+                <a href="https://ec.europa.eu/consumers/odr" target="_blank"
+                    rel="noopener">ec.europa.eu/consumers/odr</a>
+            </p>
+            <p>
+                Je kunt ook terecht bij de Consumentenombudsdienst: <a href="https://www.consumentenombudsdienst.be"
+                    target="_blank" rel="noopener">consumentenombudsdienst.be</a>
+            </p>
+
+            <h2>Toepasselijk recht</h2>
+            <p>
+                Op het gebruik van deze website en op eventuele geschillen is het Belgisch recht van toepassing.
+                Bevoegde rechtbanken zijn die van het gerechtelijk arrondissement Hasselt of Antwerpen.
+            </p>
+
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Atelier Luz</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <a
+                            href="https://maps.google.com/?q=Stiemerbeekstraat+25+3600+Genk" target="_blank"
+                            style="color: #d4c4ae; text-decoration: none;">Stiemerbeekstraat 25, 3600 Genk</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info.atelierluz@gmail.com"
+                            style="color: #d4c4ae; text-decoration: none;">info.atelierluz@gmail.com</a></p>
+                    <p><i class="fas fa-phone-alt"></i> <a href="tel:+32468209909"
+                            style="color: #d4c4ae; text-decoration: none;">+32 468 20 99 09</a></p>
+                    <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/_atelier_luz_/"
+                            target="_blank" style="color: #d4c4ae;">@_atelier_luz_</a></p>
+                </div>
+
+                <div class="footer-links">
+                    <div>
+                        <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
+                        <p><a href="contact.html">Contact</a></p>
+                        <p><a href="algemene-voorwaarden.html">Algemene voorwaarden</a></p>
+                        <p><a href="cookiebeleid.html">Cookiebeleid</a></p>
+                        <p><a href="privacyverklaring.html">Privacyverklaring</a></p>
+                        <p><a href="retourbeleid.html">Retourbeleid</a></p>
+                        <p><a href="wettelijke-vermeldingen.html">Wettelijke vermeldingen</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Atelier Luz – Ontworpen en met de hand gemaakt</p>
+        </div>
+    </footer>
+
+    <script>
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const navLinks = document.querySelector(".nav-links");
+    const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
+
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener("click", () => {
+            hamburgerBtn.classList.toggle("open");
+            navLinks.classList.toggle("open");
+        });
+    }
+
+    dropdownArrows.forEach(arrow => {
+        arrow.addEventListener("click", (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
+                if (menu) {
+                    menu.classList.toggle("open");
+                    arrow.style.transform = menu.classList.contains("open") ? "rotate(180deg)" : "";
+                }
+            }
+        });
+    });
+
+    if (navLinks) {
+        navLinks.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                if (window.innerWidth <= 768) {
+                    hamburgerBtn?.classList.remove("open");
+                    navLinks.classList.remove("open");
+                }
+            });
+        });
+    }
+</script>
+
+</body>
+
+</html>

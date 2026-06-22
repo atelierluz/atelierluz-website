@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Algemene Voorwaarden – Atelier Luz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;450;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .legal-hero {
+            background: var(--bg-warm);
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 1px solid rgba(139, 105, 70, 0.12);
+        }
+        .legal-hero .eyebrow {
+            font-size: 0.8rem;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--taupe);
+            margin-bottom: 12px;
+            display: block;
+        }
+        .legal-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 500;
+            color: var(--deep-brown);
+            margin-bottom: 14px;
+        }
+        .legal-hero p {
+            color: var(--taupe);
+            font-size: 0.9rem;
+        }
+        .legal-body {
+            padding: 60px 0 80px;
+        }
+        .legal-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .legal-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: var(--deep-brown);
+            margin: 44px 0 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(139, 105, 70, 0.18);
+        }
+        .legal-content h2:first-child {
+            margin-top: 0;
+        }
+        .legal-content p {
+            color: var(--charcoal);
+            line-height: 1.75;
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+        }
+        .legal-content ul {
+            margin: 10px 0 16px 20px;
+            color: var(--charcoal);
+            font-size: 0.95rem;
+            line-height: 1.75;
+        }
+        .legal-content ul li {
+            margin-bottom: 6px;
+        }
+        .legal-content a {
+            color: var(--burnt-brown);
+            text-decoration: none;
+            border-bottom: 1px solid var(--sand);
+            transition: border-color 0.2s;
+        }
+        .legal-content a:hover {
+            border-bottom-color: var(--burnt-brown);
+        }
+        .legal-note {
+            background: var(--cream);
+            border-left: 3px solid var(--burnt-brown);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        .legal-note p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+        }
+        .legal-placeholder {
+            background: rgba(139, 105, 70, 0.08);
+            border: 1px dashed var(--taupe);
+            border-radius: 8px;
+            padding: 10px 14px;
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--burnt-brown);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo-link" style="text-decoration: none;">
+                <div class="logo">
+                    <h1>Atelier Luz</h1>
+                    <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="active-nav-link">Home</a>
+
+                <div class="nav-item">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <a href="collectie.html" class="dropdown-trigger-link"
+                            style="text-decoration: none;">Collectie</a>
+                        <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
+                        <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
+                        <a href="collectie-lederwerken.html">Lederwerken</a>
+                        <a href="collectie-juwelen.html">Zomer Juwelen</a>
+                    </div>
+                </div>
+
+                <a href="het-atelier.html">Het Atelier</a>
+                <a href="aanvraag.html">Op Aanvraag</a>
+                <a href="contact.html">Contact</a>
+                <a href="winkelwagen.html" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    Winkelwagen
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+            </div>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="legal-hero">
+        <div class="container">
+            <span class="eyebrow">Atelier Luz</span>
+            <h1>Algemene Voorwaarden</h1>
+            <p>Laatste update: juni 2026</p>
+        </div>
+    </section>
+
+    <!-- INHOUD -->
+    <main class="legal-body">
+        <div class="legal-content">
+
+            <h2>1. Identiteit van de verkoper</h2>
+            <p>
+                <strong>Atelier Luz</strong><br>
+                Yolanda Smeets<br>
+                Stiemerbeekstraat 25, 3600 Genk, België<br>
+                E-mail: <a href="mailto:info.atelierluz@gmail.com">info.atelierluz@gmail.com</a><br>
+                Telefoon: <a href="tel:+32468209909">+32 468 20 99 09</a><br>
+                KBO-nummer: 0637465687<br>
+                BTW-nummer: BE0637465687
+            </p>
+            
+
+            <h2>2. Toepassingsgebied</h2>
+            <p>
+                Deze algemene voorwaarden zijn van toepassing op alle bestellingen die worden geplaatst via de website <a href="https://atelierluz.be">atelierluz.be</a>. Door een bestelling te plaatsen, aanvaardt de klant deze voorwaarden volledig. Atelier Luz behoudt het recht deze voorwaarden te wijzigen; de versie die geldt op het moment van bestelling is van toepassing.
+            </p>
+
+            <h2>3. Aanbod en prijzen</h2>
+            <p>
+                Alle producten worden met zorg beschreven en gefotografeerd. Omdat elk stuk handgemaakt is, kunnen kleine afwijkingen in kleur of textuur voorkomen — dit is inherent aan het ambacht en geen gebrek. Alle vermelde prijzen zijn inclusief BTW. Verzendkosten worden apart vermeld voor de afronding van de bestelling.
+            </p>
+            <div class="legal-note">
+                <p>Gratis verzending wordt aangeboden bij bestellingen vanaf €100.</p>
+            </div>
+
+            <h2>4. Bestelproces</h2>
+            <p>Een bestelling verloopt als volgt:</p>
+            <ul>
+                <li>Voeg het gewenste product toe aan de winkelwagen.</li>
+                <li>Vul je leveringsgegevens in en kies een betaalmethode.</li>
+                <li>Bevestig je bestelling — je ontvangt een bevestigingsmail.</li>
+                <li>Na ontvangst van betaling wordt je bestelling verwerkt en verzonden.</li>
+            </ul>
+            <p>
+                Een overeenkomst komt tot stand op het moment dat Atelier Luz de bestelling per e-mail bevestigt.
+            </p>
+
+            <h2>5. Betaling</h2>
+            <p>
+                Betaling dient te gebeuren bij het plaatsen van de bestelling via de beschikbare betaalmethoden op de website. Atelier Luz behoudt het eigendomsrecht op de producten totdat de volledige betaling ontvangen is.
+            </p>
+
+            <h2>6. Levering</h2>
+            <p>
+                Atelier Luz streeft ernaar bestellingen binnen 3 tot 7 werkdagen te verzenden, tenzij anders vermeld. Bij producten op aanvraag wordt een afzonderlijke leveringstermijn afgesproken. Atelier Luz is niet aansprakelijk voor vertragingen door de vervoerder.
+            </p>
+            <p>
+                Levering vindt plaats op het door de klant opgegeven adres. Controleer je leveringsadres zorgvuldig voor het afronden van de bestelling.
+            </p>
+
+            <h2>7. Herroepingsrecht</h2>
+            <p>
+                Als consument heb je het recht om je bestelling zonder opgave van reden te annuleren binnen <strong>14 kalenderdagen</strong> na ontvangst van het product (artikel VI.47 Wetboek Economisch Recht).
+            </p>
+            <p>
+                Om het herroepingsrecht uit te oefenen, stuur je een duidelijke melding per e-mail naar <a href="mailto:info.atelierluz@gmail.com">info.atelierluz@gmail.com</a> vóór het verstrijken van de termijn. Het product dient in originele staat en verpakking teruggestuurd te worden. De retourkosten zijn voor rekening van de klant.
+            </p>
+            <p>
+                Na ontvangst en controle van het retourpakket wordt het aankoopbedrag terugbetaald via de oorspronkelijke betaalmethode, uiterlijk binnen 14 dagen.
+            </p>
+            <div class="legal-note">
+                <p><strong>Uitzondering:</strong> Op maat gemaakte of gepersonaliseerde producten vallen niet onder het herroepingsrecht (artikel VI.53, 3° WER).</p>
+            </div>
+
+            <h2>8. Garantie en conformiteit</h2>
+            <p>
+                Alle producten vallen onder de wettelijke garantie van 2 jaar (Wet van 1 september 2004 betreffende de bescherming van de consumenten bij verkoop van consumptiegoederen). Vertoont een product een gebrek binnen die termijn, neem dan contact op via <a href="mailto:info.atelierluz@gmail.com">info.atelierluz@gmail.com</a>.
+            </p>
+            <p>
+                Normale slijtage door gebruik valt niet onder de garantie. Handgemaakte producten kennen een eigen karakter; kleine variaties zijn geen defect.
+            </p>
+
+            <h2>9. Klachten</h2>
+            <p>
+                Bij vragen of klachten kun je steeds terecht via <a href="mailto:info.atelierluz@gmail.com">info.atelierluz@gmail.com</a> of telefonisch op <a href="tel:+32468209909">+32 468 20 99 09</a>. Atelier Luz streeft ernaar klachten binnen 5 werkdagen te beantwoorden.
+            </p>
+            <p>
+                Indien een minnelijke schikking niet mogelijk is, kun je als consument terecht bij de bevoegde rechtbanken van de gerechtelijke arrondissementen Hasselt of Antwerpen, of gebruik maken van het Europees platform voor onlinegeschillenbeslechting: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">ec.europa.eu/consumers/odr</a>.
+            </p>
+
+            <h2>10. Toepasselijk recht</h2>
+            <p>
+                Op alle overeenkomsten gesloten via atelierluz.be is het Belgisch recht van toepassing.
+            </p>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Atelier Luz</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <a
+                            href="https://maps.google.com/?q=Stiemerbeekstraat+25+3600+Genk" target="_blank"
+                            style="color: #d4c4ae; text-decoration: none;">Stiemerbeekstraat 25, 3600 Genk</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info.atelierluz@gmail.com"
+                            style="color: #d4c4ae; text-decoration: none;">info.atelierluz@gmail.com</a></p>
+                    <p><i class="fas fa-phone-alt"></i> <a href="tel:+32468209909"
+                            style="color: #d4c4ae; text-decoration: none;">+32 468 20 99 09</a></p>
+                    <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/_atelier_luz_/"
+                            target="_blank" style="color: #d4c4ae;">@_atelier_luz_</a></p>
+                </div>
+
+                <div class="footer-links">
+                    <div>
+                        <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
+                        <p><a href="contact.html">Contact</a></p>
+                        <p><a href="algemene-voorwaarden.html">Algemene voorwaarden</a></p>
+                        <p><a href="cookiebeleid.html">Cookiebeleid</a></p>
+                        <p><a href="privacyverklaring.html">Privacyverklaring</a></p>
+                        <p><a href="retourbeleid.html">Retourbeleid</a></p>
+                        <p><a href="wettelijke-vermeldingen.html">Wettelijke vermeldingen</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Atelier Luz – Ontworpen en met de hand gemaakt</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const navLinks = document.querySelector(".nav-links");
+    const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
+
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener("click", () => {
+            hamburgerBtn.classList.toggle("open");
+            navLinks.classList.toggle("open");
+        });
+    }
+
+    dropdownArrows.forEach(arrow => {
+        arrow.addEventListener("click", (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
+                if (menu) {
+                    menu.classList.toggle("open");
+                    arrow.style.transform = menu.classList.contains("open") ? "rotate(180deg)" : "";
+                }
+            }
+        });
+    });
+
+    if (navLinks) {
+        navLinks.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", () => {
+                if (window.innerWidth <= 768) {
+                    hamburgerBtn?.classList.remove("open");
+                    navLinks.classList.remove("open");
+                }
+            });
+        });
+    }
+</script>
+
+</body>
+</html>

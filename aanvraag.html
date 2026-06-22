@@ -92,7 +92,7 @@
 
                     <!-- KNOP DIE LEIDT NAAR CONTACT.HTML -->
                     <div class="aanvraag-btn-wrapper">
-                        <a href="contact.html" class="aanvraag-btn">
+                        <a href="contact.html#contactFormTitle" class="aanvraag-btn">
                             <i class="fas fa-pen-ruler"></i> Vraag nu aan
                         </a>
                     </div>
@@ -163,6 +163,11 @@
                     <div>
                         <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
                         <p><a href="contact.html">Contact</a></p>
+                        <p><a href="algemene-voorwaarden.html">Algemene voorwaarden</a></p>
+                        <p><a href="cookiebeleid.html">Cookiebeleid</a></p>
+                        <p><a href="privacyverklaring.html">Privacyverklaring</a></p>
+                        <p><a href="retourbeleid.html">Retourbeleid</a></p>
+                        <p><a href="wettelijke-vermeldingen.html">Wettelijke vermeldingen</a></p>
                     </div>
                 </div>
             </div>
@@ -283,6 +288,43 @@
         document.addEventListener('DOMContentLoaded', updateCartCount);
         window.addEventListener('storage', updateCartCount);
     </script>
+
+    <div id="cookie-banner" style="
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 1px solid #e5e5e5;
+  padding: 14px 24px;
+  align-items: center;
+  gap: 16px;
+  z-index: 99999;
+  font-family: inherit;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.06);
+">
+  <p style="flex: 1; margin: 0; font-size: 13px; color: #555; line-height: 1.5;">
+    Wij gebruiken functionele cookies om de website correct te laten werken 
+    (o.a. voor betalingen via Stripe en het laden van afbeeldingen). 
+    Meer info vind je in ons <a href="/cookiebeleid.html" style="color: #2C2C2A; text-decoration: underline;">cookiebeleid</a>.
+  </p>
+  <div style="display: flex; gap: 8px; flex-shrink: 0;">
+    <button onclick="cookieKeuze('weigeren')" style="background: transparent; color: #666; border: 1px solid #ccc; border-radius: 6px; padding: 8px 16px; font-size: 13px; cursor: pointer; font-family: inherit;">Weigeren</button>
+    <button onclick="cookieKeuze('accepteren')" style="background: #2C2C2A; color: #F1EFE8; border: none; border-radius: 6px; padding: 8px 16px; font-size: 13px; cursor: pointer; font-family: inherit;">Accepteren</button>
+  </div>
+</div>
+
+<script>
+  if (localStorage.getItem('cookie_keuze')) {
+    document.getElementById('cookie-banner').style.display = 'none';
+  }
+
+  function cookieKeuze(keuze) {
+    localStorage.setItem('cookie_keuze', keuze);
+    document.getElementById('cookie-banner').style.display = 'none';
+  }
+</script>
 </body>
 
 </html>

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Cookiebeleid – Atelier Luz</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="winkelwagen.js"></script>
+
+    <style>
+        .legal-hero {
+            background: var(--bg-warm);
+            padding: 60px 0 40px;
+            text-align: center;
+            border-bottom: 1px solid rgba(139, 105, 70, 0.12);
+        }
+
+        .legal-hero .subtitle {
+            color: var(--taupe);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .legal-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 500;
+            color: var(--deep-brown);
+        }
+
+        .legal-hero p {
+            color: var(--taupe);
+            font-size: 0.9rem;
+            margin-top: 12px;
+        }
+
+        .legal-content {
+            max-width: 780px;
+            margin: 60px auto 80px;
+            padding: 0 32px;
+        }
+
+        .legal-section {
+            margin-bottom: 40px;
+        }
+
+        .legal-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--deep-brown);
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(139, 105, 70, 0.15);
+        }
+
+        .legal-section p {
+            color: var(--charcoal);
+            line-height: 1.8;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .cookie-table-wrapper {
+            margin: 16px 0;
+            border-radius: 8px;
+            border: 1px solid rgba(139, 105, 70, 0.15);
+            overflow: hidden;
+        }
+
+        .cookie-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .cookie-table th {
+            background: var(--bg-warm);
+            color: var(--deep-brown);
+            font-weight: 500;
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 2px solid rgba(139, 105, 70, 0.2);
+        }
+
+        .cookie-table td {
+            padding: 12px 16px;
+            color: var(--charcoal);
+            border-bottom: 1px solid rgba(139, 105, 70, 0.1);
+            vertical-align: top;
+        }
+
+        .cookie-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .cookie-table tr:hover td {
+            background: var(--cream);
+        }
+
+        @media (max-width: 600px) {
+            .cookie-table thead {
+                display: none;
+            }
+            .cookie-table,
+            .cookie-table tbody,
+            .cookie-table tr,
+            .cookie-table td {
+                display: block;
+                width: 100%;
+            }
+            .cookie-table tr {
+                padding: 14px 16px;
+                border-bottom: 1px solid rgba(139, 105, 70, 0.15);
+            }
+            .cookie-table tr:last-child {
+                border-bottom: none;
+            }
+            .cookie-table td {
+                padding: 2px 0;
+                border-bottom: none;
+                font-size: 0.88rem;
+            }
+            .cookie-table td:nth-child(2) {
+                color: var(--taupe);
+                font-size: 0.82rem;
+            }
+            .cookie-table td:nth-child(3) {
+                margin-top: 4px;
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 500;
+        }
+
+        .badge-nodig {
+            background: rgba(139, 105, 70, 0.12);
+            color: var(--burnt-brown);
+        }
+
+        .legal-section a {
+            color: var(--burnt-brown);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .legal-section a:hover {
+            color: var(--deep-brown);
+        }
+
+        .last-updated {
+            color: var(--taupe);
+            font-size: 0.85rem;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(139, 105, 70, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .legal-hero {
+                padding: 40px 20px 30px;
+            }
+            .legal-hero h1 {
+                font-size: 1.8rem;
+            }
+            .legal-content {
+                margin: 36px auto 60px;
+                padding: 0 20px;
+            }
+            .legal-section h2 {
+                font-size: 1.15rem;
+            }
+            .legal-section p {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .legal-hero h1 {
+                font-size: 1.5rem;
+            }
+            .legal-content {
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo-link" style="text-decoration: none;">
+                <div class="logo">
+                    <h1>Atelier Luz</h1>
+                    <p>HANDGEMAAKTE TASSEN & SIERADEN</p>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="active-nav-link">Home</a>
+
+                <div class="nav-item">
+                    <div style="display: flex; align-items: center; gap: 5px;">
+                        <a href="collectie.html" class="dropdown-trigger-link"
+                            style="text-decoration: none;">Collectie</a>
+                        <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="collectie-lederen-juwelen.html">Lederen Juwelen</a>
+                        <a href="collectie-lederen-handtassen.html">Lederen Handtassen</a>
+                        <a href="collectie-lederwerken.html">Lederwerken</a>
+                        <a href="collectie-juwelen.html">Zomer Juwelen</a>
+                    </div>
+                </div>
+
+                <a href="het-atelier.html">Het Atelier</a>
+                <a href="aanvraag.html">Op Aanvraag</a>
+                <a href="contact.html">Contact</a>
+                <a href="winkelwagen.html" class="cart-link">
+                    <i class="fas fa-shopping-bag"></i>
+                    Winkelwagen
+                    <span class="cart-count" style="display: none;">0</span>
+                </a>
+            </div>
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu openen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="legal-hero">
+        <span class="subtitle">JURIDISCHE INFO</span>
+        <h1>Cookiebeleid</h1>
+        <p>Atelier Luz – Yolanda Smeets</p>
+    </div>
+
+    <div class="legal-content">
+
+        <div class="legal-section">
+            <h2>Wat zijn cookies?</h2>
+            <p>Cookies zijn kleine tekstbestanden die op je apparaat worden opgeslagen wanneer je onze website bezoekt. Ze helpen de website correct te functioneren en zorgen voor een betere gebruikerservaring.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2>Welke cookies gebruiken wij?</h2>
+            <p>Atelier Luz maakt uitsluitend gebruik van functionele en technisch noodzakelijke cookies. Wij plaatsen geen marketingcookies of tracking cookies voor reclamedoeleinden.</p>
+
+            <div class="cookie-table-wrapper"><table class="cookie-table">
+                <thead>
+                    <tr>
+                        <th>Cookie</th>
+                        <th>Aanbieder</th>
+                        <th>Doel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>cookie_keuze</strong><br><span class="badge badge-nodig">Functioneel</span></td>
+                        <td>Atelier Luz</td>
+                        <td>Onthoudt jouw cookievoorkeur zodat de banner niet bij elk bezoek verschijnt</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stripe cookies</strong><br><span class="badge badge-nodig">Noodzakelijk</span></td>
+                        <td>Stripe Inc.</td>
+                        <td>Noodzakelijk voor het veilig verwerken van betalingen en fraudepreventie</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cloudinary</strong><br><span class="badge badge-nodig">Functioneel</span></td>
+                        <td>Cloudinary Ltd.</td>
+                        <td>Gebruikt voor het optimaal laden van productafbeeldingen op de website</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Netlify</strong><br><span class="badge badge-nodig">Noodzakelijk</span></td>
+                        <td>Netlify Inc.</td>
+                        <td>Technische cookies van onze hostingprovider voor een correcte werking van de website</td>
+                    </tr>
+                </tbody>
+            </table></div>
+        </div>
+
+        <div class="legal-section">
+            <h2>Cookies beheren of weigeren</h2>
+            <p>Bij je eerste bezoek aan onze website tonen wij een cookiebanner. Je kan kiezen om cookies te accepteren of te weigeren. Je keuze wordt opgeslagen in je browser.</p>
+            <p>Je kan je keuze altijd wijzigen door de cookies in je browser te wissen. Dit doe je via de instellingen van je browser:</p>
+            <p>
+                <a href="https://support.google.com/chrome/answer/95647" target="_blank">Google Chrome</a> ·
+                <a href="https://support.mozilla.org/nl/kb/cookies-verwijderen-gegevens-wissen-websites-opgeslagen" target="_blank">Mozilla Firefox</a> ·
+                <a href="https://support.apple.com/nl-be/guide/safari/sfri11471/mac" target="_blank">Safari</a> ·
+                <a href="https://support.microsoft.com/nl-nl/microsoft-edge/cookies-verwijderen-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank">Microsoft Edge</a>
+            </p>
+            <p>Let op: als je functionele cookies weigert, kan het zijn dat bepaalde onderdelen van de website (zoals het afrekenproces) niet correct werken.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2>Cookies van derden</h2>
+            <p>Voor betalingen werken wij samen met Stripe. Stripe plaatst eigen cookies voor fraudepreventie en een veilige betaalervaring. Meer informatie vind je in het <a href="https://stripe.com/be/privacy" target="_blank">privacybeleid van Stripe</a>.</p>
+            <p>Voor afbeeldingen gebruiken wij Cloudinary. Meer informatie vind je in het <a href="https://cloudinary.com/privacy" target="_blank">privacybeleid van Cloudinary</a>.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2>Contact</h2>
+            <p>Heb je vragen over ons cookiebeleid? Neem gerust contact met ons op:</p>
+            <p>
+                Atelier Luz – Yolanda Smeets<br>
+                Stiemerbeekstraat 25, 3600 Genk<br>
+                <a href="mailto:info.atelierluz@gmail.com">info.atelierluz@gmail.com</a><br>
+                <a href="tel:+32468209909">+32 468 20 99 09</a>
+            </p>
+        </div>
+
+        <p class="last-updated">Laatst bijgewerkt: juni 2026</p>
+
+    </div>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Atelier Luz</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> <a
+                            href="https://maps.google.com/?q=Stiemerbeekstraat+25+3600+Genk" target="_blank"
+                            style="color: #d4c4ae; text-decoration: none;">Stiemerbeekstraat 25, 3600 Genk</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info.atelierluz@gmail.com"
+                            style="color: #d4c4ae; text-decoration: none;">info.atelierluz@gmail.com</a></p>
+                    <p><i class="fas fa-phone-alt"></i> <a href="tel:+32468209909"
+                            style="color: #d4c4ae; text-decoration: none;">+32 468 20 99 09</a></p>
+                    <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/_atelier_luz_/"
+                            target="_blank" style="color: #d4c4ae;">@_atelier_luz_</a></p>
+                </div>
+
+                <div class="footer-links">
+                    <div>
+                        <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
+                        <p><a href="contact.html">Contact</a></p>
+                        <p><a href="algemene-voorwaarden.html">Algemene voorwaarden</a></p>
+                        <p><a href="cookiebeleid.html">Cookiebeleid</a></p>
+                        <p><a href="privacyverklaring.html">Privacyverklaring</a></p>
+                        <p><a href="retourbeleid.html">Retourbeleid</a></p>
+                        <p><a href="wettelijke-vermeldingen.html">Wettelijke vermeldingen</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Atelier Luz – Ontworpen en met de hand gemaakt</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const navLinks = document.querySelector(".nav-links");
+        const dropdownArrows = document.querySelectorAll(".dropdown-arrow");
+
+        if (hamburgerBtn) {
+            hamburgerBtn.addEventListener("click", () => {
+                hamburgerBtn.classList.toggle("open");
+                navLinks.classList.toggle("open");
+            });
+        }
+
+        dropdownArrows.forEach(arrow => {
+            arrow.addEventListener("click", (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const menu = arrow.closest(".nav-item").querySelector(".dropdown-menu");
+                    if (menu) {
+                        menu.classList.toggle("open");
+                        arrow.style.transform = menu.classList.contains("open") ? "rotate(180deg)" : "";
+                    }
+                }
+            });
+        });
+    </script>
+
+    <div id="cookie-banner" style="
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #ffffff;
+      border-top: 1px solid #e5e5e5;
+      padding: 14px 24px;
+      align-items: center;
+      gap: 16px;
+      z-index: 99999;
+      font-family: inherit;
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.06);
+    ">
+      <p style="flex: 1; margin: 0; font-size: 13px; color: #555; line-height: 1.5;">
+        Wij gebruiken functionele cookies om de website correct te laten werken
+        (o.a. voor betalingen via Stripe en het laden van afbeeldingen).
+        Meer info vind je in ons <a href="/cookiebeleid.html" style="color: #2C2C2A; text-decoration: underline;">cookiebeleid</a>.
+      </p>
+      <div style="display: flex; gap: 8px; flex-shrink: 0;">
+        <button onclick="cookieKeuze('weigeren')" style="background: transparent; color: #666; border: 1px solid #ccc; border-radius: 6px; padding: 8px 16px; font-size: 13px; cursor: pointer; font-family: inherit;">Weigeren</button>
+        <button onclick="cookieKeuze('accepteren')" style="background: #2C2C2A; color: #F1EFE8; border: none; border-radius: 6px; padding: 8px 16px; font-size: 13px; cursor: pointer; font-family: inherit;">Accepteren</button>
+      </div>
+    </div>
+
+    <script>
+      if (localStorage.getItem('cookie_keuze')) {
+        document.getElementById('cookie-banner').style.display = 'none';
+      }
+      function cookieKeuze(keuze) {
+        localStorage.setItem('cookie_keuze', keuze);
+        document.getElementById('cookie-banner').style.display = 'none';
+      }
+    </script>
+
+    
+
+</body>
+</html>

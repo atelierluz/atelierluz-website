@@ -11,7 +11,6 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js"></script>
     <script src="winkelwagen.js"></script>
 </head>
 
@@ -126,6 +125,11 @@
                     <div>
                         <p style="font-weight: 500; margin-bottom: 12px;">Atelier Luz</p>
                         <p><a href="contact.html">Contact</a></p>
+                        <p><a href="algemene-voorwaarden.html">Algemene voorwaarden</a></p>
+                        <p><a href="cookiebeleid.html">Cookiebeleid</a></p>
+                        <p><a href="privacyverklaring.html">Privacyverklaring</a></p>
+                        <p><a href="retourbeleid.html">Retourbeleid</a></p>
+                        <p><a href="wettelijke-vermeldingen.html">Wettelijke vermeldingen</a></p>
                     </div>
                 </div>
             </div>
@@ -276,18 +280,9 @@
 
             const modalImage = document.getElementById('modalMainImage');
             modalImage.src = productAfbeeldingen[0] || 'https://placehold.co/600x600/f5f0eb/8b7d6b?text=Atelier+Luz';
+            modalImage.style.cursor = 'zoom-in';
+            modalImage.onclick = () => openLichtbak(modalImage.src);
 
-            if (window.zoomInstance) {
-                window.zoomInstance.detach();
-            }
-            if (typeof mediumZoom !== 'undefined') {
-                window.zoomInstance = mediumZoom(modalImage, {
-                    background: 'rgba(0, 0, 0, 0.9)',
-                    margin: 24,
-                    scrollOffset: 0,
-                    container: document.body
-                });
-            }
 
             const thumbnailsContainer = document.getElementById('modalThumbnails');
             thumbnailsContainer.innerHTML = '';
@@ -303,15 +298,8 @@
                         currentImageIndex = index;
                         const newModalImage = document.getElementById('modalMainImage');
                         newModalImage.src = productAfbeeldingen[currentImageIndex];
+                        newModalImage.onclick = () => openLichtbak(newModalImage.src);
 
-                        if (window.zoomInstance && typeof mediumZoom !== 'undefined') {
-                            window.zoomInstance.detach();
-                            window.zoomInstance = mediumZoom(newModalImage, {
-                                background: 'rgba(0, 0, 0, 0.9)',
-                                margin: 24,
-                                scrollOffset: 0
-                            });
-                        }
 
                         document.querySelectorAll('.modal-thumb').forEach((t, i) => {
                             t.classList.toggle('active', i === currentImageIndex);
@@ -392,11 +380,6 @@
         function closeModal() {
             document.getElementById('productModal').classList.remove('active');
             document.body.style.overflow = '';
-
-            if (window.zoomInstance) {
-                window.zoomInstance.detach();
-                window.zoomInstance = null;
-            }
         }
 
         function addToCartFromModal() {
@@ -472,6 +455,103 @@
             });
         }
     </script>
+
+    <div id="cookie-banner" style="
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 1px solid #e5e5e5;
+  padding: 14px 24px;
+  align-items: center;
+  gap: 16px;
+  z-index: 99999;
+  font-family: inherit;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.06);
+">
+        <p style="flex: 1; margin: 0; font-size: 13px; color: #555; line-height: 1.5;">
+            Wij gebruiken functionele cookies om de website correct te laten werken
+            (o.a. voor betalingen via Stripe en het laden van afbeeldingen).
+            Meer info vind je in ons <a href="/cookiebeleid.html"
+                style="color: #2C2C2A; text-decoration: underline;">cookiebeleid</a>.
+        </p>
+        <div style="display: flex; gap: 8px; flex-shrink: 0;">
+            <button onclick="cookieKeuze('weigeren')"
+                style="background: transparent; color: #666; border: 1px solid #ccc; border-radius: 6px; padding: 8px 16px; font-size: 13px; cursor: pointer; font-family: inherit;">Weigeren</button>
+            <button onclick="cookieKeuze('accepteren')"
+                style="background: #2C2C2A; color: #F1EFE8; border: none; border-radius: 6px; padding: 8px 16px; font-size: 13px; cursor: pointer; font-family: inherit;">Accepteren</button>
+        </div>
+    </div>
+
+    <script>
+        if (localStorage.getItem('cookie_keuze')) {
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        function cookieKeuze(keuze) {
+            localStorage.setItem('cookie_keuze', keuze);
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+    </script>
+
+    <!-- Foto lichtbak met pinch-zoom -->
+    <div id="fotoLichtbak" style="
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 20000;
+    align-items: center;
+    justify-content: center;
+    touch-action: none;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+">
+        <button onclick="sluitLichtbak()" style="
+        position: absolute;
+        top: 16px; right: 16px;
+        background: rgba(255,255,255,0.15);
+        border: none;
+        color: white;
+        font-size: 1.6rem;
+        width: 44px; height: 44px;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 1;
+        line-height: 1;
+    ">&times;</button>
+        <img id="lichtbakFoto" style="
+        max-width: 95vw;
+        max-height: 90vh;
+        object-fit: contain;
+        touch-action: pinch-zoom;
+        border-radius: 4px;
+    ">
+    </div>
+
+    <script>
+        function openLichtbak(src) {
+            const lb = document.getElementById('fotoLichtbak');
+            document.getElementById('lichtbakFoto').src = src;
+            lb.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            requestAnimationFrame(() => lb.style.opacity = '1');
+        }
+        function sluitLichtbak() {
+            const lb = document.getElementById('fotoLichtbak');
+            lb.style.opacity = '0';
+            setTimeout(() => {
+                lb.style.display = 'none';
+                document.body.style.overflow = '';
+            }, 250);
+        }
+        document.getElementById('fotoLichtbak').addEventListener('click', function (e) {
+            if (e.target === this) sluitLichtbak();
+        });
+    </script>
+
 </body>
 
 </html>
