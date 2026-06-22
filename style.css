@@ -2794,51 +2794,26 @@ body {
     color: #b29a7a;
 }
 
-/* ========== FILTER SIDEBAR ========== */
-.filter-sidebar {
-    position: absolute;
-    top: 210px;
-    left: calc(50vw - 640px - 180px - 20px);
-    width: 160px;
-    z-index: 10;
-}
-
-.filter-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 500;
-    color: var(--deep-brown);
-    margin-bottom: 20px;
-    letter-spacing: 0.5px;
-    line-height: 1.2;
-}
-
-.filter-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border-left: 2px solid var(--sand);
-}
-
-.filter-list li {
-    margin: 0;
+/* ========== FILTER BAR ========== */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-top: 16px;
+    justify-content: center;
 }
 
 .filter-btn {
-    display: block;
-    width: 100%;
     background: none;
     border: none;
+    border-left: 2px solid transparent;
     padding: 10px 16px;
-    text-align: left;
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
     font-weight: 400;
     color: var(--charcoal);
     cursor: pointer;
     transition: all 0.2s ease;
-    border-left: 2px solid transparent;
-    margin-left: -2px;
 }
 
 .filter-btn:hover {
@@ -2855,13 +2830,6 @@ body {
 
 /* ========== RESPONSIVE FILTER ========== */
 
-/* 1460px - Filter verdwijnt */
-@media (max-width: 1460px) {
-    .filter-sidebar {
-        display: none;
-    }
-}
-
 /* 1024px - Tablet */
 @media (max-width: 1024px) {
     .producten-grid {
@@ -2874,72 +2842,8 @@ body {
     }
 }
 
-/* 768px - Mobiel (filter behoudt zelfde uiterlijk) */
+/* 768px - Mobiel */
 @media (max-width: 768px) {
-    .filter-sidebar {
-        position: relative;
-        top: 0;
-        left: 0;
-        width: 100%;
-        display: block !important;
-        padding: 0 20px 20px 20px;
-        background: transparent;
-        border-bottom: 2px solid var(--sand);
-        margin-bottom: 24px;
-    }
-
-    .filter-title {
-        font-size: 1.8rem;
-        margin-bottom: 20px;
-        margin-top: 20px;
-    }
-
-    .filter-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0;
-        border-left: none;
-        padding: 0;
-    }
-
-    .filter-list li {
-        display: inline-block;
-        width: auto;
-        margin-right: 0;
-    }
-
-    .filter-btn {
-        display: inline-block;
-        width: auto;
-        padding: 10px 16px;
-        border: none;
-        border-left: 2px solid transparent;
-        background: transparent;
-        margin-left: 0;
-        font-size: 0.9rem;
-        font-weight: 400;
-        color: var(--charcoal);
-        border-radius: 0;
-    }
-
-    .filter-btn.active {
-        border: none;
-        border-left: 2px solid var(--burnt-brown);
-        background: rgba(139, 105, 70, 0.06);
-        color: var(--burnt-brown);
-        font-weight: 500;
-    }
-
-    .filter-btn:hover {
-        background: rgba(139, 105, 70, 0.06);
-        color: var(--burnt-brown);
-    }
-
-    .filter-btn.active:hover {
-        background: rgba(139, 105, 70, 0.06);
-        color: var(--burnt-brown);
-    }
-
     .producten-grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 20px !important;
@@ -2948,43 +2852,20 @@ body {
     .title-with-counter h2 {
         font-size: 1.5rem;
     }
-}
 
-/* 560px - Kleine mobiel */
-@media (max-width: 560px) {
-    .filter-sidebar {
-        padding: 0 16px 16px 16px;
-        margin-bottom: 20px;
-    }
-
-    .filter-title {
-        font-size: 1.5rem;
-        margin-bottom: 16px;
+    .filter-bar {
+        gap: 6px;
+        margin-top: 12px;
     }
 
     .filter-btn {
         font-size: 0.85rem;
-        padding: 8px 14px;
-    }
-
-    .producten-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 16px !important;
+        padding: 6px 14px;
     }
 }
 
-/* 400px - Extra kleine mobiel */
-@media (max-width: 400px) {
-    .filter-sidebar {
-        padding: 0 12px 12px 12px;
-        margin-bottom: 16px;
-    }
-
-    .filter-title {
-        font-size: 1.3rem;
-        margin-bottom: 14px;
-    }
-
+/* 480px - Kleine mobiel */
+@media (max-width: 480px) {
     .filter-btn {
         font-size: 0.8rem;
         padding: 6px 12px;

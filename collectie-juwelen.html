@@ -67,18 +67,6 @@
         </div>
     </div>
 
-    <!-- Filter sidebar — outside the container, to the left of it -->
-    <aside class="filter-sidebar">
-        <p class="filter-title">Categorie</p>
-        <ul class="filter-list">
-            <li><button class="filter-btn active" data-filter="alle">Alle</button></li>
-            <li><button class="filter-btn" data-filter="armbanden">Armbanden</button></li>
-            <li><button class="filter-btn" data-filter="kettingen">Kettingen</button></li>
-            <li><button class="filter-btn" data-filter="oorbellen">Oorbellen</button></li>
-            <li><button class="filter-btn" data-filter="setjes">Setjes</button></li>
-        </ul>
-    </aside>
-
     <section class="products-section" style="padding-top: 0;">
         <div class="container">
             <div class="title-wrapper">
@@ -87,6 +75,13 @@
                     <div id="productCounter" class="product-counter">
                         <span id="productCount">0</span> producten beschikbaar
                     </div>
+                </div>
+                <div class="filter-bar">
+                    <button class="filter-btn active" data-filter="alle">Alle</button>
+                    <button class="filter-btn" data-filter="armbanden">Armbanden</button>
+                    <button class="filter-btn" data-filter="kettingen">Kettingen</button>
+                    <button class="filter-btn" data-filter="oorbellen">Oorbellen</button>
+                    <button class="filter-btn" data-filter="setjes">Setjes</button>
                 </div>
             </div>
             <div class="producten-grid" id="productenGrid">
@@ -400,9 +395,9 @@
             if (e.key === 'Escape' && document.getElementById('productModal').classList.contains('active')) closeModal();
         });
 
-        document.querySelectorAll('.filter-btn').forEach(btn => {
+        document.querySelectorAll('.filter-bar .filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.filter-bar .filter-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 huidigFilter = btn.dataset.filter;
                 filterEnRender();
