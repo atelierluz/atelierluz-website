@@ -225,6 +225,16 @@
                 });
 
                 renderProducten(producten);
+
+                const params = new URLSearchParams(window.location.search);
+                const productId = params.get('product');
+                if (productId) {
+                    const product = alleProducten.find(p => p.id === productId);
+                    if (product) {
+                        const afbeeldingen = [product.imageUrl, ...(product.images || [])].filter(Boolean);
+                        openModal(product, afbeeldingen);
+                    }
+                }
             } catch (error) {
                 console.error("Fout bij laden producten:", error);
                 grid.innerHTML = '<div class="loading"><i class="fas fa-exclamation-triangle"></i> Er is een fout opgetreden.</div>';
@@ -268,6 +278,10 @@
 
         function openModal(product, afbeeldingen) {
             currentProduct = product;
+
+            const url = new URL(window.location);
+            url.searchParams.set('product', product.id);
+            history.pushState({ productId: product.id }, '', url);
             const productAfbeeldingen = (afbeeldingen && afbeeldingen.length > 0)
                 ? afbeeldingen
                 : [product.imageUrl, ...(product.images || [])].filter(Boolean);
@@ -380,6 +394,9 @@
         function closeModal() {
             document.getElementById('productModal').classList.remove('active');
             document.body.style.overflow = '';
+            const url = new URL(window.location);
+            url.searchParams.delete('product');
+            history.pushState({}, '', url);
         }
 
         function addToCartFromModal() {
@@ -415,6 +432,20 @@
         });
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && document.getElementById('productModal').classList.contains('active')) closeModal();
+        });
+
+        window.addEventListener('popstate', () => {
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('product');
+            if (productId) {
+                const product = alleProducten.find(p => p.id === productId);
+                if (product) {
+                    const afbeeldingen = [product.imageUrl, ...(product.images || [])].filter(Boolean);
+                    openModal(product, afbeeldingen);
+                }
+            } else {
+                closeModal();
+            }
         });
 
         laadProducten();

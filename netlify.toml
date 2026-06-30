@@ -1,0 +1,8 @@
+[build]
+  functions = "netlify/functions"
+
+# Optioneel: een nettere URL i.p.v. /.netlify/functions/product-feed
+[[redirects]]
+  from = "/product-feed.xml"
+  to = "/.netlify/functions/product-feed"
+  status = 200
