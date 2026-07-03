@@ -8,7 +8,7 @@ let cart = [];
 let verzendMethode = 'verzenden'; // 'verzenden' of 'afhalen'
 
 // Verzendkosten instellingen
-const VERZENDKOSTEN = 6.95;
+const VERZENDKOSTEN = 4.99;
 const GRATIS_VERZENDING_VANAF = 100;
 
 function loadCart() {
@@ -170,6 +170,9 @@ function renderCartPage() {
     const subtotaal = getSubtotaal();
     const verzendkosten = getVerzendkosten();
     const totaal = getTotaal();
+    // Bedrag voor de "Verzenden"-optie zelf, los van welke methode nu gekozen is
+    const verzendkostenAlsVerzenden = subtotaal >= GRATIS_VERZENDING_VANAF ? 0 : VERZENDKOSTEN;
+    const isGratisVerzendingOptie = subtotaal >= GRATIS_VERZENDING_VANAF;
     const isGratisVerzending = verzendMethode === 'verzenden' && subtotaal >= GRATIS_VERZENDING_VANAF;
 
     html += '</div>';
@@ -182,7 +185,7 @@ function renderCartPage() {
                 <input type="radio" name="shipping" id="shipping_verzenden" ${verzendMethode === 'verzenden' ? 'checked' : ''}>
                 <label for="shipping_verzenden">Verzenden (PostNL / Bpost)</label>
                 <span class="shipping-price">
-                    ${isGratisVerzending ? '€ 0,00 (gratis)' : verzendkosten > 0 ? '€ ' + verzendkosten.toFixed(2) : '€ 0,00'}
+                    ${isGratisVerzendingOptie ? '€ 0,00 (gratis)' : '€ ' + verzendkostenAlsVerzenden.toFixed(2)}
                 </span>
             </div>
             <div class="shipping-option ${verzendMethode === 'afhalen' ? 'selected' : ''}" onclick="setVerzendMethode('afhalen')">
